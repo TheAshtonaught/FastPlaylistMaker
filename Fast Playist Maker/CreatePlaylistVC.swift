@@ -19,6 +19,7 @@ class CreatePlaylistVC: UIViewController {
     @IBOutlet weak var albumTitleLbl: UILabel!
     @IBOutlet weak var CreatePlaylistBtn: UIButton!
     @IBOutlet weak var addedLbl: UILabel!
+    @IBOutlet weak var appleMusicLbl: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +28,17 @@ class CreatePlaylistVC: UIViewController {
         AlbumImgView.addGestureRecognizer(gesture)
         AlbumImgView.styleImage()
 
-        
+        configUI(createMode: false)
 
     }
 
+    
     func getLibrary() {
-        var query = MPMediaQuery()
         songsArr = MPMediaQuery.songs().items! as [MPMediaItem]
+       
+        if songsArr == nil {
+            displayAlert("Could not load Songs", errorMsg: "There was a problem getting songs from your library")
+        }
         
     }
     
@@ -70,14 +75,31 @@ class CreatePlaylistVC: UIViewController {
     func dismissAdded() {
         addedLbl.isHidden = true
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    
+    func configUI(createMode: Bool) {
+        AlbumImgView.isHidden = !createMode
+        songTitleLbl.isHidden = !createMode
+        albumTitleLbl.isHidden = !createMode
+        appleMusicLbl.isHidden = !createMode
+        
+        if createMode == true {
+            CreatePlaylistBtn.isEnabled = false
+            CreatePlaylistBtn.alpha = 0.3
+            
+        }
     }
     
     @IBAction func ceatePlaylist(_ sender: Any) {
+        configUI(createMode: true)
     }
 
 
+    func displayAlert(_ errorTitle: String, errorMsg: String) {
+        let alert = UIAlertController(title: errorTitle, message: errorMsg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+        
+    }
 
 }

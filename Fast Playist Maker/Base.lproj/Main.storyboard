@@ -108,6 +108,7 @@
                         <outlet property="CreatePlaylistBtn" destination="ZD9-h4-9DC" id="2ev-Rt-IEB"/>
                         <outlet property="addedLbl" destination="Pz5-pM-eGz" id="y6g-M8-qb8"/>
                         <outlet property="albumTitleLbl" destination="rUr-Xq-sUa" id="DwC-ig-ppR"/>
+                        <outlet property="appleMusicLbl" destination="a8i-md-ftp" id="uFP-2b-yHx"/>
                         <outlet property="songTitleLbl" destination="In6-tw-IY3" id="7Cf-da-ZRM"/>
                     </connections>
                 </viewController>
