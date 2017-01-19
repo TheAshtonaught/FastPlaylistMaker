@@ -47,9 +47,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZD9-h4-9DC">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZD9-h4-9DC" customClass="BorderedButton" customModule="Fast_Playist_Maker" customModuleProvider="target">
                                 <rect key="frame" x="119" y="500" width="136" height="45"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="tAo-5o-Ml7"/>
                                     <constraint firstAttribute="width" constant="136" id="z0V-1M-bfj"/>
@@ -78,7 +78,7 @@
                                     <constraint firstAttribute="height" constant="45" id="pBO-b2-THi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="MyanmarSangamMN-Bold" family="Myanmar Sangam MN" pointSize="17"/>
-                                <state key="normal" title="Add From Apple Music">
+                                <state key="normal" title="Search Apple Music">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -102,7 +102,9 @@
                             <constraint firstItem="0Px-Ke-ZCg" firstAttribute="centerX" secondItem="dcD-Ae-k68" secondAttribute="centerX" id="ul7-kx-uEo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="FVw-ay-8KH"/>
+                    <navigationItem key="navigationItem" id="FVw-ay-8KH">
+                        <barButtonItem key="rightBarButtonItem" title="Add Playlist" id="Jey-H7-jTF"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="AlbumImgView" destination="0Px-Ke-ZCg" id="uF0-Ng-7JJ"/>
                         <outlet property="CreatePlaylistBtn" destination="ZD9-h4-9DC" id="2ev-Rt-IEB"/>
@@ -222,7 +224,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AlbumCase" translatesAutoresizingMaskIntoConstraints="NO" id="beT-X0-BvJ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AlbumCase" translatesAutoresizingMaskIntoConstraints="NO" id="beT-X0-BvJ" customClass="DraggableImage" customModule="Fast_Playist_Maker" customModuleProvider="target">
                                 <rect key="frame" x="61" y="28" width="252" height="247"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>

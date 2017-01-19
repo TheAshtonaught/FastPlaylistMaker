@@ -26,7 +26,6 @@ class CreatePlaylistVC: UIViewController {
 
         let gesture = UIPanGestureRecognizer(target: self, action: #selector( self.drag(gesture:)))
         AlbumImgView.addGestureRecognizer(gesture)
-        AlbumImgView.styleImage()
 
         configUI(createMode: false)
 
@@ -36,6 +35,7 @@ class CreatePlaylistVC: UIViewController {
     func getLibrary() {
         songsArr = MPMediaQuery.songs().items! as [MPMediaItem]
        
+        
         if songsArr == nil {
             displayAlert("Could not load Songs", errorMsg: "There was a problem getting songs from your library")
         }

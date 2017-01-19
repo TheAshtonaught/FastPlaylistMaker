@@ -10,6 +10,9 @@ import UIKit
 
 class DraggableImage: UIImageView {
 
+    override func awakeFromNib() {
+        styleImage()
+    }
     
     func styleImage() {
         self.superview?.layoutIfNeeded()

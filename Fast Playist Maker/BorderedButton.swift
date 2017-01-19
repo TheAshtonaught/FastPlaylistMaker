@@ -11,7 +11,7 @@ import UIKit
 class BorderedButton: UIButton {
 
     override func awakeFromNib() {
-        layer.cornerRadius = 4
+        layer.cornerRadius = 20
         layer.borderWidth = 1
         layer.borderColor = UIColor.black.cgColor
     }
