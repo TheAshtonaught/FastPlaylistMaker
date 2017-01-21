@@ -15,6 +15,7 @@
 		0977A5871E2B8CB000C554A8 /* CreatePlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A5861E2B8CB000C554A8 /* CreatePlaylistVC.swift */; };
 		0977A58A1E2B8E7400C554A8 /* PlaylistTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A5891E2B8E7400C554A8 /* PlaylistTableVC.swift */; };
 		0977A58C1E2B8EAB00C554A8 /* PlayMusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A58B1E2B8EAB00C554A8 /* PlayMusicVC.swift */; };
+		09C149361E330D8300742BE1 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C149351E330D8300742BE1 /* Song.swift */; };
 		09F27F2E1E302D9D00F763AD /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F27F2D1E302D9D00F763AD /* BorderedButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		0977A5861E2B8CB000C554A8 /* CreatePlaylistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlaylistVC.swift; sourceTree = "<group>"; };
 		0977A5891E2B8E7400C554A8 /* PlaylistTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableVC.swift; sourceTree = "<group>"; };
 		0977A58B1E2B8EAB00C554A8 /* PlayMusicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayMusicVC.swift; sourceTree = "<group>"; };
+		09C149351E330D8300742BE1 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		09F27F2D1E302D9D00F763AD /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,6 +57,7 @@
 		095356B81E2CAE7300F70B83 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				09C149351E330D8300742BE1 /* Song.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 				TargetAttributes = {
 					0977A5701E2B776F00C554A8 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = XBHTHFFDG2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -172,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09C149361E330D8300742BE1 /* Song.swift in Sources */,
 				0977A58C1E2B8EAB00C554A8 /* PlayMusicVC.swift in Sources */,
 				0977A5871E2B8CB000C554A8 /* CreatePlaylistVC.swift in Sources */,
 				09F27F2E1E302D9D00F763AD /* BorderedButton.swift in Sources */,
@@ -300,6 +305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XBHTHFFDG2;
 				INFOPLIST_FILE = "Fast Playist Maker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ALGEBET.Fast-Playist-Maker";
@@ -312,6 +318,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XBHTHFFDG2;
 				INFOPLIST_FILE = "Fast Playist Maker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ALGEBET.Fast-Playist-Maker";

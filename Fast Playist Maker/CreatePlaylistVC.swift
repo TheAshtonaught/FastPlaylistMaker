@@ -11,8 +11,8 @@ import MediaPlayer
 
 class CreatePlaylistVC: UIViewController {
 
-    var songsArr: [MPMediaItem]? = [MPMediaItem]()
-    
+    var songsArr: [Song]? = nil
+    var index: Int = 1
     
     @IBOutlet weak var AlbumImgView: DraggableImage!
     @IBOutlet weak var songTitleLbl: UILabel!
@@ -29,16 +29,32 @@ class CreatePlaylistVC: UIViewController {
 
         configUI(createMode: false)
 
+        getLibrary()
     }
 
     
     func getLibrary() {
-        songsArr = MPMediaQuery.songs().items! as [MPMediaItem]
+        let songs = MPMediaQuery.songs().items! as [MPMediaItem]
        
-        
-        if songsArr == nil {
+        if songs.count < 1 {
             displayAlert("Could not load Songs", errorMsg: "There was a problem getting songs from your library")
+            configUI(createMode: false)
+        } else {
+            for song in songs {
+                let newSong = Song(songItem: song)
+                songsArr?.append(newSong)
+            }
         }
+        
+    }
+    
+    func updateImg(accepted: Bool) {
+
+        let randIndex = Int(arc4random_uniform(UInt32((songsArr?.count)!)))
+        
+        AlbumImgView.image = songsArr![randIndex].artwork
+        
+        
         
     }
     
@@ -61,6 +77,7 @@ class CreatePlaylistVC: UIViewController {
             if imgView.center.x < 100 {
                 addedLbl.isHidden = false
                 Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
+                updateImg(accepted: true)
             }
             
             rotation = CGAffineTransform(rotationAngle: 0)
@@ -86,12 +103,14 @@ class CreatePlaylistVC: UIViewController {
         if createMode == true {
             CreatePlaylistBtn.isEnabled = false
             CreatePlaylistBtn.alpha = 0.3
+//TODO: Add initial song
             
         }
     }
     
     @IBAction func ceatePlaylist(_ sender: Any) {
         configUI(createMode: true)
+        
     }
 
 
