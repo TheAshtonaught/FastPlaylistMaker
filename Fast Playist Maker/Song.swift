@@ -34,9 +34,19 @@ struct Song {
         } else {
             album = ""
         }
-        
-        
     }
+    
+    
+    static func newSongFromMPItemArray(itemArr: [MPMediaItem]) -> [Song]{
+        var songArr = [Song]()
+        for item in itemArr {
+            songArr.append(Song(songItem: item))
+        }
+        
+       return songArr
+    }
+    
+    
 }
 
 

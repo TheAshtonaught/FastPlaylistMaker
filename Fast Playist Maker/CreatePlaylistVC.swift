@@ -11,7 +11,7 @@ import MediaPlayer
 
 class CreatePlaylistVC: UIViewController {
 
-    var songsArr: [Song]? = nil
+    var songsArr = [Song]()
     var index: Int = 1
     
     @IBOutlet weak var AlbumImgView: DraggableImage!
@@ -20,6 +20,7 @@ class CreatePlaylistVC: UIViewController {
     @IBOutlet weak var CreatePlaylistBtn: UIButton!
     @IBOutlet weak var addedLbl: UILabel!
     @IBOutlet weak var appleMusicLbl: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,31 +30,50 @@ class CreatePlaylistVC: UIViewController {
 
         configUI(createMode: false)
 
-        getLibrary()
-    }
-
-    
-    func getLibrary() {
-        let songs = MPMediaQuery.songs().items! as [MPMediaItem]
-       
-        if songs.count < 1 {
-            displayAlert("Could not load Songs", errorMsg: "There was a problem getting songs from your library")
-            configUI(createMode: false)
-        } else {
-            for song in songs {
-                let newSong = Song(songItem: song)
-                songsArr?.append(newSong)
+        
+        getLibrary { (songArray, error) in
+            guard error == nil else {
+                self.displayAlert("There was an error", errorMsg: error!.description)
+                return
             }
+            
+            if let Arr = songArray {
+                self.songsArr = Arr
+                DispatchQueue.main.async {
+                    self.activityIndicator.isHidden = true
+                    self.activityIndicator.stopAnimating()
+                    self.AlbumImgView.isUserInteractionEnabled = true
+                    
+                    
+                    self.updateSong()
+                }
+                
+            }
+            
         }
         
     }
-    
-    func updateImg(accepted: Bool) {
 
-        let randIndex = Int(arc4random_uniform(UInt32((songsArr?.count)!)))
+    
+    func getLibrary(completion:@escaping(_ librarySongs: [Song]?, _ error: NSError?) -> Void) {
+        let songs = MPMediaQuery.songs().items! as [MPMediaItem]
+       
+        print(songs.count)
+        if songs.count < 1 {
+           completion(nil, errorReturn(code: 0, description: "Could not get user library", domain: "MPlibrary"))
+        } else {
         
-        AlbumImgView.image = songsArr![randIndex].artwork
+           completion(Song.newSongFromMPItemArray(itemArr: songs), nil)
+        }
         
+    }
+
+    
+    func updateSong() {
+
+        print(songsArr.count)
+//        let randIndex = Int(arc4random_uniform(UInt32((songsArr.count - 1))))
+//        AlbumImgView.image = songsArr[5].artwork
         
         
     }
@@ -77,7 +97,7 @@ class CreatePlaylistVC: UIViewController {
             if imgView.center.x < 100 {
                 addedLbl.isHidden = false
                 Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
-                updateImg(accepted: true)
+//                updateImg(accepted: true)
             }
             
             rotation = CGAffineTransform(rotationAngle: 0)
@@ -95,25 +115,35 @@ class CreatePlaylistVC: UIViewController {
 
     
     func configUI(createMode: Bool) {
+        AlbumImgView.isUserInteractionEnabled = false
         AlbumImgView.isHidden = !createMode
         songTitleLbl.isHidden = !createMode
         albumTitleLbl.isHidden = !createMode
         appleMusicLbl.isHidden = !createMode
+        activityIndicator.isHidden = !createMode
         
         if createMode == true {
             CreatePlaylistBtn.isEnabled = false
             CreatePlaylistBtn.alpha = 0.3
-//TODO: Add initial song
+
+            
             
         }
     }
     
     @IBAction func ceatePlaylist(_ sender: Any) {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         configUI(createMode: true)
         
     }
 
 
+    func errorReturn(code: Int, description: String, domain: String)-> NSError {
+        let userInfo = [NSLocalizedDescriptionKey: description]
+        return NSError(domain: domain, code: code, userInfo: userInfo)
+    }
+    
     func displayAlert(_ errorTitle: String, errorMsg: String) {
         let alert = UIAlertController(title: errorTitle, message: errorMsg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
