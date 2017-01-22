@@ -107,12 +107,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FVw-ay-8KH">
-                        <barButtonItem key="rightBarButtonItem" title="Add Playlist" id="Jey-H7-jTF"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add Playlist" id="Jey-H7-jTF">
+                            <connections>
+                                <action selector="addPlaylist:" destination="d2t-32-T39" id="d19-Ec-bAu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="AlbumImgView" destination="0Px-Ke-ZCg" id="uF0-Ng-7JJ"/>
                         <outlet property="CreatePlaylistBtn" destination="ZD9-h4-9DC" id="2ev-Rt-IEB"/>
                         <outlet property="activityIndicator" destination="W6H-D5-6mt" id="XR0-iz-Avz"/>
+                        <outlet property="addPlaylistBtn" destination="Jey-H7-jTF" id="22C-gA-8YI"/>
                         <outlet property="addedLbl" destination="Pz5-pM-eGz" id="y6g-M8-qb8"/>
                         <outlet property="albumTitleLbl" destination="rUr-Xq-sUa" id="DwC-ig-ppR"/>
                         <outlet property="appleMusicLbl" destination="a8i-md-ftp" id="uFP-2b-yHx"/>

@@ -21,6 +21,7 @@ class CreatePlaylistVC: UIViewController {
     @IBOutlet weak var addedLbl: UILabel!
     @IBOutlet weak var appleMusicLbl: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var addPlaylistBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,26 +32,6 @@ class CreatePlaylistVC: UIViewController {
         configUI(createMode: false)
 
         
-        getLibrary { (songArray, error) in
-            guard error == nil else {
-                self.displayAlert("There was an error", errorMsg: error!.description)
-                return
-            }
-            
-            if let Arr = songArray {
-                self.songsArr = Arr
-                DispatchQueue.main.async {
-                    self.activityIndicator.isHidden = true
-                    self.activityIndicator.stopAnimating()
-                    self.AlbumImgView.isUserInteractionEnabled = true
-                    
-                    
-                    self.updateSong()
-                }
-                
-            }
-            
-        }
         
     }
 
@@ -70,11 +51,13 @@ class CreatePlaylistVC: UIViewController {
 
     
     func updateSong() {
+        self.activityIndicator.isHidden = true
+        self.activityIndicator.stopAnimating()
 
-        print(songsArr.count)
-//        let randIndex = Int(arc4random_uniform(UInt32((songsArr.count - 1))))
-//        AlbumImgView.image = songsArr[5].artwork
-        
+        let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
+        AlbumImgView.image = songsArr[randIndex].artwork
+        songTitleLbl.text = songsArr[randIndex].title
+        albumTitleLbl.text = songsArr[randIndex].album
         
     }
     
@@ -88,16 +71,18 @@ class CreatePlaylistVC: UIViewController {
         
         let xFromCenter = imgView.center.x - self.view.bounds.width / 2
         let scale = min(100 / abs(xFromCenter), 1)
-        var rotation = CGAffineTransform(rotationAngle: -xFromCenter / 200)
+        var rotation = CGAffineTransform(rotationAngle: xFromCenter / 200)
         var stretch = rotation.scaledBy(x: scale, y: scale)
         
         imgView.transform = stretch
         if gesture.state == UIGestureRecognizerState.ended {
             
-            if imgView.center.x < 100 {
+            if imgView.center.x < 90 {
                 addedLbl.isHidden = false
                 Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
-//                updateImg(accepted: true)
+                updateSong()
+            } else if imgView.center.x > self.view.bounds.width - 90 {
+                updateSong()
             }
             
             rotation = CGAffineTransform(rotationAngle: 0)
@@ -115,19 +100,21 @@ class CreatePlaylistVC: UIViewController {
 
     
     func configUI(createMode: Bool) {
-        AlbumImgView.isUserInteractionEnabled = false
+        activityIndicator.isHidden = true
         AlbumImgView.isHidden = !createMode
         songTitleLbl.isHidden = !createMode
         albumTitleLbl.isHidden = !createMode
         appleMusicLbl.isHidden = !createMode
-        activityIndicator.isHidden = !createMode
+        
         
         if createMode == true {
             CreatePlaylistBtn.isEnabled = false
             CreatePlaylistBtn.alpha = 0.3
-
-            
-            
+            self.addPlaylistBtn.title = "Add Playlist"
+            self.addPlaylistBtn.isEnabled = true
+        } else {
+            self.addPlaylistBtn.title = ""
+            self.addPlaylistBtn.isEnabled = false
         }
     }
     
@@ -136,8 +123,29 @@ class CreatePlaylistVC: UIViewController {
         activityIndicator.startAnimating()
         configUI(createMode: true)
         
+        getLibrary { (songArray, error) in
+            guard error == nil else {
+                self.displayAlert("There was an error", errorMsg: error!.description)
+                return
+            }
+            
+            if let Arr = songArray {
+                self.songsArr = Arr
+                DispatchQueue.main.async {
+                    
+                    
+                    
+                    self.updateSong()
+                }
+            }
+            
+        }
+
+        
     }
 
+    @IBAction func addPlaylist(_ sender: Any) {
+    }
 
     func errorReturn(code: Int, description: String, domain: String)-> NSError {
         let userInfo = [NSLocalizedDescriptionKey: description]
