@@ -20,45 +20,58 @@ class CreatePlaylistVC: UIViewController {
     @IBOutlet weak var CreatePlaylistBtn: UIButton!
     @IBOutlet weak var addedLbl: UILabel!
     @IBOutlet weak var appleMusicLbl: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var addPlaylistBtn: UIBarButtonItem!
+    @IBOutlet weak var fetchLibBtn: UILabel!
+    @IBOutlet weak var cheetah: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let gesture = UIPanGestureRecognizer(target: self, action: #selector( self.drag(gesture:)))
         AlbumImgView.addGestureRecognizer(gesture)
-
+    
         configUI(createMode: false)
 
+        getLibrary { (songArray, error) in
+            guard error == nil else {
+                self.displayAlert("There was an error", errorMsg: error!.description)
+                return
+            }
+            if let Arr = songArray {
+                self.songsArr = Arr
+                DispatchQueue.main.async {
+                    self.configUI(createMode: true)
+                    self.updateSong()
+                }
+            }
+        }
         
         
     }
 
-    
     func getLibrary(completion:@escaping(_ librarySongs: [Song]?, _ error: NSError?) -> Void) {
-        let songs = MPMediaQuery.songs().items! as [MPMediaItem]
-       
-        print(songs.count)
-        if songs.count < 1 {
-           completion(nil, errorReturn(code: 0, description: "Could not get user library", domain: "MPlibrary"))
-        } else {
-        
-           completion(Song.newSongFromMPItemArray(itemArr: songs), nil)
+        MPMediaLibrary.requestAuthorization { (status) in
+            if status == .authorized {
+                let songs = MPMediaQuery.songs().items! as [MPMediaItem]
+                
+                if songs.count < 1 {
+                    completion(nil, self.errorReturn(code: 0, description: "Could not get user library", domain: "MPlibrary"))
+                } else {
+                    completion(Song.newSongFromMPItemArray(itemArr: songs), nil)
+                }
+            }
         }
-        
     }
 
     
     func updateSong() {
-        self.activityIndicator.isHidden = true
-        self.activityIndicator.stopAnimating()
 
         let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
         AlbumImgView.image = songsArr[randIndex].artwork
         songTitleLbl.text = songsArr[randIndex].title
         albumTitleLbl.text = songsArr[randIndex].album
         
+        songsArr.remove(at: randIndex)
     }
     
     
@@ -77,12 +90,11 @@ class CreatePlaylistVC: UIViewController {
         imgView.transform = stretch
         if gesture.state == UIGestureRecognizerState.ended {
             
-            if imgView.center.x < 90 {
-                addedLbl.isHidden = false
-                Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
-                updateSong()
-            } else if imgView.center.x > self.view.bounds.width - 90 {
-                updateSong()
+            if imgView.center.x < 100 {
+                added()
+                setAddedLbl(added: true)
+            } else if imgView.center.x > self.view.bounds.width - 100 {
+                setAddedLbl(added: false)
             }
             
             rotation = CGAffineTransform(rotationAngle: 0)
@@ -90,58 +102,58 @@ class CreatePlaylistVC: UIViewController {
             imgView.transform = stretch
             
             imgView.center = CGPoint(x: self.view.bounds.width / 2, y: (UIApplication.shared.statusBarFrame.height + 44 + (imgView.frame.height / 2)))
-            
         }
         
     }
+    
+    func added() {
+        
+    }
+    
     func dismissAdded() {
         addedLbl.isHidden = true
     }
 
-    
+    func setAddedLbl(added: Bool) {
+        if added {
+            addedLbl.text = "Added"
+            addedLbl.backgroundColor = UIColor.green
+            addedLbl.isHidden = false
+            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
+        } else {
+            addedLbl.text = "Skip"
+            addedLbl.backgroundColor = UIColor.red
+            addedLbl.isHidden = false
+
+            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
+        }
+        updateSong()
+    }
     func configUI(createMode: Bool) {
-        activityIndicator.isHidden = true
+        
+        fetchLibBtn.isHidden = createMode
+        cheetahAnimation(animate: !createMode)
+        cheetah.isHidden = createMode
+        
         AlbumImgView.isHidden = !createMode
         songTitleLbl.isHidden = !createMode
         albumTitleLbl.isHidden = !createMode
         appleMusicLbl.isHidden = !createMode
-        
-        
-        if createMode == true {
-            CreatePlaylistBtn.isEnabled = false
-            CreatePlaylistBtn.alpha = 0.3
-            self.addPlaylistBtn.title = "Add Playlist"
-            self.addPlaylistBtn.isEnabled = true
-        } else {
-            self.addPlaylistBtn.title = ""
-            self.addPlaylistBtn.isEnabled = false
+        CreatePlaylistBtn.isHidden = !createMode
+    }
+    func cheetahAnimation(animate: Bool) {
+        var imgArray = [UIImage]()
+        for i in 0...7 {
+            imgArray.append(UIImage(named: "cheetah\(i)")!)
+        }
+        if animate {
+            cheetah.animationImages = imgArray
+            cheetah.animationDuration = 0.4
+            cheetah.startAnimating()
         }
     }
-    
     @IBAction func ceatePlaylist(_ sender: Any) {
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        configUI(createMode: true)
-        
-        getLibrary { (songArray, error) in
-            guard error == nil else {
-                self.displayAlert("There was an error", errorMsg: error!.description)
-                return
-            }
-            
-            if let Arr = songArray {
-                self.songsArr = Arr
-                DispatchQueue.main.async {
-                    
-                    
-                    
-                    self.updateSong()
-                }
-            }
-            
-        }
 
-        
     }
 
     @IBAction func addPlaylist(_ sender: Any) {

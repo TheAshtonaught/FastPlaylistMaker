@@ -82,10 +82,17 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="W6H-D5-6mt">
-                                <rect key="frame" x="178" y="198" width="20" height="20"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iCJ-AJ-yas">
+                                <rect key="frame" x="129" y="300" width="117" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grabing all of your music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="lJe-1h-ZTa">
+                                <rect key="frame" x="38" y="249" width="299" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -116,11 +123,12 @@
                     <connections>
                         <outlet property="AlbumImgView" destination="0Px-Ke-ZCg" id="uF0-Ng-7JJ"/>
                         <outlet property="CreatePlaylistBtn" destination="ZD9-h4-9DC" id="2ev-Rt-IEB"/>
-                        <outlet property="activityIndicator" destination="W6H-D5-6mt" id="XR0-iz-Avz"/>
                         <outlet property="addPlaylistBtn" destination="Jey-H7-jTF" id="22C-gA-8YI"/>
                         <outlet property="addedLbl" destination="Pz5-pM-eGz" id="y6g-M8-qb8"/>
                         <outlet property="albumTitleLbl" destination="rUr-Xq-sUa" id="DwC-ig-ppR"/>
                         <outlet property="appleMusicLbl" destination="a8i-md-ftp" id="uFP-2b-yHx"/>
+                        <outlet property="cheetah" destination="iCJ-AJ-yas" id="dPv-iW-kbA"/>
+                        <outlet property="fetchLibBtn" destination="lJe-1h-ZTa" id="zQ1-7s-3kj"/>
                         <outlet property="songTitleLbl" destination="In6-tw-IY3" id="7Cf-da-ZRM"/>
                     </connections>
                 </viewController>

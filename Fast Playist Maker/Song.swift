@@ -20,7 +20,7 @@ struct Song {
         if let art = songItem.artwork?.image(at: CGSize(width: 245.0, height: 268.0)) {
            artwork = art
         } else {
-            artwork = UIImage(named: "placeholderimg.png")!
+            artwork = UIImage(named: "noAlbumArt.png")!
         }
         
         if let track = songItem.title {
