@@ -152,10 +152,32 @@ class CreatePlaylistVC: UIViewController {
             cheetah.startAnimating()
         }
     }
+    
+    func configTextField(textField: UITextField) {
+       textField.placeholder = "workout"
+    }
+    
+    func cancel(alertView: UIAlertAction!){
+        
+    }
+    
     @IBAction func ceatePlaylist(_ sender: Any) {
-
+      
+        let alert = UIAlertController(title: nil, message: "You've just created something Epic give it a Name", preferredStyle: .alert)
+        
+        alert.addTextField(configurationHandler: configTextField)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: cancel))
+        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { (UIAlertAction) in
+            self.presentSongTable()
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
+    func presentSongTable() {
+        let SongListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
+        
+        present(SongListTableVC, animated: true, completion: nil)
+    }
     @IBAction func addPlaylist(_ sender: Any) {
     }
 
