@@ -8,12 +8,17 @@
 
 import UIKit
 import MediaPlayer
+import CoreData
 
 class CreatePlaylistVC: UIViewController {
 
     var songsArr = [Song]()
-    var index: Int = 1
-    
+    var savedSongs = [SavedSong]()
+    var stack: CoreDataStack!
+    var addedSongs = [Song]()
+    var currentIndex = 0
+    var playlistTitle: UITextField!
+
     @IBOutlet weak var AlbumImgView: DraggableImage!
     @IBOutlet weak var songTitleLbl: UILabel!
     @IBOutlet weak var albumTitleLbl: UILabel!
@@ -27,6 +32,9 @@ class CreatePlaylistVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let appDel = UIApplication.shared.delegate as! AppDelegate
+        stack = appDel.stack
+        
         let gesture = UIPanGestureRecognizer(target: self, action: #selector( self.drag(gesture:)))
         AlbumImgView.addGestureRecognizer(gesture)
     
@@ -63,15 +71,12 @@ class CreatePlaylistVC: UIViewController {
         }
     }
 
-    
     func updateSong() {
-
         let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
-        AlbumImgView.image = songsArr[randIndex].artwork
-        songTitleLbl.text = songsArr[randIndex].title
-        albumTitleLbl.text = songsArr[randIndex].album
-        
-        songsArr.remove(at: randIndex)
+        currentIndex = randIndex
+        AlbumImgView.image = songsArr[currentIndex].artwork
+        songTitleLbl.text = songsArr[currentIndex].title
+        albumTitleLbl.text = songsArr[currentIndex].album
     }
     
     
@@ -103,11 +108,15 @@ class CreatePlaylistVC: UIViewController {
             
             imgView.center = CGPoint(x: self.view.bounds.width / 2, y: (UIApplication.shared.statusBarFrame.height + 44 + (imgView.frame.height / 2)))
         }
-        
     }
     
     func added() {
-        
+        addedSongs.append(songsArr[currentIndex])
+        if addedSongs.count > 0 {
+            CreatePlaylistBtn.alpha = 1
+            CreatePlaylistBtn.isUserInteractionEnabled = true
+        }
+        songsArr.remove(at: currentIndex)
     }
     
     func dismissAdded() {
@@ -140,6 +149,7 @@ class CreatePlaylistVC: UIViewController {
         albumTitleLbl.isHidden = !createMode
         appleMusicLbl.isHidden = !createMode
         CreatePlaylistBtn.isHidden = !createMode
+        CreatePlaylistBtn.isUserInteractionEnabled = false
     }
     func cheetahAnimation(animate: Bool) {
         var imgArray = [UIImage]()
@@ -154,7 +164,8 @@ class CreatePlaylistVC: UIViewController {
     }
     
     func configTextField(textField: UITextField) {
-       textField.placeholder = "workout"
+        textField.placeholder = "workout"
+        playlistTitle = textField
     }
     
     func cancel(alertView: UIAlertAction!){
@@ -163,7 +174,7 @@ class CreatePlaylistVC: UIViewController {
     
     @IBAction func ceatePlaylist(_ sender: Any) {
       
-        let alert = UIAlertController(title: nil, message: "You've just created something Epic give it a Name", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: "You've just created something EPIC give it a Name", preferredStyle: .alert)
         
         alert.addTextField(configurationHandler: configTextField)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: cancel))
