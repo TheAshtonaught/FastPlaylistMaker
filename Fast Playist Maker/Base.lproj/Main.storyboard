@@ -149,7 +149,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="61f-Tf-Ykb" id="HBK-f4-VGT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -159,10 +159,13 @@
                             <outlet property="delegate" destination="NSJ-nC-l9F" id="dHn-gS-j5t"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="O8a-Dj-rQz">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4tU-hJ-ASr"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTL-Dh-83O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142" y="-291"/>
+            <point key="canvasLocation" x="3202" y="-291"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5RR-ij-zhq">
@@ -233,11 +236,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t5K-Ve-9vy" id="lId-SZ-KYV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Workout Mix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="keN-pM-jtW">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="52.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -310,6 +313,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nb7-8I-jgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2141.5999999999999" y="366.56671664167919"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zrU-DQ-CV3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="blQ-E1-P9X" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eYn-vk-vUQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NSJ-nC-l9F" kind="relationship" relationship="rootViewController" id="ft9-eh-RSD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AQl-HD-iaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2241" y="-291"/>
         </scene>
     </scenes>
     <resources>

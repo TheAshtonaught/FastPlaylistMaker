@@ -179,12 +179,23 @@ class CreatePlaylistVC: UIViewController {
         alert.addTextField(configurationHandler: configTextField)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: cancel))
         alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { (UIAlertAction) in
+            if self.playlistTitle.text != nil || self.playlistTitle.text == "" {
             self.presentSongTable()
+            } else {
+                //TODO: display no playlist title error
+            }
         }))
         present(alert, animated: true, completion: nil)
     }
 
     func presentSongTable() {
+        let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
+        
+        for song in addedSongs {
+            let savedSong = SavedSong(song: song, context: stack.mainContext)
+            savedSong.playlist = playlist
+        }
+        
         let SongListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
         
         present(SongListTableVC, animated: true, completion: nil)
