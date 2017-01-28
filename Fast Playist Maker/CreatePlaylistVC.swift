@@ -196,9 +196,10 @@ class CreatePlaylistVC: UIViewController {
             savedSong.playlist = playlist
         }
         
-        let SongListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
+        let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
+        songListTableVC.playlist = playlist
         
-        present(SongListTableVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(songListTableVC, animated: true)
     }
     @IBAction func addPlaylist(_ sender: Any) {
     }

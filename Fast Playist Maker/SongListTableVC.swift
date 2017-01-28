@@ -7,45 +7,48 @@
 //
 
 import UIKit
+import CoreData
 
-class SongListTableVC: UITableViewController {
+class SongListTableVC: CoreDataTableVC {
 
+    var playlist: Playlist!
+    var playlistTitle: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        title = playlistTitle
+        
+        let appDel = UIApplication.shared.delegate as! AppDelegate
+        let stack = appDel.stack
+        
+        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedSong")
+        let pred = NSPredicate(format: "playlist = %@", playlist)
+        fr.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        fr.predicate = pred
+        // check
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        print(fetchedResultsController?.fetchedObjects ?? 9999)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        let song = fetchedResultsController?.object(at: indexPath) as! SavedSong
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SongTableCell", for: indexPath)
 
-        // Configure the cell...
-
+        cell.textLabel?.text = song.title
+        
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
