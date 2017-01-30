@@ -13,6 +13,7 @@ import CoreData
 class CreatePlaylistVC: UIViewController {
 
     var songsArr = [Song]()
+    var userLibrary = [Song]()
     var savedSongs = [SavedSong]()
     var stack: CoreDataStack!
     var addedSongs = [Song]()
@@ -47,6 +48,8 @@ class CreatePlaylistVC: UIViewController {
             }
             if let Arr = songArray {
                 self.songsArr = Arr
+                self.userLibrary = Arr
+                print(self.songsArr.count)
                 DispatchQueue.main.async {
                     self.configUI(createMode: true)
                     self.updateSong()
@@ -114,7 +117,7 @@ class CreatePlaylistVC: UIViewController {
         addedSongs.append(songsArr[currentIndex])
         if addedSongs.count > 0 {
             CreatePlaylistBtn.alpha = 1
-            CreatePlaylistBtn.isUserInteractionEnabled = true
+            CreatePlaylistBtn.isEnabled = true
         }
         songsArr.remove(at: currentIndex)
     }
@@ -149,7 +152,7 @@ class CreatePlaylistVC: UIViewController {
         albumTitleLbl.isHidden = !createMode
         appleMusicLbl.isHidden = !createMode
         CreatePlaylistBtn.isHidden = !createMode
-        CreatePlaylistBtn.isUserInteractionEnabled = false
+        CreatePlaylistBtn.isEnabled = false
     }
     func cheetahAnimation(animate: Bool) {
         var imgArray = [UIImage]()
@@ -169,7 +172,7 @@ class CreatePlaylistVC: UIViewController {
     }
     
     func cancel(alertView: UIAlertAction!){
-        
+        resetLib()
     }
     
     @IBAction func ceatePlaylist(_ sender: Any) {
@@ -179,10 +182,10 @@ class CreatePlaylistVC: UIViewController {
         alert.addTextField(configurationHandler: configTextField)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: cancel))
         alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { (UIAlertAction) in
-            if self.playlistTitle.text != nil || self.playlistTitle.text == "" {
+            if let text = self.playlistTitle.text, !text.isEmpty {
             self.presentSongTable()
             } else {
-                //TODO: display no playlist title error
+                self.displayAlert("No Title", errorMsg: "Pleast name your playlist")
             }
         }))
         present(alert, animated: true, completion: nil)
@@ -195,13 +198,24 @@ class CreatePlaylistVC: UIViewController {
             let savedSong = SavedSong(song: song, context: stack.mainContext)
             savedSong.playlist = playlist
         }
-        
+        stack.save()
+        resetLib()
         let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
         songListTableVC.playlist = playlist
         
         self.navigationController?.pushViewController(songListTableVC, animated: true)
     }
+    
+    func resetLib() {
+        songsArr = userLibrary
+        addedSongs.removeAll(keepingCapacity: true)
+        updateSong()
+        CreatePlaylistBtn.alpha = 0.3
+        CreatePlaylistBtn.isEnabled = false
+    }
+    
     @IBAction func addPlaylist(_ sender: Any) {
+        resetLib()
     }
 
     func errorReturn(code: Int, description: String, domain: String)-> NSError {

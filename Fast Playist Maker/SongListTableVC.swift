@@ -29,7 +29,6 @@ class SongListTableVC: CoreDataTableVC {
         // check
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
-        print(fetchedResultsController?.fetchedObjects ?? 9999)
     }
 
     
@@ -42,13 +41,17 @@ class SongListTableVC: CoreDataTableVC {
         
         let song = fetchedResultsController?.object(at: indexPath) as! SavedSong
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SongTableCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SongTableCell", for: indexPath) as! SongTableCell
 
-        cell.textLabel?.text = song.title
-        
+        cell.songTitleLbl.text = song.title
+        cell.albumTitleLbl.text = song.albumTitle
+        cell.albumImageView.image = UIImage(data: song.albumImg as! Data)
+
         return cell
     }
  
+    
+
 
     /*
     // Override to support conditional editing of the table view.
