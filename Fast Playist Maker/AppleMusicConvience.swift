@@ -37,9 +37,9 @@ class AppleMusicConvience {
         }
     }
     
-    func getSongs(searchTerm: String, completionHandler: @escaping (_ songDictArr: [String : AnyObject]?, _ error: NSError?) -> Void) {
+    func getSongs(searchTerm: String, completionHandler: @escaping (_ songDictArr: [[String : AnyObject]]?, _ error: NSError?) -> Void) {
         
-        var parameters: [String:Any] = ["term": "\(searchTerm)",
+        let parameters: [String:Any] = ["term": "\(searchTerm)",
             "entity": "song"
         ]
         
@@ -52,12 +52,11 @@ class AppleMusicConvience {
                 return
             }
             
-            if let dict = jsonDict, let songResults = dict["results"] as? [String:AnyObject] {
+            if let dict = jsonDict, let songResults = dict["results"] as? [[String:AnyObject]] {
                 completionHandler(songResults, nil)
             } else {
                 completionHandler(nil, self.apiConvience.errorReturn(code: 0, description: "No song found", domain: "AMApi"))
             }
-            
             
             
         }

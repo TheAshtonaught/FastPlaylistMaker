@@ -191,6 +191,13 @@ class CreatePlaylistVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
+    @IBAction func searchAppleMusic(_ sender: Any) {
+        let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "AMSearchVC") as! AMSearchVC
+        
+        navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
+    
     func presentSongTable() {
         let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
         

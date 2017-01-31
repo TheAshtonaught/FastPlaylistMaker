@@ -139,10 +139,10 @@
 				095356B71E2CAE6A00F70B83 /* View */,
 				0977A5881E2B8E4900C554A8 /* Controller */,
 				0977A5741E2B776F00C554A8 /* AppDelegate.swift */,
+				0977A5801E2B777000C554A8 /* Info.plist */,
 				0977A5781E2B776F00C554A8 /* Main.storyboard */,
 				0977A57B1E2B777000C554A8 /* Assets.xcassets */,
 				0977A57D1E2B777000C554A8 /* LaunchScreen.storyboard */,
-				0977A5801E2B777000C554A8 /* Info.plist */,
 			);
 			path = "Fast Playist Maker";
 			sourceTree = "<group>";
