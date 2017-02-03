@@ -19,7 +19,10 @@ class CreatePlaylistVC: UIViewController {
     var addedSongs = [Song]()
     var currentIndex = 0
     var playlistTitle: UITextField!
+    var appDel: AppDelegate!
+    var global = Global.sharedClient()
 
+    
     @IBOutlet weak var AlbumImgView: DraggableImage!
     @IBOutlet weak var songTitleLbl: UILabel!
     @IBOutlet weak var albumTitleLbl: UILabel!
@@ -33,14 +36,31 @@ class CreatePlaylistVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let appDel = UIApplication.shared.delegate as! AppDelegate
+        appDel = UIApplication.shared.delegate as! AppDelegate
         stack = appDel.stack
         
         let gesture = UIPanGestureRecognizer(target: self, action: #selector( self.drag(gesture:)))
         AlbumImgView.addGestureRecognizer(gesture)
     
         configUI(createMode: false)
+        
+        initializeLibrary()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+            if let amsongs = global.appleMusicPicks {
+            addedSongs.append(contentsOf: amsongs)
+            if addedSongs.count > 0 {
+                CreatePlaylistBtn.alpha = 1
+                CreatePlaylistBtn.isEnabled = true
+            }
+            global.appleMusicPicks = nil
+        }
+    }
 
+    func initializeLibrary() {
         getLibrary { (songArray, error) in
             guard error == nil else {
                 self.displayAlert("There was an error", errorMsg: error!.description)
@@ -56,8 +76,6 @@ class CreatePlaylistVC: UIViewController {
                 }
             }
         }
-        
-        
     }
 
     func getLibrary(completion:@escaping(_ librarySongs: [Song]?, _ error: NSError?) -> Void) {

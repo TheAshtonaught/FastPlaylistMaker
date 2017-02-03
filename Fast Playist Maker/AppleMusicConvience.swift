@@ -63,7 +63,31 @@ class AppleMusicConvience {
         
     }
     
-    
+    func getIdsFromSavedSongs(savedSongs: [SavedSong], completion: @escaping(_ ids: [String]?, _ error: NSError?) -> Void) {
+        var ids = [String]()
+        
+        for song in savedSongs {
+           let parameters: [String:Any] = ["term": "\(song.title)+\(song.albumTitle)"]
+            
+            let songUrl = apiConvience.apiUrlForMethod(method: nil, PathExt: nil, parameters: parameters as [String : AnyObject]?)
+            
+            appleMusicApiRequest(url: songUrl, method: "GET") { (jsonDict, error) in
+                
+                guard error == nil else {
+                    completion(nil, error)
+                    return
+                }
+                
+                if let dict = jsonDict, let songResults = dict["results"] as? [[String:AnyObject]] {
+                    
+                    let song = songResults[0]
+                    let id = song["trackId"] as! String
+                    ids.append(id)
+                }
+            }
+        }
+        completion(ids, nil)
+    }
     
 }
 

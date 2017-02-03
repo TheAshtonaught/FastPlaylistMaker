@@ -17,6 +17,13 @@ struct Song {
     var album: String
     var persitentID: UInt64
     
+    init(artwork: UIImage, title: String, album: String, id: UInt64) {
+        self.artwork = artwork
+        self.title = title
+        self.album = album
+        self.persitentID = id
+    }
+    
     init(songItem: MPMediaItem) {
         title = songItem.title ?? ""
         album = songItem.albumTitle ?? ""

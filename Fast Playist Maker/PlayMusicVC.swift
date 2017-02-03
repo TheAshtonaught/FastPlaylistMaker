@@ -9,10 +9,13 @@
 import UIKit
 
 class PlayMusicVC: UIViewController {
+    
+    var queue: [String]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(queue)
         // Do any additional setup after loading the view.
     }
 
