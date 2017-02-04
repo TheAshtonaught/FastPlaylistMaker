@@ -18,6 +18,8 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
     var songsToAppend = [Song]()
     var global = Global.sharedClient()
     var appleMusicClient = AppleMusicConvience.sharedClient()
+    let controller = SKCloudServiceController()
+
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -36,8 +38,7 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
     func checkAppleMusicAccess() {
         SKCloudServiceController.requestAuthorization { (status) in
             if status == .authorized {
-               let controller = SKCloudServiceController()
-                controller.requestCapabilities(completionHandler: { (capabilities, err) in
+                self.controller.requestCapabilities(completionHandler: { (capabilities, err) in
                     if err != nil {
                         DispatchQueue.main.async {
                             self.showAlert(title: "Error", error: "You must be an Apple Music member to use this feature")
@@ -112,7 +113,7 @@ extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
         var title: String!
         var albumTitle: String!
         var artwork: UIImage
-        var id: Int!
+        var id: String!
         
         if let songRow = self.songResults[indexPath.row] as? [String:AnyObject],
             let urlString = songRow["artworkUrl60"] as? String,
@@ -121,17 +122,42 @@ extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
             title = songRow["trackName"] as? String
             albumTitle = songRow["collectionName"] as? String
             artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
-            id = songRow["trackId"] as? Int
-            song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(id))
+            id = String(songRow["trackId"] as! Int)
+            song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(9999))
             songsToAppend.append(song)
             global.appleMusicPicks = songsToAppend
-            showAlert(title: "Added", error: "\(song.title) was added to your playlist")
+            
+            addToPlaylistAlert(id: id)
         }
     }
 
 }
 
 extension AMSearchVC {
+    
+    func addToPlaylistAlert(id: String) {
+        let alert = UIAlertController(title: "Would you like to add \(song.title) to your library?", message: "Only songs in your library can be added to a playlist", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (UIAlertAction) in
+            self.controller.requestCapabilities(completionHandler: { (capability, error) in
+                if capability != SKCloudServiceCapability.addToCloudMusicLibrary {
+                    MPMediaLibrary.default().addItem(withProductID: id, completionHandler: { (arr, err) in
+                        guard err == nil else {
+                            DispatchQueue.main.async {
+                                self.showAlert(title: "error", error: "could not add song")
+                            }
+                            return
+                        }
+                        
+                    })
+                }
+            })
+            
+            
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
     
     func showAlert(title: String, error: String) {
         let alertController = UIAlertController(title: title, message: error, preferredStyle: .alert)
@@ -140,17 +166,3 @@ extension AMSearchVC {
         present(alertController, animated: true, completion:nil)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

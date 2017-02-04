@@ -35,25 +35,7 @@ class SongListTableVC: CoreDataTableVC {
     @IBAction func play(_ sender: Any) {
         let songs = fetchedResultsController?.fetchedObjects as! [SavedSong]
 
-        appleMusicClient.getIdsFromSavedSongs(savedSongs: songs) {(songids, err) in
-            
-            guard err == nil else {
-                print(err!.localizedDescription)
-                return
-            }
-            
-            if let queue = songids {
-                print(queue)
-                DispatchQueue.main.async {
-                  let playMusicVc = self.storyboard?.instantiateViewController(withIdentifier: "PlayMusicVC") as! PlayMusicVC
-                    
-                    playMusicVc.queue = queue
-                    //self.navigationController?.pushViewController(playMusicVc, animated: true)
-                }
-                
-            }
-            
-        }
+        
     }
     
     
