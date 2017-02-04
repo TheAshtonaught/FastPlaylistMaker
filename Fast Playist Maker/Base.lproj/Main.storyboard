@@ -314,46 +314,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AlbumCase" translatesAutoresizingMaskIntoConstraints="NO" id="beT-X0-BvJ" customClass="DraggableImage" customModule="Fast_Playist_Maker" customModuleProvider="target">
-                                <rect key="frame" x="61" y="28" width="252" height="247"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="beT-X0-BvJ" customClass="DraggableImage" customModule="Fast_Playist_Maker" customModuleProvider="target">
+                                <rect key="frame" x="70" y="72" width="234" height="230"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Way Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1f6-XN-nGp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1f6-XN-nGp">
                                 <rect key="frame" x="16" y="323" width="343" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Birds In The Trap Sing Mcknight" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8b-t3-gc4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8b-t3-gc4">
                                 <rect key="frame" x="16" y="374" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLt-sr-U4e">
-                                <rect key="frame" x="147" y="492" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="pauseIcon"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNh-0b-uiu">
                                 <rect key="frame" x="16" y="492" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="prevIcon"/>
+                                <connections>
+                                    <action selector="prevBtnPressed:" destination="bgg-LH-UwP" eventType="touchUpInside" id="DsV-Fi-3fs"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ika-aN-WZa">
                                 <rect key="frame" x="279" y="492" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="tyj" image="nextButton"/>
+                                <state key="normal" image="nextButton"/>
+                                <connections>
+                                    <action selector="skipBtnPressed:" destination="bgg-LH-UwP" eventType="touchUpInside" id="cES-KC-Md8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLt-sr-U4e">
+                                <rect key="frame" x="157" y="495" width="61" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="pauseIcon"/>
+                                <connections>
+                                    <action selector="play:" destination="bgg-LH-UwP" eventType="touchUpInside" id="cJX-iz-L4Y"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="CyS-ba-Wg7"/>
+                    <connections>
+                        <outlet property="albumImage" destination="beT-X0-BvJ" id="MZF-lM-y21"/>
+                        <outlet property="albumTitleLabel" destination="I8b-t3-gc4" id="wNb-ZU-2Vk"/>
+                        <outlet property="pauseButton" destination="eLt-sr-U4e" id="5Jb-hy-UFp"/>
+                        <outlet property="songTitleLabel" destination="1f6-XN-nGp" id="aV6-Q2-0zc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nb7-8I-jgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2314" y="367"/>
+            <point key="canvasLocation" x="3032.8000000000002" y="389.95502248875567"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="zof-BJ-b3L">
@@ -468,9 +484,26 @@
             </objects>
             <point key="canvasLocation" x="921" y="-965"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8oU-88-IH9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oeF-nP-Qbh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Ks-cz-osw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bgg-LH-UwP" kind="relationship" relationship="rootViewController" id="1b1-B3-5fL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iEP-9j-Isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2241" y="390"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="AlbumCase" width="1000" height="1000"/>
         <image name="PlaylistIcon" width="30" height="30"/>
         <image name="cheetahIcon" width="30" height="30"/>
         <image name="nextButton" width="512" height="512"/>

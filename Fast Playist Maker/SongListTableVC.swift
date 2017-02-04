@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MediaPlayer
 
 class SongListTableVC: CoreDataTableVC {
 
@@ -34,8 +35,23 @@ class SongListTableVC: CoreDataTableVC {
     
     @IBAction func play(_ sender: Any) {
         let songs = fetchedResultsController?.fetchedObjects as! [SavedSong]
-
+        var arr = [MPMediaItem]()
         
+        for song in songs {
+            let query = MPMediaQuery.songs()
+            let songPredicate = MPMediaPropertyPredicate(value: song.title, forProperty: MPMediaItemPropertyTitle)
+            query.addFilterPredicate(songPredicate)
+            let result = query.items?[0]
+            if let sult = result{
+               arr.append(sult) 
+            }
+            
+        }
+        let collection = MPMediaItemCollection(items: arr)
+        
+        let playMusicVc = self.storyboard?.instantiateViewController(withIdentifier: "PlayMusicVC") as! PlayMusicVC
+        playMusicVc.collection = collection
+        navigationController?.pushViewController(playMusicVc, animated: true)
     }
     
     

@@ -7,32 +7,66 @@
 //
 
 import UIKit
+import MediaPlayer
+
 
 class PlayMusicVC: UIViewController {
     
-    var queue: [String]!
+    var collection: MPMediaItemCollection!
+    let controller = MPMusicPlayerController.systemMusicPlayer()
 
+    @IBOutlet weak var albumImage: DraggableImage!
+    @IBOutlet weak var songTitleLabel: UILabel!
+    @IBOutlet weak var albumTitleLabel: UILabel!
+    @IBOutlet weak var pauseButton: UIButton!
+
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
-        print(queue)
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        controller.setQueue(with: collection)
+        controller.prepareToPlay()
+        controller.play()
+        updateSongInfo()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func play(_ sender: Any) {
+        if controller.playbackState == .paused {
+            controller.play()
+            pauseButton.setImage(UIImage(named: "pauseIcon.png"), for: .normal)
+        }
+        if controller.playbackState == .playing {
+            controller.pause()
+            pauseButton.setImage(UIImage(named: "playButton.png"), for: .normal)
+        }
+        updateSongInfo()
+ 
     }
-    */
+    
+    @IBAction func skipBtnPressed(_ sender: Any) {
+        controller.skipToNextItem()
+        updateSongInfo()
+    }
+    
+    @IBAction func prevBtnPressed(_ sender: Any) {
+        controller.skipToPreviousItem()
+        updateSongInfo()
+    }
+    
+    func updateSongInfo() {
+        albumImage.image = controller.nowPlayingItem?.artwork?.image(at: CGSize(width: 245.0, height: 268.0)) ?? UIImage(named: "noAlbumArt.png")
+        albumTitleLabel.text = controller.nowPlayingItem?.albumTitle ?? ""
+        songTitleLabel.text = controller.nowPlayingItem?.title ?? ""
+
+        
+        
+    }
+    
+    
+    
 
 }
