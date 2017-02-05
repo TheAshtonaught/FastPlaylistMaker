@@ -39,8 +39,8 @@ class AppleMusicConvience {
     
     func getSongs(searchTerm: String, completionHandler: @escaping (_ songDictArr: [[String : AnyObject]]?, _ error: NSError?) -> Void) {
         
-        let parameters: [String:Any] = ["term": "\(searchTerm)",
-            "entity": "song"
+        let parameters: [String:Any] = [parameterKeys.term: "\(searchTerm)",
+            parameterKeys.entity: "song"
         ]
         
         let songUrl = apiConvience.apiUrlForMethod(method: nil, PathExt: nil, parameters: parameters as [String : AnyObject]?)

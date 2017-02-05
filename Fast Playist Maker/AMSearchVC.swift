@@ -116,11 +116,11 @@ extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
         var id: String!
         
         if let songRow = self.songResults[indexPath.row] as? [String:AnyObject],
-            let urlString = songRow["artworkUrl60"] as? String,
+            let urlString = songRow[AppleMusicConvience.jsonResponseKeys.artwork] as? String,
             let imgUrl = URL(string: urlString),
             let imgData = NSData(contentsOf: imgUrl) {
-            title = songRow["trackName"] as? String
-            albumTitle = songRow["collectionName"] as? String
+            title = songRow[AppleMusicConvience.jsonResponseKeys.trackName] as? String
+            albumTitle = songRow[AppleMusicConvience.jsonResponseKeys.albumName] as? String
             artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
             id = String(songRow["trackId"] as! Int)
             song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(9999))
@@ -136,11 +136,11 @@ extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
 extension AMSearchVC {
     
     func addToPlaylistAlert(id: String) {
-        let alert = UIAlertController(title: "Would you like to add \(song.title) to your library?", message: "Only songs in your library can be added to a playlist", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Would you like to add \(song.title)?", message: "Only songs in your library can be added to a playlist. If \(song.title) is not in your library it will be added", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (UIAlertAction) in
             self.controller.requestCapabilities(completionHandler: { (capability, error) in
-                if capability != SKCloudServiceCapability.addToCloudMusicLibrary {
+                if capability.contains(SKCloudServiceCapability.addToCloudMusicLibrary)  {
                     MPMediaLibrary.default().addItem(withProductID: id, completionHandler: { (arr, err) in
                         guard err == nil else {
                             DispatchQueue.main.async {

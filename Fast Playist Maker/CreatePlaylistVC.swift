@@ -184,6 +184,23 @@ class CreatePlaylistVC: UIViewController {
         }
     }
     
+    
+    
+    func presentSongTable() {
+        let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
+        
+        for song in addedSongs {
+            let savedSong = SavedSong(song: song, context: stack.mainContext)
+            savedSong.playlist = playlist
+        }
+        stack.save()
+        resetLib()
+        let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
+        songListTableVC.playlist = playlist
+        
+        self.navigationController?.pushViewController(songListTableVC, animated: true)
+    }
+    
     func configTextField(textField: UITextField) {
         textField.placeholder = "workout"
         playlistTitle = textField
@@ -191,6 +208,14 @@ class CreatePlaylistVC: UIViewController {
     
     func cancel(alertView: UIAlertAction!){
         resetLib()
+    }
+    
+    func resetLib() {
+        songsArr = userLibrary
+        addedSongs.removeAll(keepingCapacity: true)
+        updateSong()
+        CreatePlaylistBtn.alpha = 0.3
+        CreatePlaylistBtn.isEnabled = false
     }
     
     @IBAction func ceatePlaylist(_ sender: Any) {
@@ -213,30 +238,6 @@ class CreatePlaylistVC: UIViewController {
         let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "AMSearchVC") as! AMSearchVC
         
         navigationController?.pushViewController(searchVC, animated: true)
-    }
-    
-    
-    func presentSongTable() {
-        let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
-        
-        for song in addedSongs {
-            let savedSong = SavedSong(song: song, context: stack.mainContext)
-            savedSong.playlist = playlist
-        }
-        stack.save()
-        resetLib()
-        let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
-        songListTableVC.playlist = playlist
-        
-        self.navigationController?.pushViewController(songListTableVC, animated: true)
-    }
-    
-    func resetLib() {
-        songsArr = userLibrary
-        addedSongs.removeAll(keepingCapacity: true)
-        updateSong()
-        CreatePlaylistBtn.alpha = 0.3
-        CreatePlaylistBtn.isEnabled = false
     }
     
     @IBAction func addPlaylist(_ sender: Any) {

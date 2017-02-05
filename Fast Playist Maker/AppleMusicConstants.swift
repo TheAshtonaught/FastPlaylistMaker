@@ -14,6 +14,18 @@ extension AppleMusicConvience {
         static let Host = "itunes.apple.com"
         static let Path = "/search"
     }
+    
+    struct parameterKeys {
+        static let term = "term"
+        static let entity = "entity"
+    }
+    
+    struct jsonResponseKeys {
+        static let results = "results"
+        static let trackName = "trackName"
+        static let artwork = "artworkUrl60"
+        static let albumName = "collectionName"
+    }
 }
 
 
