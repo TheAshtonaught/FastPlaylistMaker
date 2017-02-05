@@ -16,6 +16,7 @@ class SongListTableVC: CoreDataTableVC {
     var playlistTitle: String!
     var appleMusicClient = AppleMusicConvience.sharedClient()
     let controller = MPMusicPlayerController.systemMusicPlayer()
+    var stack: CoreDataStack!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class SongListTableVC: CoreDataTableVC {
         title = playlistTitle
         
         let appDel = UIApplication.shared.delegate as! AppDelegate
-        let stack = appDel.stack
+        stack = appDel.stack
         
         let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedSong")
         let pred = NSPredicate(format: "playlist = %@", playlist)
@@ -76,8 +77,27 @@ class SongListTableVC: CoreDataTableVC {
     }
  
     
-
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            
+            let song = fetchedResultsController?.object(at: indexPath) as! SavedSong
+            stack.mainContext.delete(song)
+            stack.save()
+            
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+        }
+        
+    }
 
     
 
 }
+
+
+
+
+
+

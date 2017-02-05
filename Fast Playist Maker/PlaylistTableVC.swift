@@ -11,11 +11,13 @@ import CoreData
 
 class PlaylistTableVC: CoreDataTableVC {
 
+    var stack: CoreDataStack!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let appDel = UIApplication.shared.delegate as! AppDelegate
-        let stack = appDel.stack
+        stack = appDel.stack
         
         let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Playlist")
         fr.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -45,5 +47,20 @@ class PlaylistTableVC: CoreDataTableVC {
         
     }
     
-
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            
+            let playlist = fetchedResultsController?.object(at: indexPath) as! Playlist
+            stack.mainContext.delete(playlist)
+            stack.save()
+            
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+        }
+        
+    }
+    
+    
 }
