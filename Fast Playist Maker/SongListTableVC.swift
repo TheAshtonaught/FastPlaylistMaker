@@ -15,6 +15,7 @@ class SongListTableVC: CoreDataTableVC {
     var playlist: Playlist!
     var playlistTitle: String!
     var appleMusicClient = AppleMusicConvience.sharedClient()
+    let controller = MPMusicPlayerController.systemMusicPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +50,13 @@ class SongListTableVC: CoreDataTableVC {
         }
         let collection = MPMediaItemCollection(items: arr)
         
-        let playMusicVc = self.storyboard?.instantiateViewController(withIdentifier: "PlayMusicVC") as! PlayMusicVC
-        playMusicVc.collection = collection
-        navigationController?.pushViewController(playMusicVc, animated: true)
+        controller.setQueue(with: collection)
+        controller.prepareToPlay()
+        controller.play()
+        
+        let url = URL(string: "music://")!
+        UIApplication.shared.open(url)
+        
     }
     
     

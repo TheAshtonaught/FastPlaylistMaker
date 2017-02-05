@@ -25,7 +25,8 @@ class PlayMusicVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let url = URL(string: "music://")!
+        UIApplication.shared.open(url)
 
         controller.setQueue(with: collection)
         controller.prepareToPlay()
@@ -33,16 +34,24 @@ class PlayMusicVC: UIViewController {
         updateSongInfo()
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+ //       checkPlayState()
+        updateSongInfo()
+    }
     
     @IBAction func play(_ sender: Any) {
-        if controller.playbackState == .paused {
+        print(controller.playbackState == .playing)
+
+        if controller.playbackState != .playing {
             controller.play()
-            pauseButton.setImage(UIImage(named: "pauseIcon.png"), for: .normal)
-        }
-        if controller.playbackState == .playing {
+            checkPlayState()
+        } else {
             controller.pause()
-            pauseButton.setImage(UIImage(named: "playButton.png"), for: .normal)
+            checkPlayState()
         }
+//        checkPlayState()
         updateSongInfo()
  
     }
@@ -61,12 +70,18 @@ class PlayMusicVC: UIViewController {
         albumImage.image = controller.nowPlayingItem?.artwork?.image(at: CGSize(width: 245.0, height: 268.0)) ?? UIImage(named: "noAlbumArt.png")
         albumTitleLabel.text = controller.nowPlayingItem?.albumTitle ?? ""
         songTitleLabel.text = controller.nowPlayingItem?.title ?? ""
-
-        
-        
     }
     
-    
+    func checkPlayState() {
+
+        print(controller.playbackState == .playing)
+
+        if controller.playbackState != .playing {
+            pauseButton.setImage(UIImage(named: "playButton.png"), for: .normal)
+        } else {
+            pauseButton.setImage(UIImage(named: "pauseButton.png"), for: .normal)
+        }
+    }
     
 
 }

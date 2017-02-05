@@ -351,7 +351,6 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLt-sr-U4e">
                                 <rect key="frame" x="157" y="495" width="61" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="pauseIcon"/>
                                 <connections>
                                     <action selector="play:" destination="bgg-LH-UwP" eventType="touchUpInside" id="cJX-iz-L4Y"/>
                                 </connections>
@@ -507,7 +506,6 @@
         <image name="PlaylistIcon" width="30" height="30"/>
         <image name="cheetahIcon" width="30" height="30"/>
         <image name="nextButton" width="512" height="512"/>
-        <image name="pauseIcon" width="128" height="128"/>
         <image name="prevIcon" width="512" height="512"/>
     </resources>
 </document>
