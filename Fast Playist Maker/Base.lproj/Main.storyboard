@@ -191,7 +191,7 @@
                     <navigationItem key="navigationItem" id="O8a-Dj-rQz">
                         <nil key="title"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Yjk-Xg-wrE" customClass="BorderedButton" customModule="Fast_Playist_Maker" customModuleProvider="target">
-                            <rect key="frame" x="148" y="7" width="80" height="30"/>
+                            <rect key="frame" x="147.5" y="7" width="80" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.99607843137254903" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="18"/>
@@ -224,12 +224,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T5q-LR-2AM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-524" y="248"/>
+            <point key="canvasLocation" x="-642" y="221"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="72F-eH-usg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a0O-Dy-1pA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Createnavigation" automaticallyAdjustsScrollViewInsets="NO" id="a0O-Dy-1pA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="cheetahIcon" selectedImage="cheetahIcon" id="ybi-tD-oD6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XYb-Zf-A2n">
@@ -243,12 +243,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kPv-kV-v3Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="460" y="-291.00449775112446"/>
+            <point key="canvasLocation" x="460" y="-278"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="M7A-eg-2eY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="spk-66-VI1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PlaylistNavigation" automaticallyAdjustsScrollViewInsets="NO" id="spk-66-VI1" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="PlaylistIcon" selectedImage="PlaylistIcon" id="nC4-kB-FhQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0qF-LF-0gk">
@@ -262,7 +262,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fg-h5-OPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="460" y="363.86806596701655"/>
+            <point key="canvasLocation" x="460" y="404"/>
         </scene>
         <!--Playlist TableVC-->
         <scene sceneID="sRu-BV-g1s">
@@ -277,11 +277,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t5K-Ve-9vy" id="lId-SZ-KYV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZRM-MQ-MIf">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="52"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="52.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="26"/>
                                             <nil key="textColor"/>
@@ -300,7 +300,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dtJ-kF-gMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1396" y="366.56671664167919"/>
+            <point key="canvasLocation" x="1399" y="415"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="zof-BJ-b3L">
@@ -335,18 +335,18 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ILT-G4-LEz" id="w4C-2A-ndX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HFR-oE-LNJ">
-                                                    <rect key="frame" x="15" y="14" width="38" height="23"/>
+                                                    <rect key="frame" x="15" y="15" width="38" height="22.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xLB-Ce-oBS">
-                                                    <rect key="frame" x="15" y="37" width="44" height="15"/>
+                                                    <rect key="frame" x="15" y="37.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -382,7 +382,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zrU-DQ-CV3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="blQ-E1-P9X" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SongNavigation" automaticallyAdjustsScrollViewInsets="NO" id="blQ-E1-P9X" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eYn-vk-vUQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -395,12 +395,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AQl-HD-iaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2241" y="-291"/>
+            <point key="canvasLocation" x="2318" y="-263"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W3L-Nh-bmx">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2kX-Gc-LOf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SearchNavigation" automaticallyAdjustsScrollViewInsets="NO" id="2kX-Gc-LOf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ao2-6J-pbO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -413,7 +413,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TP2-5Z-HQe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="-965"/>
+            <point key="canvasLocation" x="937" y="-968"/>
         </scene>
     </scenes>
     <resources>

@@ -30,7 +30,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         stack.save()
     }
 
-    
 
 }
+
+extension AppDelegate {
+    
+    func noConnectionCheckLoop(_ delayInSeconds : Int, vc: UIViewController) {
+        if delayInSeconds > 0 {
+            
+            if !Reachability.isConnectedToNetwork() {
+                let alert = UIAlertController(title: "No Internet Connection", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+                vc.present(alert, animated: true, completion: nil)
+            }
+            
+            let delayInNanoSeconds = UInt64(delayInSeconds) * NSEC_PER_SEC
+            let time = DispatchTime.now() + Double(Int64(delayInNanoSeconds)) / Double(NSEC_PER_SEC)
+            
+            DispatchQueue.main.asyncAfter(deadline: time) {
+                self.noConnectionCheckLoop(delayInSeconds, vc: vc)
+            }
+        }
+        
+    }
+
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 

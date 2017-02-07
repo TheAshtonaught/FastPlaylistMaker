@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		094710621E485E1300DFBE4A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094710611E485E1300DFBE4A /* Reachability.swift */; };
 		094A17601E3F1A610040255E /* AppleMusicConvience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A175F1E3F1A610040255E /* AppleMusicConvience.swift */; };
 		094A17621E3F1A760040255E /* AppleMusicConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A17611E3F1A760040255E /* AppleMusicConstants.swift */; };
 		094A17641E3F1C380040255E /* ApiConvience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A17631E3F1C380040255E /* ApiConvience.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		094710611E485E1300DFBE4A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		094A175F1E3F1A610040255E /* AppleMusicConvience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMusicConvience.swift; sourceTree = "<group>"; };
 		094A17611E3F1A760040255E /* AppleMusicConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMusicConstants.swift; sourceTree = "<group>"; };
 		094A17631E3F1C380040255E /* ApiConvience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConvience.swift; sourceTree = "<group>"; };
@@ -41,11 +43,11 @@
 		094A17671E3F3D920040255E /* AMSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMSearchVC.swift; sourceTree = "<group>"; };
 		095356B91E2CAEB700F70B83 /* DraggableImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableImage.swift; sourceTree = "<group>"; };
 		0977A5711E2B776F00C554A8 /* Fast Playist Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast Playist Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0977A5741E2B776F00C554A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Fast Playist Maker/AppDelegate.swift"; sourceTree = "<group>"; };
+		0977A5741E2B776F00C554A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0977A5791E2B776F00C554A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0977A57B1E2B777000C554A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Fast Playist Maker/Assets.xcassets"; sourceTree = "<group>"; };
+		0977A57B1E2B777000C554A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0977A57E1E2B777000C554A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0977A5801E2B777000C554A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Fast Playist Maker/Info.plist"; sourceTree = "<group>"; };
+		0977A5801E2B777000C554A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0977A5861E2B8CB000C554A8 /* CreatePlaylistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlaylistVC.swift; sourceTree = "<group>"; };
 		0977A5891E2B8E7400C554A8 /* PlaylistTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableVC.swift; sourceTree = "<group>"; };
 		0981049B1E3DBB5D00070293 /* SongTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableCell.swift; sourceTree = "<group>"; };
@@ -73,6 +75,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		094710631E485E3600DFBE4A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0977A5741E2B776F00C554A8 /* AppDelegate.swift */,
+				0977A5801E2B777000C554A8 /* Info.plist */,
+				0977A5781E2B776F00C554A8 /* Main.storyboard */,
+				094710611E485E1300DFBE4A /* Reachability.swift */,
+				0977A57B1E2B777000C554A8 /* Assets.xcassets */,
+				0977A57D1E2B777000C554A8 /* LaunchScreen.storyboard */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		094A175D1E3F1A1E0040255E /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,11 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				0977A5731E2B776F00C554A8 /* Fast Playist Maker */,
-				0977A5741E2B776F00C554A8 /* AppDelegate.swift */,
-				0977A5801E2B777000C554A8 /* Info.plist */,
-				0977A5781E2B776F00C554A8 /* Main.storyboard */,
-				0977A57B1E2B777000C554A8 /* Assets.xcassets */,
-				0977A57D1E2B777000C554A8 /* LaunchScreen.storyboard */,
 				0977A5721E2B776F00C554A8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -144,6 +154,7 @@
 				095356B81E2CAE7300F70B83 /* Model */,
 				095356B71E2CAE6A00F70B83 /* View */,
 				0977A5881E2B8E4900C554A8 /* Controller */,
+				094710631E485E3600DFBE4A /* Utilities */,
 			);
 			path = "Fast Playist Maker";
 			sourceTree = "<group>";
@@ -265,6 +276,7 @@
 				09B7C0051E380D29006FFE86 /* Model.xcdatamodeld in Sources */,
 				09B7C00A1E381A18006FFE86 /* SavedSong+CoreDataClass.swift in Sources */,
 				0977A5751E2B776F00C554A8 /* AppDelegate.swift in Sources */,
+				094710621E485E1300DFBE4A /* Reachability.swift in Sources */,
 				0981049C1E3DBB5D00070293 /* SongTableCell.swift in Sources */,
 				095356BA1E2CAEB700F70B83 /* DraggableImage.swift in Sources */,
 				0977A58A1E2B8E7400C554A8 /* PlaylistTableVC.swift in Sources */,
@@ -280,7 +292,6 @@
 				0977A5791E2B776F00C554A8 /* Base */,
 			);
 			name = Main.storyboard;
-			path = "Fast Playist Maker";
 			sourceTree = "<group>";
 		};
 		0977A57D1E2B777000C554A8 /* LaunchScreen.storyboard */ = {
@@ -289,7 +300,6 @@
 				0977A57E1E2B777000C554A8 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = "Fast Playist Maker";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

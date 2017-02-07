@@ -11,7 +11,9 @@ import MediaPlayer
 import CoreData
 
 class CreatePlaylistVC: UIViewController {
-
+    
+    
+// MARK: Properties
     var songsArr = [Song]()
     var userLibrary = [Song]()
     var savedSongs = [SavedSong]()
@@ -22,7 +24,7 @@ class CreatePlaylistVC: UIViewController {
     var appDel: AppDelegate!
     var global = Global.sharedClient()
 
-    
+// MARK: Outlets
     @IBOutlet weak var AlbumImgView: DraggableImage!
     @IBOutlet weak var songTitleLbl: UILabel!
     @IBOutlet weak var albumTitleLbl: UILabel!
@@ -32,7 +34,8 @@ class CreatePlaylistVC: UIViewController {
     @IBOutlet weak var addPlaylistBtn: UIBarButtonItem!
     @IBOutlet weak var fetchLibBtn: UILabel!
     @IBOutlet weak var cheetah: UIImageView!
-    
+
+//MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -73,6 +76,7 @@ class CreatePlaylistVC: UIViewController {
                 DispatchQueue.main.async {
                     self.configUI(createMode: true)
                     self.updateSong()
+                    self.checkIfFirstLaunch()
                 }
             }
         }
@@ -91,15 +95,43 @@ class CreatePlaylistVC: UIViewController {
             }
         }
     }
-
-    func updateSong() {
-        let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
-        currentIndex = randIndex
-        AlbumImgView.image = songsArr[currentIndex].artwork
-        songTitleLbl.text = songsArr[currentIndex].title
-        albumTitleLbl.text = songsArr[currentIndex].album
+    
+    func added() {
+        addedSongs.append(songsArr[currentIndex])
+        if addedSongs.count > 0 {
+            CreatePlaylistBtn.alpha = 1
+            CreatePlaylistBtn.isEnabled = true
+        }
+        songsArr.remove(at: currentIndex)
     }
     
+    func resetLib() {
+        songsArr = userLibrary
+        addedSongs.removeAll(keepingCapacity: true)
+        updateSong()
+        CreatePlaylistBtn.alpha = 0.3
+        CreatePlaylistBtn.isEnabled = false
+    }
+    
+//MARK: Navigation
+    
+    func presentSongTable() {
+        let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
+        
+        for song in addedSongs {
+            let savedSong = SavedSong(song: song, context: stack.mainContext)
+            savedSong.playlist = playlist
+        }
+        stack.save()
+        resetLib()
+        let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
+        songListTableVC.playlist = playlist
+        songListTableVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(songListTableVC, animated: true)
+        
+    }
+    
+//MARK: UI
     
     func drag(gesture: UIPanGestureRecognizer) {
         
@@ -131,34 +163,14 @@ class CreatePlaylistVC: UIViewController {
         }
     }
     
-    func added() {
-        addedSongs.append(songsArr[currentIndex])
-        if addedSongs.count > 0 {
-            CreatePlaylistBtn.alpha = 1
-            CreatePlaylistBtn.isEnabled = true
-        }
-        songsArr.remove(at: currentIndex)
+    func updateSong() {
+        let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
+        currentIndex = randIndex
+        AlbumImgView.image = songsArr[currentIndex].artwork
+        songTitleLbl.text = songsArr[currentIndex].title
+        albumTitleLbl.text = songsArr[currentIndex].album
     }
     
-    func dismissAdded() {
-        addedLbl.isHidden = true
-    }
-
-    func setAddedLbl(added: Bool) {
-        if added {
-            addedLbl.text = "Added"
-            addedLbl.backgroundColor = UIColor.green
-            addedLbl.isHidden = false
-            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
-        } else {
-            addedLbl.text = "Skip"
-            addedLbl.backgroundColor = UIColor.red
-            addedLbl.isHidden = false
-
-            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
-        }
-        updateSong()
-    }
     func configUI(createMode: Bool) {
         
         fetchLibBtn.isHidden = createMode
@@ -172,6 +184,7 @@ class CreatePlaylistVC: UIViewController {
         CreatePlaylistBtn.isHidden = !createMode
         CreatePlaylistBtn.isEnabled = false
     }
+    
     func cheetahAnimation(animate: Bool) {
         var imgArray = [UIImage]()
         for i in 0...7 {
@@ -184,41 +197,38 @@ class CreatePlaylistVC: UIViewController {
         }
     }
     
-    
-    
-    func presentSongTable() {
-        let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
-        
-        for song in addedSongs {
-            let savedSong = SavedSong(song: song, context: stack.mainContext)
-            savedSong.playlist = playlist
+    func setAddedLbl(added: Bool) {
+        if added {
+            addedLbl.text = "Added"
+            addedLbl.backgroundColor = UIColor.green
+            addedLbl.isHidden = false
+            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
+        } else {
+            addedLbl.text = "Skip"
+            addedLbl.backgroundColor = UIColor.red
+            addedLbl.isHidden = false
+            
+            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
         }
-        stack.save()
-        resetLib()
-        let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
-        songListTableVC.playlist = playlist
-        
-        self.navigationController?.pushViewController(songListTableVC, animated: true)
-    }
-    
-    func configTextField(textField: UITextField) {
-        textField.placeholder = "workout"
-        playlistTitle = textField
-    }
-    
-    func cancel(alertView: UIAlertAction!){
-        resetLib()
-    }
-    
-    func resetLib() {
-        songsArr = userLibrary
-        addedSongs.removeAll(keepingCapacity: true)
         updateSong()
-        CreatePlaylistBtn.alpha = 0.3
-        CreatePlaylistBtn.isEnabled = false
     }
+    
+    func dismissAdded() {
+        addedLbl.isHidden = true
+    }
+    
+// MARK: Actions
     
     @IBAction func ceatePlaylist(_ sender: Any) {
+        
+        func configTextField(textField: UITextField) {
+            textField.placeholder = "workout"
+            playlistTitle = textField
+        }
+        
+        func cancel(alertView: UIAlertAction!){
+            resetLib()
+        }
       
         let alert = UIAlertController(title: nil, message: "You've just created something EPIC give it a Name", preferredStyle: .alert)
         
@@ -236,7 +246,7 @@ class CreatePlaylistVC: UIViewController {
 
     @IBAction func searchAppleMusic(_ sender: Any) {
         let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "AMSearchVC") as! AMSearchVC
-        
+        searchVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(searchVC, animated: true)
     }
     
@@ -244,6 +254,48 @@ class CreatePlaylistVC: UIViewController {
         resetLib()
     }
 
+}
+
+extension CreatePlaylistVC {
+//MARK: Explainers
+    
+    func checkIfFirstLaunch() {
+        if let firstLaunch = UserDefaults.standard.value(forKey: "firstLaunch") {
+            if firstLaunch as! Bool {}
+        } else {
+            showExplainerThenDismiss()
+            UserDefaults.standard.set(false, forKey: "firstLaunch")
+        }
+    }
+    
+    func showExplainerThenDismiss() {
+        let swipeImg = UIImage(named: "swipeExplainer.png")
+        let swipeImgView = UIImageView(frame: AlbumImgView.frame)
+        swipeImgView.image = swipeImg
+        swipeImgView.backgroundColor = UIColor.lightGray
+        swipeImgView.alpha = 0.5
+        swipeImgView.tag = 1
+        var delayInNanoSeconds = UInt64(1.5) * NSEC_PER_SEC
+        var time = DispatchTime.now() + Double(Int64(delayInNanoSeconds)) / Double(NSEC_PER_SEC)
+        
+        DispatchQueue.main.asyncAfter(deadline: time) {
+            self.view.addSubview(swipeImgView)
+        }
+        
+        delayInNanoSeconds = UInt64(4.5) * NSEC_PER_SEC
+        time = DispatchTime.now() + Double(Int64(delayInNanoSeconds)) / Double(NSEC_PER_SEC)
+        
+        DispatchQueue.main.asyncAfter(deadline: time) {
+            swipeImgView.removeFromSuperview()
+        }
+    }
+    
+}
+
+
+extension CreatePlaylistVC {
+
+//MARK: Errors & Alerts
     func errorReturn(code: Int, description: String, domain: String)-> NSError {
         let userInfo = [NSLocalizedDescriptionKey: description]
         return NSError(domain: domain, code: code, userInfo: userInfo)
@@ -255,5 +307,6 @@ class CreatePlaylistVC: UIViewController {
         present(alert, animated: true, completion: nil)
         
     }
-
 }
+
+

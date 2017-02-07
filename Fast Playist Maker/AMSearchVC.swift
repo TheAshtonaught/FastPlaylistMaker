@@ -32,7 +32,7 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
         checkAppleMusicAccess()
         
         appDel = UIApplication.shared.delegate as! AppDelegate
-
+        appDel.noConnectionCheckLoop(30, vc: self)
     }
     
     func checkAppleMusicAccess() {
