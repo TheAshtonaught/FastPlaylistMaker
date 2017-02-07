@@ -96,6 +96,8 @@ class CreatePlaylistVC: UIViewController {
         }
     }
     
+    // appends the songs the user has picked to add to an array
+    
     func added() {
         addedSongs.append(songsArr[currentIndex])
         if addedSongs.count > 0 {
@@ -114,7 +116,7 @@ class CreatePlaylistVC: UIViewController {
     }
     
 //MARK: Navigation
-    
+    // after playlist is created show table with list of songs
     func presentSongTable() {
         let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
         
@@ -132,7 +134,7 @@ class CreatePlaylistVC: UIViewController {
     }
     
 //MARK: UI
-    
+    // allows song to be dragged left to add right to skip
     func drag(gesture: UIPanGestureRecognizer) {
         
         let translation = gesture.translation(in: self.view)
@@ -162,7 +164,7 @@ class CreatePlaylistVC: UIViewController {
             imgView.center = CGPoint(x: self.view.bounds.width / 2, y: (UIApplication.shared.statusBarFrame.height + 44 + (imgView.frame.height / 2)))
         }
     }
-    
+    // grabs random song an updates UI accordingly
     func updateSong() {
         let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
         currentIndex = randIndex
@@ -172,7 +174,6 @@ class CreatePlaylistVC: UIViewController {
     }
     
     func configUI(createMode: Bool) {
-        
         fetchLibBtn.isHidden = createMode
         cheetahAnimation(animate: !createMode)
         cheetah.isHidden = createMode
@@ -196,7 +197,7 @@ class CreatePlaylistVC: UIViewController {
             cheetah.startAnimating()
         }
     }
-    
+    // Temporarily presents a label when a song is added or skiped
     func setAddedLbl(added: Bool) {
         if added {
             addedLbl.text = "Added"

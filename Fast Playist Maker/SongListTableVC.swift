@@ -11,13 +11,13 @@ import CoreData
 import MediaPlayer
 
 class SongListTableVC: CoreDataTableVC {
-
+// MARK: Properties
     var playlist: Playlist!
     var playlistTitle: String!
     var appleMusicClient = AppleMusicConvience.sharedClient()
     let controller = MPMusicPlayerController.systemMusicPlayer()
     var stack: CoreDataStack!
-    
+// MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +34,6 @@ class SongListTableVC: CoreDataTableVC {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
     }
 
-    
     @IBAction func play(_ sender: Any) {
         let songs = fetchedResultsController?.fetchedObjects as! [SavedSong]
         var arr = [MPMediaItem]()
@@ -89,15 +88,7 @@ class SongListTableVC: CoreDataTableVC {
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.endUpdates()
         }
-        
     }
-
     
 
 }
-
-
-
-
-
-

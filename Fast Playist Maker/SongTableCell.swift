@@ -12,17 +12,4 @@ class SongTableCell: UITableViewCell {
     @IBOutlet weak var albumImageView: DraggableImage!
     @IBOutlet weak var songTitleLbl: UILabel!
     @IBOutlet weak var albumTitleLbl: UILabel!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

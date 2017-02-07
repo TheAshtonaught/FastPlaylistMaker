@@ -11,7 +11,7 @@ import MediaPlayer
 import StoreKit
 
 class AMSearchVC: UIViewController, UISearchBarDelegate {
-
+// MARK: Properties
     var songResults = [Any]()
     var song: Song!
     var appDel: AppDelegate!
@@ -20,7 +20,7 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
     var appleMusicClient = AppleMusicConvience.sharedClient()
     let controller = SKCloudServiceController()
 
-
+// MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -34,7 +34,7 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
         appDel = UIApplication.shared.delegate as! AppDelegate
         appDel.noConnectionCheckLoop(30, vc: self)
     }
-    
+// MARK: Determines if the user has access to Apple Music
     func checkAppleMusicAccess() {
         SKCloudServiceController.requestAuthorization { (status) in
             if status == .authorized {
@@ -53,7 +53,7 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
         }
         
     }
-    
+// MARK: takes a term and searches Apple Music using the Itunes API
     func searchAM(searchTerm: String) {
         appleMusicClient.getSongs(searchTerm: searchTerm) { (songDict, error) in
           
@@ -90,8 +90,12 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }
 extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
+// MARK: Table View Data Source
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath)
@@ -134,7 +138,10 @@ extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension AMSearchVC {
+// MARK: Errors and Alert
     
+    
+    // Adds selected songs from apple music to users library
     func addToPlaylistAlert(id: String) {
         let alert = UIAlertController(title: "Would you like to add \(song.title)?", message: "Only songs in your library can be added to a playlist. If \(song.title) is not in your library it will be added", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

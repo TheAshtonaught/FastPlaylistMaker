@@ -31,10 +31,4 @@ class DraggableImage: UIImageView {
         super.init(coder: aDecoder)
         
     }
-
-    
-    
-        
-
-
 }

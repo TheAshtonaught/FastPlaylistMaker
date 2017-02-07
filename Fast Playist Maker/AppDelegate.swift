@@ -51,21 +51,6 @@ extension AppDelegate {
                 self.noConnectionCheckLoop(delayInSeconds, vc: vc)
             }
         }
-        
     }
-
-    
     
 }
-
-
-
-
-
-
-
-
-
-
-
-

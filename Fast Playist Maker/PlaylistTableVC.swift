@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 class PlaylistTableVC: CoreDataTableVC {
-
+// MARK: Properties
     var stack: CoreDataStack!
-    
+// MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,7 +42,7 @@ class PlaylistTableVC: CoreDataTableVC {
         let playlist = fetchedResultsController?.object(at: indexPath) as! Playlist
         let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
         songListTableVC.playlist = playlist
-        
+        songListTableVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(songListTableVC, animated: true)
         
     }
@@ -59,8 +59,6 @@ class PlaylistTableVC: CoreDataTableVC {
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.endUpdates()
         }
-        
     }
-    
     
 }

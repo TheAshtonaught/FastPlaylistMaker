@@ -26,6 +26,4 @@ public class SavedSong: NSManagedObject {
         
     }
     
-    //TODO: Add static func to get saved song from array
-   
 }

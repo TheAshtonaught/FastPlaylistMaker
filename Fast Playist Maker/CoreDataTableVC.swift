@@ -89,21 +89,3 @@ class CoreDataTableVC: UITableViewController, NSFetchedResultsControllerDelegate
     
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

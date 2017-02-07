@@ -57,24 +57,9 @@ class AppleMusicConvience {
             } else {
                 completionHandler(nil, self.apiConvience.errorReturn(code: 0, description: "No song found", domain: "AMApi"))
             }
-            
-            
         }
         
     }
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
