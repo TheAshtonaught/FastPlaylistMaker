@@ -21,6 +21,10 @@ songs that compose a playlist
 
 **Pressing Play** opens the playlist in the native music app.
 
+## Requirements
+* Run on physical device Xcode throws weird errors when trying to run on simulator because it does not have the Native music app
+* Some features require an Apple Music account
+
 ## Future Versions
 * Spotify Support
 * Machine learning to improve which song appears next
