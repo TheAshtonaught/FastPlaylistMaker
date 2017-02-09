@@ -4,7 +4,7 @@
 
 ![Alt text](https://cloud.githubusercontent.com/assets/20712747/22717136/007bb9c2-ed5f-11e6-8552-e0678550fb28.jpg)
 
-## Apple Music Search View
+## Apple Music Search View(Requires Apple Music Access)
 
 Uses the Itunes Api to allow users to search and add songs from Apple Music if they are a member.
 ![Alt text](https://cloud.githubusercontent.com/assets/20712747/22717138/007c0792-ed5f-11e6-80d7-ef3e7fec35a2.jpg)
