@@ -45,9 +45,10 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
                         }
                     }
                 })
-            } else {
+            } else if status != .authorized {
                 DispatchQueue.main.async {
-                    self.showAlert(title: "Denied", error: "User has Denied access to Apple Music")
+                    self.showAlert(title: "Error", error: "You must be and Apple Music member to use this feature")
+                    _ = self.navigationController?.popViewController(animated: true)
                 }
             }
         }
@@ -77,13 +78,19 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
         }
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text != nil {
-            activityIndicator.isHidden = false
-            activityIndicator.startAnimating()
-            
-            let search = searchBar.text!.replacingOccurrences(of: " ", with: "+")
-            searchAM(searchTerm: search)
+        if Reachability.isConnectedToNetwork() {
+            if searchBar.text != nil {
+                DispatchQueue.main.async {
+                    self.activityIndicator.isHidden = false
+                    self.activityIndicator.startAnimating()
+                }
+                
+                
+                let search = searchBar.text!.replacingOccurrences(of: " ", with: "+")
+                searchAM(searchTerm: search)
+            }
         }
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
