@@ -274,8 +274,7 @@ extension CreatePlaylistVC {
         let swipeImgView = UIImageView(frame: AlbumImgView.frame)
         swipeImgView.image = swipeImg
         swipeImgView.backgroundColor = UIColor.lightGray
-        swipeImgView.alpha = 0.5
-        swipeImgView.tag = 1
+        swipeImgView.alpha = 0.7
         var delayInNanoSeconds = UInt64(1.5) * NSEC_PER_SEC
         var time = DispatchTime.now() + Double(Int64(delayInNanoSeconds)) / Double(NSEC_PER_SEC)
         
