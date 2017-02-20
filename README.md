@@ -7,17 +7,17 @@
 ## Apple Music Search View(Requires Apple Music Access)
 
 Uses the Itunes Api to allow users to search and add songs from Apple Music if they are a member.
-![Alt text](https://cloud.githubusercontent.com/assets/20712747/23116341/bf40dcf2-f70f-11e6-944f-4d5f2d6affb2.jpg)
+![Alt text](https://cloud.githubusercontent.com/assets/20712747/23116354/c9945490-f70f-11e6-89fd-7e0a7794ed32.jpg)
 
 ## Playlist View
 Shows the users persisted Playlist
 
-![Alt text](https://cloud.githubusercontent.com/assets/20712747/22717137/007bf37e-ed5f-11e6-9967-1d9424e7e3c4.jpg)
+![Alt text](https://cloud.githubusercontent.com/assets/20712747/23116357/cc75e5ca-f70f-11e6-9660-80f495531832.jpg)
 
 ## Song List View
 songs that compose a playlist
 
-![Alt text](https://cloud.githubusercontent.com/assets/20712747/22717135/007b4000-ed5f-11e6-9fdf-8b5d1138a4b2.jpg)
+![Alt text](https://cloud.githubusercontent.com/assets/20712747/23116353/c76b3396-f70f-11e6-97a4-50e062991204.jpg)
 
 **Pressing Play** opens the playlist in the native music app.
 
