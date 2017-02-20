@@ -7,6 +7,7 @@
 ## Apple Music Search View(Requires Apple Music Access)
 
 Uses the Itunes Api to allow users to search and add songs from Apple Music if they are a member.
+
 ![Alt text](https://cloud.githubusercontent.com/assets/20712747/23116354/c9945490-f70f-11e6-89fd-7e0a7794ed32.jpg)
 
 ## Playlist View
