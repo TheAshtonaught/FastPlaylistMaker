@@ -2,12 +2,12 @@
 
 **Playlist Cheetah** allows users to create playlist simply by swiping left to add songs or swiping right to skip them. When the app opens it grabs the users music library which includes songs on their device and in their iCloud library. After playlists are created they're persisted to the user's device through Apple's Core Data library.
 
-![Alt text](https://cloud.githubusercontent.com/assets/20712747/22717136/007bb9c2-ed5f-11e6-8552-e0678550fb28.jpg)
+![Alt text](https://cloud.githubusercontent.com/assets/20712747/23116341/bf40dcf2-f70f-11e6-944f-4d5f2d6affb2.jpg)
 
 ## Apple Music Search View(Requires Apple Music Access)
 
 Uses the Itunes Api to allow users to search and add songs from Apple Music if they are a member.
-![Alt text](https://cloud.githubusercontent.com/assets/20712747/22717138/007c0792-ed5f-11e6-80d7-ef3e7fec35a2.jpg)
+![Alt text](https://cloud.githubusercontent.com/assets/20712747/23116341/bf40dcf2-f70f-11e6-944f-4d5f2d6affb2.jpg)
 
 ## Playlist View
 Shows the users persisted Playlist
