@@ -202,6 +202,11 @@
                                 <action selector="play:" destination="NSJ-nC-l9F" eventType="touchUpInside" id="TIq-wm-ndb"/>
                             </connections>
                         </button>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5uQ-Vb-WeG">
+                            <connections>
+                                <action selector="addSongsBtnPressed:" destination="NSJ-nC-l9F" id="uIg-Tz-auJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTL-Dh-83O" userLabel="First Responder" sceneMemberID="firstResponder"/>
