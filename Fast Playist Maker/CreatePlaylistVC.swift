@@ -30,7 +30,6 @@ class CreatePlaylistVC: UIViewController {
     @IBOutlet weak var albumTitleLbl: UILabel!
     @IBOutlet weak var CreatePlaylistBtn: UIButton!
     @IBOutlet weak var addedLbl: UILabel!
-    @IBOutlet weak var appleMusicLbl: UIButton!
     @IBOutlet weak var addPlaylistBtn: UIBarButtonItem!
     @IBOutlet weak var fetchLibBtn: UILabel!
     @IBOutlet weak var cheetah: UIImageView!
@@ -182,7 +181,6 @@ class CreatePlaylistVC: UIViewController {
         AlbumImgView.isHidden = !createMode
         songTitleLbl.isHidden = !createMode
         albumTitleLbl.isHidden = !createMode
-        appleMusicLbl.isHidden = !createMode
         CreatePlaylistBtn.isHidden = !createMode
         CreatePlaylistBtn.isEnabled = false
     }
