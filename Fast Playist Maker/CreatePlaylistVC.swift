@@ -155,6 +155,7 @@ class CreatePlaylistVC: UIViewController {
                 setAddedLbl(added: true)
             } else if imgView.center.x > self.view.bounds.width - 100 {
                 setAddedLbl(added: false)
+                songsArr.remove(at: currentIndex)
             }
             
             rotation = CGAffineTransform(rotationAngle: 0)
