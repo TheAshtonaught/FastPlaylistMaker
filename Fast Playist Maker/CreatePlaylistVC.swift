@@ -245,16 +245,17 @@ class CreatePlaylistVC: UIViewController {
         }))
         present(alert, animated: true, completion: nil)
     }
-
-    @IBAction func searchAppleMusic(_ sender: Any) {
+    
+    @IBAction func cancelPlaylist(_ sender: Any) {
+        resetLib()
+    }
+    
+    @IBAction func searchAppleMusicButtonPressed(_ sender: Any) {
         let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "AMSearchVC") as! AMSearchVC
         searchVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(searchVC, animated: true)
     }
     
-    @IBAction func addPlaylist(_ sender: Any) {
-        resetLib()
-    }
 
 }
 

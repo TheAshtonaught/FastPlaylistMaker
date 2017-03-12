@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uMX-9M-4Sp">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uMX-9M-4Sp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,19 +73,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8i-md-ftp" customClass="BorderedButton" customModule="Fast_Playist_Maker" customModuleProvider="target">
-                                <rect key="frame" x="62" y="559" width="251" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="pBO-b2-THi"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MyanmarSangamMN-Bold" family="Myanmar Sangam MN" pointSize="17"/>
-                                <state key="normal" title="Search Apple Music">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="searchAppleMusic:" destination="d2t-32-T39" eventType="touchUpInside" id="pc6-Ph-G7f"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iCJ-AJ-yas">
                                 <rect key="frame" x="129" y="300" width="117" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -103,13 +90,10 @@
                             <constraint firstItem="In6-tw-IY3" firstAttribute="centerX" secondItem="dcD-Ae-k68" secondAttribute="centerX" id="5dV-en-NVI"/>
                             <constraint firstItem="0Px-Ke-ZCg" firstAttribute="top" secondItem="uJQ-Vr-mYl" secondAttribute="bottom" constant="8" id="P6g-Ox-72P"/>
                             <constraint firstItem="In6-tw-IY3" firstAttribute="top" secondItem="0Px-Ke-ZCg" secondAttribute="bottom" constant="8" symbolic="YES" id="QPu-R9-3qg"/>
-                            <constraint firstItem="a8i-md-ftp" firstAttribute="centerX" secondItem="dcD-Ae-k68" secondAttribute="centerX" id="SHU-v2-X2I"/>
-                            <constraint firstItem="a8i-md-ftp" firstAttribute="top" secondItem="ZD9-h4-9DC" secondAttribute="bottom" constant="14" id="Ulo-Jq-nWa"/>
                             <constraint firstItem="rUr-Xq-sUa" firstAttribute="top" secondItem="In6-tw-IY3" secondAttribute="bottom" constant="8" symbolic="YES" id="VTd-Go-VV8"/>
                             <constraint firstItem="In6-tw-IY3" firstAttribute="leading" secondItem="rUr-Xq-sUa" secondAttribute="leading" id="VfB-c2-xgr"/>
                             <constraint firstItem="Pz5-pM-eGz" firstAttribute="centerX" secondItem="dcD-Ae-k68" secondAttribute="centerX" id="VmI-Qy-hYs"/>
                             <constraint firstItem="In6-tw-IY3" firstAttribute="leading" secondItem="dcD-Ae-k68" secondAttribute="leadingMargin" id="W40-Ha-8E3"/>
-                            <constraint firstItem="a8i-md-ftp" firstAttribute="leading" secondItem="dcD-Ae-k68" secondAttribute="leadingMargin" constant="46" id="f2b-aH-5FW"/>
                             <constraint firstItem="rUr-Xq-sUa" firstAttribute="centerX" secondItem="dcD-Ae-k68" secondAttribute="centerX" id="gCG-SV-ZYH"/>
                             <constraint firstItem="Pz5-pM-eGz" firstAttribute="top" secondItem="rUr-Xq-sUa" secondAttribute="bottom" constant="21" id="ggU-NH-MCS"/>
                             <constraint firstItem="ZD9-h4-9DC" firstAttribute="top" secondItem="rUr-Xq-sUa" secondAttribute="bottom" constant="67" id="rDt-Ha-Dn7"/>
@@ -118,9 +102,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FVw-ay-8KH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Jey-H7-jTF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="2bp-Aa-VnK">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="addPlaylist:" destination="d2t-32-T39" id="d19-Ec-bAu"/>
+                                <action selector="cancelPlaylist:" destination="d2t-32-T39" id="zRX-Yy-lLB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="Jey-H7-jTF">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="searchAppleMusicButtonPressed:" destination="d2t-32-T39" id="OIt-lq-NYO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -130,7 +121,6 @@
                         <outlet property="addPlaylistBtn" destination="Jey-H7-jTF" id="22C-gA-8YI"/>
                         <outlet property="addedLbl" destination="Pz5-pM-eGz" id="y6g-M8-qb8"/>
                         <outlet property="albumTitleLbl" destination="rUr-Xq-sUa" id="DwC-ig-ppR"/>
-                        <outlet property="appleMusicLbl" destination="a8i-md-ftp" id="uFP-2b-yHx"/>
                         <outlet property="cheetah" destination="iCJ-AJ-yas" id="dPv-iW-kbA"/>
                         <outlet property="fetchLibBtn" destination="lJe-1h-ZTa" id="zQ1-7s-3kj"/>
                         <outlet property="songTitleLbl" destination="In6-tw-IY3" id="7Cf-da-ZRM"/>
