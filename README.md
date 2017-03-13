@@ -13,7 +13,7 @@ Uses the Itunes Api to allow users to search and add songs from Apple Music if t
 ## Playlist View
 Shows the users persisted Playlist
 
-![Alt text](https://cloud.githubusercontent.com/assets/20712747/23116357/cc75e5ca-f70f-11e6-9660-80f495531832.jpg)
+![Alt text](![playlisttablescreenshot](https://cloud.githubusercontent.com/assets/20712747/23855239/f0ee2a34-07c2-11e7-8452-c4c0a2bf4d06.PNG))
 
 ## Song List View
 songs that compose a playlist
