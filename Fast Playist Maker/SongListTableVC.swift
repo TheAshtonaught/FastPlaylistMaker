@@ -59,6 +59,16 @@ class SongListTableVC: CoreDataTableVC {
         
     }
     
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "AddSongsToPlaylistVC" {
+            let vc = segue.destination as! AddSongsToPlaylistVC
+            vc.playlist = self.playlist
+        }
+    }
+    
+    
     @IBAction func addSongsBtnPressed(_ sender: Any) {
         //TODO: Add code
     }
