@@ -36,7 +36,31 @@ class LastFmConvenience {
         }
     }
     
-    
+    func getSimilarSongs(song: Song, completionHandler: @escaping (_ songArr: [String: AnyObject]?, _ error: NSError?) -> Void) {
+        
+        let parameters: [String:Any] = [parameterKeys.method: parameterValues.method,
+            parameterKeys.artist: song.artist,
+            parameterKeys.key: parameterValues.key,
+            parameterKeys.track: song.title,
+            parameterKeys.format: parameterValues.format,
+            parameterKeys.limit: parameterValues.limit]
+        
+        let url = apiConvenience.apiUrlForMethod(method: nil, PathExt: nil, parameters: parameters as [String : AnyObject]?)
+        
+        print(url)
+        
+        lastFmApiRequest(url: url, method: "GET") { (jsonDict, error) in
+            
+            guard error == nil else {
+                completionHandler(nil, error)
+                return
+            }
+            
+            if let dict = jsonDict {
+                completionHandler(dict, nil)
+            }
+        }
+    }
     
     
 }

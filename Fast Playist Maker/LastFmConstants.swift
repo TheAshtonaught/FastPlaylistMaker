@@ -13,7 +13,7 @@ extension LastFmConvenience {
     struct Components {
         static let Scheme = "https"
         static let Host = "ws.audioscrobbler.com"
-        static let Path = "/2.0"
+        static let Path = "/2.0/"
     }
     
     struct parameterKeys {

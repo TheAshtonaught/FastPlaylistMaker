@@ -23,6 +23,7 @@ class CreatePlaylistVC: UIViewController {
     var playlistTitle: UITextField!
     var appDel: AppDelegate!
     var global = Global.sharedClient()
+    let lastFmClient = LastFmConvenience.sharedClient()
 
 // MARK: Outlets
     @IBOutlet weak var AlbumImgView: DraggableImage!
@@ -168,6 +169,13 @@ class CreatePlaylistVC: UIViewController {
     func updateSong() {
         let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
         currentIndex = randIndex
+        
+        lastFmClient.getSimilarSongs(song: songsArr[currentIndex]) { (dict, error) in
+            DispatchQueue.main.async {
+                print(dict ?? 9999)
+            }
+        }
+        
         AlbumImgView.image = songsArr[currentIndex].artwork
         songTitleLbl.text = songsArr[currentIndex].title
         albumTitleLbl.text = songsArr[currentIndex].album

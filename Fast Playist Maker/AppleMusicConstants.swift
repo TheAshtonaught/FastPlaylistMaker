@@ -25,6 +25,7 @@ extension AppleMusicConvenience {
         static let trackName = "trackName"
         static let artwork = "artworkUrl60"
         static let albumName = "collectionName"
+        static let artist = "artistName"
     }
 }
 

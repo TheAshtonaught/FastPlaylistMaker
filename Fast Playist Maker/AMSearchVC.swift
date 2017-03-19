@@ -125,6 +125,7 @@ extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
         var albumTitle: String!
         var artwork: UIImage
         var id: String!
+        var artist: String!
         
         if let songRow = self.songResults[indexPath.row] as? [String:AnyObject],
             let urlString = songRow[AppleMusicConvenience.jsonResponseKeys.artwork] as? String,
@@ -134,7 +135,8 @@ extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
             albumTitle = songRow[AppleMusicConvenience.jsonResponseKeys.albumName] as? String
             artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
             id = String(songRow["trackId"] as! Int)
-            song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(9999))
+            artist = songRow[AppleMusicConvenience.jsonResponseKeys.artist] as? String
+            song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(9999), artist: artist)
             songsToAppend.append(song)
             global.appleMusicPicks = songsToAppend
             
