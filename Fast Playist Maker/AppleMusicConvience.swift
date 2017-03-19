@@ -9,23 +9,23 @@
 import Foundation
 import CoreData
 
-class AppleMusicConvience {
+class AppleMusicConvenience {
     
-    let apiConvience: ApiConvience
+    let apiConvenience: ApiConvenience
     
     init() {
         let apiConstants = ApiConstants(scheme: Components.Scheme, host: Components.Host, path: Components.Path, domain: "AppleMusicClient")
-        apiConvience = ApiConvience(apiConstants: apiConstants)
+        apiConvenience = ApiConvenience(apiConstants: apiConstants)
     }
     
-    fileprivate static var sharedInstance = AppleMusicConvience()
-    class func sharedClient() -> AppleMusicConvience {
+    fileprivate static var sharedInstance = AppleMusicConvenience()
+    class func sharedClient() -> AppleMusicConvenience {
         return sharedInstance
     }
     
     fileprivate func appleMusicApiRequest(url: NSURL, method: String, completionHandler: @escaping (_ json: [String:AnyObject]?, _ error: NSError?) -> Void) {
         
-        apiConvience.apiRequest(url: url, method: method) { (data, error) in
+        apiConvenience.apiRequest(url: url, method: method) { (data, error) in
             
             if let data = data {
                 let jsonDict = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
@@ -43,7 +43,7 @@ class AppleMusicConvience {
             parameterKeys.entity: "song"
         ]
         
-        let songUrl = apiConvience.apiUrlForMethod(method: nil, PathExt: nil, parameters: parameters as [String : AnyObject]?)
+        let songUrl = apiConvenience.apiUrlForMethod(method: nil, PathExt: nil, parameters: parameters as [String : AnyObject]?)
         
         appleMusicApiRequest(url: songUrl, method: "GET") { (jsonDict, error) in
             
@@ -55,7 +55,7 @@ class AppleMusicConvience {
             if let dict = jsonDict, let songResults = dict["results"] as? [[String:AnyObject]] {
                 completionHandler(songResults, nil)
             } else {
-                completionHandler(nil, self.apiConvience.errorReturn(code: 0, description: "No song found", domain: "AMApi"))
+                completionHandler(nil, self.apiConvenience.errorReturn(code: 0, description: "No song found", domain: "AMApi"))
             }
         }
         

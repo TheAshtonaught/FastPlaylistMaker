@@ -14,7 +14,7 @@ class SongListTableVC: CoreDataTableVC {
 // MARK: Properties
     var playlist: Playlist!
     var playlistTitle: String!
-    var appleMusicClient = AppleMusicConvience.sharedClient()
+    var appleMusicClient = AppleMusicConvenience.sharedClient()
     let controller = MPMusicPlayerController.systemMusicPlayer()
     var stack: CoreDataStack!
 // MARK: Life Cycle

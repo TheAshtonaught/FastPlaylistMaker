@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension AppleMusicConvience {
+extension AppleMusicConvenience {
     struct Components {
         static let Scheme = "https"
         static let Host = "itunes.apple.com"

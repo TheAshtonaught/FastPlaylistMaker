@@ -17,7 +17,7 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
     var appDel: AppDelegate!
     var songsToAppend = [Song]()
     var global = Global.sharedClient()
-    var appleMusicClient = AppleMusicConvience.sharedClient()
+    var appleMusicClient = AppleMusicConvenience.sharedClient()
     let controller = SKCloudServiceController()
 
 // MARK: Outlets
@@ -127,11 +127,11 @@ extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
         var id: String!
         
         if let songRow = self.songResults[indexPath.row] as? [String:AnyObject],
-            let urlString = songRow[AppleMusicConvience.jsonResponseKeys.artwork] as? String,
+            let urlString = songRow[AppleMusicConvenience.jsonResponseKeys.artwork] as? String,
             let imgUrl = URL(string: urlString),
             let imgData = NSData(contentsOf: imgUrl) {
-            title = songRow[AppleMusicConvience.jsonResponseKeys.trackName] as? String
-            albumTitle = songRow[AppleMusicConvience.jsonResponseKeys.albumName] as? String
+            title = songRow[AppleMusicConvenience.jsonResponseKeys.trackName] as? String
+            albumTitle = songRow[AppleMusicConvenience.jsonResponseKeys.albumName] as? String
             artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
             id = String(songRow["trackId"] as! Int)
             song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(9999))

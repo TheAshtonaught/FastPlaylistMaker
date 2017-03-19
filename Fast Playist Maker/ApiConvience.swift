@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ApiConvience {
+class ApiConvenience {
     
     var session: URLSession! = nil
     var apiConstants = ApiConstants()
