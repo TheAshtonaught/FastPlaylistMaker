@@ -42,10 +42,10 @@ class SongListTableVC: CoreDataTableVC {
             let query = MPMediaQuery.songs()
             let songPredicate = MPMediaPropertyPredicate(value: song.title, forProperty: MPMediaItemPropertyTitle)
             query.addFilterPredicate(songPredicate)
-            let result = query.items?[0]
-            if let sult = result{
-               arr.append(sult) 
+            if let result = query.items?[0] {
+                arr.append(result)
             }
+            // changed sult
             
         }
         let collection = MPMediaItemCollection(items: arr)
