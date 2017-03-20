@@ -63,46 +63,78 @@ class LastFmConvenience {
         }
     }
     
-//    func getSongsFromSimilarSongs(songs: [Song], completionHandler: @escaping (_ songs: [Song]?, _ error: NSError?) -> Void) {
-//        
-//        let similarSongs = [Song]()
-//        
-//        for song in songs {
-//            
-//            getSimilarSongs(song: song, completionHandler: { (dict, error) in
-//                
-//                if let dict = dict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
-//                    
-//                    
-//                    
-//                }
-//                
-//            })
-//            
-//        }
-//    
-//    
-//    }
-//    
+    func getSongsFromSimilarSongs(songs: [Song], completionHandler: @escaping (_ songs: [Song]?, _ error: NSError?) -> Void) {
+        
+        
+        var similarSongs = [Song]()
+        
+        for song in songs {
+            
+            getSimilarSongs(song: song, completionHandler: { (dict, error) in
+                
+                guard error == nil else {
+                    print(error?.localizedDescription ?? "error")
+                    return
+                }
+                
+                if let dict = dict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
+                    
+                    for sim in similars {
+                        
+                        if let title = sim["name"] as? String, let artistDict = sim["artist"] as? [String: AnyObject], let artist = artistDict["name"] as? String {
+                            
+                            let searchTerm = "\(title) \(artist)".replacingOccurrences(of: " ", with: "+")
+                            
+                            
+                        }
+                        
+
+                        
+                    }
+                    
+                    
+                }
+                
+            })
+            
+        }
+    
+    
+    }
+    
+    
+    
 //    func createSongFromLastFmJson(dictionary: [String: AnyObject]) {
 //        
-//        var title: String!
-//        var albumTitle: String!
-//        var artwork: UIImage
-//        var id: String!
-//        var artist: String!
+//        var title: String?
+//        var albumTitle: String?
+//        var artwork: UIImage?
+//        let id = UInt64(9999)
+//        var artist: String?
 //        
 //        
 //        if let songResults = dictionary["similartracks"] as? [String: AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
 //            
 //            for sim in similars {
 //                
+//                title = sim["name"] as? String
+//                
+//                
+//                if let imageResults = sim["image"] as? [[String: AnyObject]] {
+//                    let largeImageResults = imageResults[3]
+//                    if let urlString = largeImageResults["#text"] as? String, let imgUrl = URL(string: urlString), let imgData = NSData(contentsOf: imgUrl) {
+//                        
+//                        artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
+//                    }
+//                    
+//                }
+//                
 //            }
 //        }
 //        
 //    }
-//    
-//    
+    
+    
     
 //    lastFmClient.getSimilarSongs(song: songsArr[currentIndex])                  { (dict, error) in
 //    DispatchQueue.main.async {
