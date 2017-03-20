@@ -12,6 +12,7 @@ import UIKit
 class LastFmConvenience {
     
     let apiConvenience: ApiConvenience
+    var appleMusicClient = AppleMusicConvenience.sharedClient()
     
     init() {
         let apiConstants = ApiConstants(scheme: Components.Scheme, host: Components.Host, path: Components.Path, domain: "LastFmClient")
@@ -102,7 +103,7 @@ class LastFmConvenience {
     
     }
     
-    
+    //TODO: search am function
     
 //    func createSongFromLastFmJson(dictionary: [String: AnyObject]) {
 //        
