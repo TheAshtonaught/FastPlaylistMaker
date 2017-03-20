@@ -10,6 +10,9 @@ import Foundation
 
 extension LastFmConvenience {
     //http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=cher&track=believe&api_key=YOUR_API_KEY&format=json
+    
+    //https://ws.audioscrobbler.com/2.0/?artist=Drake&method=track.getsimilar&format=json&limit=10&key=37a69d873397ff2ddf0b45bfc9eee63c&track=Fake%20Love
+    
     struct Components {
         static let Scheme = "https"
         static let Host = "ws.audioscrobbler.com"
@@ -20,7 +23,7 @@ extension LastFmConvenience {
         static let method = "method"
         static let artist = "artist"
         static let track = "track"
-        static let key = "key"
+        static let key = "api_key"
         static let format = "format"
         static let limit = "limit"
     }
