@@ -170,32 +170,6 @@ class CreatePlaylistVC: UIViewController {
         let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
         currentIndex = randIndex
         
-        lastFmClient.getSimilarSongs(song: songsArr[currentIndex]) { (dict, error) in
-            DispatchQueue.main.async {
-                
-                if let jdict = dict, let songResults = jdict["similartracks"] as? [String:AnyObject] {
-                    
-                    if let similars = songResults["track"] as? [[String: AnyObject]] {
-                        
-                        for sim in similars {
-                            
-                            //print(sim["name"] ?? 000)
-                            if let artist = sim["artist"] as? [String:AnyObject] {
-                                print(artist["name"] ?? "can't get name")
-                            }
-                            
-                        }
-                        
-                        
-                        
-                    } else {
-                        print("error getting similar")
-                    }
-                }
-                
-            }
-        }
-        
         AlbumImgView.image = songsArr[currentIndex].artwork
         songTitleLbl.text = songsArr[currentIndex].title
         albumTitleLbl.text = songsArr[currentIndex].album

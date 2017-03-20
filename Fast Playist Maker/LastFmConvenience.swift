@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class LastFmConvenience {
     
@@ -61,6 +62,73 @@ class LastFmConvenience {
             }
         }
     }
+    
+//    func getSongsFromSimilarSongs(songs: [Song], completionHandler: @escaping (_ songs: [Song]?, _ error: NSError?) -> Void) {
+//        
+//        let similarSongs = [Song]()
+//        
+//        for song in songs {
+//            
+//            getSimilarSongs(song: song, completionHandler: { (dict, error) in
+//                
+//                if let dict = dict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
+//                    
+//                    
+//                    
+//                }
+//                
+//            })
+//            
+//        }
+//    
+//    
+//    }
+//    
+//    func createSongFromLastFmJson(dictionary: [String: AnyObject]) {
+//        
+//        var title: String!
+//        var albumTitle: String!
+//        var artwork: UIImage
+//        var id: String!
+//        var artist: String!
+//        
+//        
+//        if let songResults = dictionary["similartracks"] as? [String: AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
+//            
+//            for sim in similars {
+//                
+//            }
+//        }
+//        
+//    }
+//    
+//    
+    
+//    lastFmClient.getSimilarSongs(song: songsArr[currentIndex])                  { (dict, error) in
+//    DispatchQueue.main.async {
+//    
+//    if let jdict = dict, let songResults = jdict["similartracks"] as? [String:AnyObject] {
+//    
+//    if let similars = songResults["track"] as? [[String: AnyObject]] {
+//    
+//    for sim in similars {
+//    
+//    //print(sim["name"] ?? 000)
+//    if let artist = sim["artist"] as? [String:AnyObject] {
+//    print(artist["name"] ?? "can't get name")
+//    }
+//    
+//    }
+//
+//    
+//    
+//    } else {
+//    print("error getting similar")
+//    }
+//    }
+//    
+//    }
+//    }
     
     
 }
