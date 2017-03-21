@@ -100,6 +100,15 @@ class CreatePlaylistVC: UIViewController {
     
     func added() {
         addedSongs.append(songsArr[currentIndex])
+        
+//        lastFmClient.getSongsFromSimilarSongs(songs: addedSongs) { (songs, error) in
+//            if let songArr = songs {
+//                for song in songArr {
+//                    print(song.title)
+//                }
+//            }
+//        }
+        
         if addedSongs.count > 0 {
             CreatePlaylistBtn.alpha = 1
             CreatePlaylistBtn.isEnabled = true
