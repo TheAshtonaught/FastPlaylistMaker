@@ -73,22 +73,16 @@ class LastFmConvenience {
                             }
                             
                         }
-                        
-                        
-                        
                     } else {
                         print("error getting similar")
                     }
                 }
-                
-                
                 completionHandler(dict, nil)
             }
         }
     }
     
     func getSongsFromSimilarSongs(songs: [Song], completionHandler: @escaping (_ songs: [Song]?, _ error: String?) -> Void) {
-        
         
         var similarSongs = [Song]()
         
@@ -117,10 +111,7 @@ class LastFmConvenience {
                             })
                         }
                         
-
-                        
                     }
-                    
                     
                 }
                 

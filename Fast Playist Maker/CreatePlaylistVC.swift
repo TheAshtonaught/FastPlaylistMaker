@@ -101,6 +101,13 @@ class CreatePlaylistVC: UIViewController {
     func added() {
         addedSongs.append(songsArr[currentIndex])
         
+//        lastFmClient.getSimilarSongs(song: songsArr[currentIndex]) { (songs, error) in
+//            
+//            
+//            
+//        }
+
+        
 //        lastFmClient.getSongsFromSimilarSongs(songs: addedSongs) { (songs, error) in
 //            if let songArr = songs {
 //                for song in songArr {
@@ -135,10 +142,13 @@ class CreatePlaylistVC: UIViewController {
         }
         stack.save()
         resetLib()
-        let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
-        songListTableVC.playlist = playlist
-        songListTableVC.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(songListTableVC, animated: true)
+        DispatchQueue.main.async {
+            let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
+            songListTableVC.playlist = playlist
+            songListTableVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(songListTableVC, animated: true)
+        }
+        
         
     }
     
