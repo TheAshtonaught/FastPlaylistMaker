@@ -38,56 +38,54 @@ class LastFmConvenience {
         }
     }
     
-    func getSimilarSongs(song: Song, completionHandler: @escaping (_ songArr: [String]?, _ error: NSError?) -> Void) {
+    func getSimilarSongs(songs: [Song], completionHandler: @escaping (_ songString: [String]?, _ error: NSError?) -> Void) {
         
         var arr = [String]()
         
-        let parameters: [String:Any] = [parameterKeys.method: parameterValues.method,
-            parameterKeys.artist: song.artist,
-            parameterKeys.key: parameterValues.key,
-            parameterKeys.track: song.title,
-            parameterKeys.format: parameterValues.format,
-            parameterKeys.limit: parameterValues.limit]
-        
-        let url = apiConvenience.apiUrlForMethod(method: nil, PathExt: nil, parameters: parameters as [String : AnyObject]?)
-        
-        print(url)
-        
-        lastFmApiRequest(url: url, method: "GET") { (jsonDict, error) in
+        for song in songs {
+            let parameters: [String:Any] = [
+                parameterKeys.method: parameterValues.method,
+                parameterKeys.artist: song.artist,
+                parameterKeys.key: parameterValues.key,
+                parameterKeys.track: song.title,
+                parameterKeys.format: parameterValues.format,
+                parameterKeys.limit: parameterValues.limit]
             
-            guard error == nil else {
-                completionHandler(nil, error)
-                return
-            }
+            let url = apiConvenience.apiUrlForMethod(method: nil, PathExt: nil, parameters: parameters as [String : AnyObject]?)
+            print(url)
             
-            if let dict = jsonDict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
+            lastFmApiRequest(url: url, method: "GET") { (jsonDict, error) in
                 
-                for sim in similars {
-                    
-                    if let name = sim["name"], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] {
+                guard error == nil else {
+                    completionHandler(nil, error)
+                    return
+                }
+                
+                if let dict = jsonDict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
+                    for sim in similars {
                         
-                        let songString = "\(name) \(artist)"
-                        arr.append(songString)
-                        
+                        if let name = sim["name"], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] {
+                            
+                            let songString = "\(name) \(artist)"
+                            arr.append(songString)
+                        }
                     }
-                    
+                    print(arr.count)
+                    if arr.count > 0 {
+                        completionHandler(arr, nil)
+                        print(arr)
+                    }
+                } else {
+                    print("error getting similar")
                 }
-                
-                print(arr.count)
-                if arr.count > 0 {
-                    completionHandler(arr, nil)
-                    print(arr)
-                }
-            } else {
-                print("error getting similar")
             }
         }
+        
     }
     
     func getSongsFromSimilarSongs(songs: [Song], completionHandler: @escaping (_ songs: [Song]?, _ error: String?) -> Void) {
         
         var similarSongs = [Song]()
-        
         for song in songs {
             
 //            getSimilarSongs(song: song, completionHandler: { (dict, error) in

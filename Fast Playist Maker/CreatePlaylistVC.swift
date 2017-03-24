@@ -100,9 +100,11 @@ class CreatePlaylistVC: UIViewController {
     
     func added() {
         
-        lastFmClient.getSimilarSongs(song: songsArr[currentIndex]) { (songs, error) in
-            
-        }
+//        if addedSongs.count > 3 {
+//            lastFmClient.getSimilarSongs(songs: addedSongs, completionHandler: { (songString, error) in
+//                print(songString ?? "error")
+//            })
+//        }
 
         addedSongs.append(songsArr[currentIndex])
         
