@@ -25,7 +25,7 @@ class SongListTableVC: CoreDataTableVC {
         
         let appDel = UIApplication.shared.delegate as! AppDelegate
         stack = appDel.stack
-        
+
         let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedSong")
         let pred = NSPredicate(format: "playlist = %@", playlist)
         fr.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
@@ -45,7 +45,6 @@ class SongListTableVC: CoreDataTableVC {
             if let result = query.items?[0] {
                 arr.append(result)
             }
-            // changed sult
             
         }
         let collection = MPMediaItemCollection(items: arr)

@@ -38,7 +38,9 @@ class LastFmConvenience {
         }
     }
     
-    func getSimilarSongs(song: Song, completionHandler: @escaping (_ songArr: [String: AnyObject]?, _ error: NSError?) -> Void) {
+    func getSimilarSongs(song: Song, completionHandler: @escaping (_ songArr: [String]?, _ error: NSError?) -> Void) {
+        
+        var arr = [String]()
         
         let parameters: [String:Any] = [parameterKeys.method: parameterValues.method,
             parameterKeys.artist: song.artist,
@@ -58,26 +60,26 @@ class LastFmConvenience {
                 return
             }
             
-            if let dict = jsonDict {
-                //print(dict)
+            if let dict = jsonDict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
                 
-                if let songResults = dict["similartracks"] as? [String:AnyObject] {
+                for sim in similars {
                     
-                    if let similars = songResults["track"] as? [[String: AnyObject]] {
+                    if let name = sim["name"], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] {
                         
-                        for sim in similars {
-                            
-                            print(sim["name"] ?? 000)
-                            if let artist = sim["artist"] as? [String:AnyObject] {
-                                print(artist["name"] ?? "can't get name")
-                            }
-                            
-                        }
-                    } else {
-                        print("error getting similar")
+                        let songString = "\(name) \(artist)"
+                        arr.append(songString)
+                        
                     }
+                    
                 }
-                completionHandler(dict, nil)
+                
+                print(arr.count)
+                if arr.count > 0 {
+                    completionHandler(arr, nil)
+                    print(arr)
+                }
+            } else {
+                print("error getting similar")
             }
         }
     }
@@ -88,34 +90,34 @@ class LastFmConvenience {
         
         for song in songs {
             
-            getSimilarSongs(song: song, completionHandler: { (dict, error) in
-                
-                guard error == nil else {
-                    print(error?.localizedDescription ?? "error")
-                    return
-                }
-                
-                if let dict = dict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
-                    
-                    for sim in similars {
-                        
-                        if let title = sim["name"] as? String, let artistDict = sim["artist"] as? [String: AnyObject], let artist = artistDict["name"] as? String {
-                            
-                            let searchTerm = "\(title) \(artist)".replacingOccurrences(of: " ", with: "+")
-                            
-                            self.searchAM(searchTerm: searchTerm, completionHandler: { (song, error) in
-                                
-                                if let song = song {
-                                    similarSongs.append(song)
-                                }
-                            })
-                        }
-                        
-                    }
-                    
-                }
-                
-            })
+//            getSimilarSongs(song: song, completionHandler: { (dict, error) in
+//                
+//                guard error == nil else {
+//                    print(error?.localizedDescription ?? "error")
+//                    return
+//                }
+//                
+//                if let dict = dict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
+//                    
+//                    for sim in similars {
+//                        
+//                        if let title = sim["name"] as? String, let artistDict = sim["artist"] as? [String: AnyObject], let artist = artistDict["name"] as? String {
+//                            
+//                            let searchTerm = "\(title) \(artist)".replacingOccurrences(of: " ", with: "+")
+//                            
+//                            self.searchAM(searchTerm: searchTerm, completionHandler: { (song, error) in
+//                                
+//                                if let song = song {
+//                                    similarSongs.append(song)
+//                                }
+//                            })
+//                        }
+//                        
+//                    }
+//                    
+//                }
+//                
+//            })
             
         }
         

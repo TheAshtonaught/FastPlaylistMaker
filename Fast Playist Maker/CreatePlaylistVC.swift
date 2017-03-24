@@ -99,22 +99,12 @@ class CreatePlaylistVC: UIViewController {
     // appends the songs the user has picked to add to an array
     
     func added() {
-        addedSongs.append(songsArr[currentIndex])
         
-//        lastFmClient.getSimilarSongs(song: songsArr[currentIndex]) { (songs, error) in
-//            
-//            
-//            
-//        }
+        lastFmClient.getSimilarSongs(song: songsArr[currentIndex]) { (songs, error) in
+            
+        }
 
-        
-//        lastFmClient.getSongsFromSimilarSongs(songs: addedSongs) { (songs, error) in
-//            if let songArr = songs {
-//                for song in songArr {
-//                    print(song.title)
-//                }
-//            }
-//        }
+        addedSongs.append(songsArr[currentIndex])
         
         if addedSongs.count > 0 {
             CreatePlaylistBtn.alpha = 1
@@ -171,8 +161,10 @@ class CreatePlaylistVC: UIViewController {
             
             if imgView.center.x < 100 {
                 added()
+                updateSong()
                 setAddedLbl(added: true)
             } else if imgView.center.x > self.view.bounds.width - 100 {
+                updateSong()
                 setAddedLbl(added: false)
                 songsArr.remove(at: currentIndex)
             }
@@ -231,7 +223,7 @@ class CreatePlaylistVC: UIViewController {
             
             Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
         }
-        updateSong()
+        
     }
     
     func dismissAdded() {
