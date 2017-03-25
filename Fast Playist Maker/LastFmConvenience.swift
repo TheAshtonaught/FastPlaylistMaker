@@ -52,7 +52,7 @@ class LastFmConvenience {
                 parameterKeys.limit: parameterValues.limit]
             
             let url = apiConvenience.apiUrlForMethod(method: nil, PathExt: nil, parameters: parameters as [String : AnyObject]?)
-            print(url)
+//            print(url)
             
             lastFmApiRequest(url: url, method: "GET") { (jsonDict, error) in
                 
@@ -72,8 +72,9 @@ class LastFmConvenience {
                     }
                     print(arr.count)
                     if arr.count > 0 {
-                        completionHandler(arr, nil)
                         print(arr)
+                        completionHandler(arr, nil)
+                        
                     }
                 } else {
                     print("error getting similar")
@@ -83,84 +84,54 @@ class LastFmConvenience {
         
     }
     
-    func getSongsFromSimilarSongs(songs: [Song], completionHandler: @escaping (_ songs: [Song]?, _ error: String?) -> Void) {
-        
-        var similarSongs = [Song]()
-        for song in songs {
-            
-//            getSimilarSongs(song: song, completionHandler: { (dict, error) in
-//                
-//                guard error == nil else {
-//                    print(error?.localizedDescription ?? "error")
-//                    return
-//                }
-//                
-//                if let dict = dict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
-//                    
-//                    for sim in similars {
-//                        
-//                        if let title = sim["name"] as? String, let artistDict = sim["artist"] as? [String: AnyObject], let artist = artistDict["name"] as? String {
-//                            
-//                            let searchTerm = "\(title) \(artist)".replacingOccurrences(of: " ", with: "+")
-//                            
-//                            self.searchAM(searchTerm: searchTerm, completionHandler: { (song, error) in
-//                                
-//                                if let song = song {
-//                                    similarSongs.append(song)
-//                                }
-//                            })
-//                        }
-//                        
-//                    }
-//                    
-//                }
-//                
-//            })
-            
-        }
-        
-        DispatchQueue.main.async {
-            if similarSongs.count > 0 {
-                completionHandler(similarSongs, nil)
-            } else {
-                completionHandler(nil, "Could not get similar songs")
-            }
-        }
     
-    
-    }
-
-    func searchAM(searchTerm: String, completionHandler: @escaping (_ song: Song?, _ error: NSError?) -> Void) {
+    func getAppleMusicSongsFromSimilarSongs(songs: [Song], completionHandler: @escaping (_ song: [Song]?, _ error: NSError?) -> Void) {
         
-        appleMusicClient.getSongs(searchTerm: searchTerm) { (songDict, error) in
-            
+        var songArr = [Song]()
+        
+        getSimilarSongs(songs: songs) { (searchTerms, error) in
+        
             guard error == nil else {
-                print("error getting search results")
                 completionHandler(nil, error)
                 return
             }
-            
-            if let dict = songDict {
-                
-                var title: String!
-                var albumTitle: String!
-                var artwork: UIImage
-                var artist: String!
-                
-                let songRow = dict[0]
-                
-                if let urlString = songRow[AppleMusicConvenience.jsonResponseKeys.artwork] as? String,
-                    let imgUrl = URL(string: urlString),
-                    let imgData = NSData(contentsOf: imgUrl) {
-                    title = songRow[AppleMusicConvenience.jsonResponseKeys.trackName] as? String
-                    albumTitle = songRow[AppleMusicConvenience.jsonResponseKeys.albumName] as? String
-                    artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
-                    artist = songRow[AppleMusicConvenience.jsonResponseKeys.artist] as? String
-                    let song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(9999), artist: artist)
+        
+            if let terms = searchTerms {
+               
+                for term in terms {
                     
-                    completionHandler(song, nil)
-                    
+                    self.appleMusicClient.getSongs(searchTerm: term) { (songDict, error) in
+                        
+                        guard error == nil else {
+                            print("error getting search results")
+                            completionHandler(nil, error)
+                            return
+                        }
+                        
+                        if let dict = songDict {
+                            
+                            var title: String!
+                            var albumTitle: String!
+                            var artwork: UIImage
+                            var artist: String!
+                            
+                            let songRow = dict[0]
+                            
+                            if let urlString = songRow[AppleMusicConvenience.jsonResponseKeys.artwork] as? String,
+                                let imgUrl = URL(string: urlString),
+                                let imgData = NSData(contentsOf: imgUrl) {
+                                title = songRow[AppleMusicConvenience.jsonResponseKeys.trackName] as? String
+                                albumTitle = songRow[AppleMusicConvenience.jsonResponseKeys.albumName] as? String
+                                artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
+                                artist = songRow[AppleMusicConvenience.jsonResponseKeys.artist] as? String
+                                let song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(9999), artist: artist)
+                                
+                                songArr.append(song)
+                            }
+                        }
+                    }
                 }
+                completionHandler(songArr, nil)
             }
         }
     }

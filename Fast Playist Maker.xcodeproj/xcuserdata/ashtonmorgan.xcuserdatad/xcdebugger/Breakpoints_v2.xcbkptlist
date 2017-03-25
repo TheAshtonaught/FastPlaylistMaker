@@ -2,4 +2,214 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fast Playist Maker/LastFmConvenience.swift"
+            timestampString = "512093220.328943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "getAppleMusicSongsFromSimilarSongs(songs:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fast Playist Maker/LastFmConvenience.swift"
+            timestampString = "512093220.328943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "getAppleMusicSongsFromSimilarSongs(songs:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fast_Playist_Maker.LastFmConvenience.(getAppleMusicSongsFromSimilarSongs (songs : Swift.Array&lt;Fast_Playist_Maker.Song&gt;, completionHandler : (Swift.Optional&lt;Swift.Array&lt;Fast_Playist_Maker.Song&gt;&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Fast Playist Maker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashtonmorgan/Desktop/udacity%20course/Fast%20Playist%20Maker/Fast%20Playist%20Maker/LastFmConvenience.swift"
+                  timestampString = "512093560.68077"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "336">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fast_Playist_Maker.LastFmConvenience.(getAppleMusicSongsFromSimilarSongs (songs : Swift.Array&lt;Fast_Playist_Maker.Song&gt;, completionHandler : (Swift.Optional&lt;Swift.Array&lt;Fast_Playist_Maker.Song&gt;&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Fast Playist Maker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashtonmorgan/Desktop/udacity%20course/Fast%20Playist%20Maker/Fast%20Playist%20Maker/LastFmConvenience.swift"
+                  timestampString = "512093560.68233"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "728">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fast Playist Maker/LastFmConvenience.swift"
+            timestampString = "512093220.328943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "getAppleMusicSongsFromSimilarSongs(songs:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fast Playist Maker/LastFmConvenience.swift"
+            timestampString = "512093220.328943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "getAppleMusicSongsFromSimilarSongs(songs:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fast Playist Maker/LastFmConvenience.swift"
+            timestampString = "512093220.328943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "getAppleMusicSongsFromSimilarSongs(songs:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fast Playist Maker/LastFmConvenience.swift"
+            timestampString = "512093220.328943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "getAppleMusicSongsFromSimilarSongs(songs:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fast Playist Maker/LastFmConvenience.swift"
+            timestampString = "512093220.328943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "getAppleMusicSongsFromSimilarSongs(songs:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fast Playist Maker/LastFmConvenience.swift"
+            timestampString = "512093220.328943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "getAppleMusicSongsFromSimilarSongs(songs:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Fast Playist Maker/LastFmConvenience.swift"
+            timestampString = "512093220.328943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "getAppleMusicSongsFromSimilarSongs(songs:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fast_Playist_Maker.LastFmConvenience.(getAppleMusicSongsFromSimilarSongs (songs : Swift.Array&lt;Fast_Playist_Maker.Song&gt;, completionHandler : (Swift.Optional&lt;Swift.Array&lt;Fast_Playist_Maker.Song&gt;&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Fast Playist Maker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashtonmorgan/Desktop/udacity%20course/Fast%20Playist%20Maker/Fast%20Playist%20Maker/LastFmConvenience.swift"
+                  timestampString = "512093560.702797"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Fast_Playist_Maker.LastFmConvenience.(getAppleMusicSongsFromSimilarSongs (songs : Swift.Array&lt;Fast_Playist_Maker.Song&gt;, completionHandler : (Swift.Optional&lt;Swift.Array&lt;Fast_Playist_Maker.Song&gt;&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "Fast Playist Maker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashtonmorgan/Desktop/udacity%20course/Fast%20Playist%20Maker/Fast%20Playist%20Maker/LastFmConvenience.swift"
+                  timestampString = "512093560.704346"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "196">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
