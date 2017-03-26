@@ -38,11 +38,10 @@ class LastFmConvenience {
         }
     }
     
-    func getSimilarSongs(songs: [Song], completionHandler: @escaping (_ songString: [String]?, _ error: NSError?) -> Void) {
+    func getSimilarSongs(song: Song, completionHandler: @escaping (_ songString: [String]?, _ error: NSError?) -> Void) {
         
         var arr = [String]()
         
-        for song in songs {
             let parameters: [String:Any] = [
                 parameterKeys.method: parameterValues.method,
                 parameterKeys.artist: song.artist,
@@ -52,7 +51,7 @@ class LastFmConvenience {
                 parameterKeys.limit: parameterValues.limit]
             
             let url = apiConvenience.apiUrlForMethod(method: nil, PathExt: nil, parameters: parameters as [String : AnyObject]?)
-//            print(url)
+            print(url)
             
             lastFmApiRequest(url: url, method: "GET") { (jsonDict, error) in
                 
@@ -70,9 +69,9 @@ class LastFmConvenience {
                             arr.append(songString)
                         }
                     }
-                    print(arr.count)
+                    //print(arr.count)
                     if arr.count > 0 {
-                        print(arr)
+                        //print(arr)
                         completionHandler(arr, nil)
                         
                     }
@@ -80,60 +79,60 @@ class LastFmConvenience {
                     print("error getting similar")
                 }
             }
-        }
         
+
     }
     
     
     func getAppleMusicSongsFromSimilarSongs(songs: [Song], completionHandler: @escaping (_ song: [Song]?, _ error: NSError?) -> Void) {
         
-        var songArr = [Song]()
+        //var songArr = [Song]()
         
-        getSimilarSongs(songs: songs) { (searchTerms, error) in
-        
-            guard error == nil else {
-                completionHandler(nil, error)
-                return
-            }
-        
-            if let terms = searchTerms {
-               
-                for term in terms {
-                    
-                    self.appleMusicClient.getSongs(searchTerm: term) { (songDict, error) in
-                        
-                        guard error == nil else {
-                            print("error getting search results")
-                            completionHandler(nil, error)
-                            return
-                        }
-                        
-                        if let dict = songDict {
-                            
-                            var title: String!
-                            var albumTitle: String!
-                            var artwork: UIImage
-                            var artist: String!
-                            
-                            let songRow = dict[0]
-                            
-                            if let urlString = songRow[AppleMusicConvenience.jsonResponseKeys.artwork] as? String,
-                                let imgUrl = URL(string: urlString),
-                                let imgData = NSData(contentsOf: imgUrl) {
-                                title = songRow[AppleMusicConvenience.jsonResponseKeys.trackName] as? String
-                                albumTitle = songRow[AppleMusicConvenience.jsonResponseKeys.albumName] as? String
-                                artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
-                                artist = songRow[AppleMusicConvenience.jsonResponseKeys.artist] as? String
-                                let song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(9999), artist: artist)
-                                
-                                songArr.append(song)
-                            }
-                        }
-                    }
-                }
-                completionHandler(songArr, nil)
-            }
-        }
+//        getSimilarSongs(song: songs) { (searchTerms, error) in
+//        
+//            guard error == nil else {
+//                completionHandler(nil, error)
+//                return
+//            }
+//        
+//            if let terms = searchTerms {
+//               
+//                for term in terms {
+//                    
+//                    self.appleMusicClient.getSongs(searchTerm: term) { (songDict, error) in
+//                        
+//                        guard error == nil else {
+//                            print("error getting search results")
+//                            completionHandler(nil, error)
+//                            return
+//                        }
+//                        
+//                        if let dict = songDict {
+//                            
+//                            var title: String!
+//                            var albumTitle: String!
+//                            var artwork: UIImage
+//                            var artist: String!
+//                            
+//                            let songRow = dict[0]
+//                            
+//                            if let urlString = songRow[AppleMusicConvenience.jsonResponseKeys.artwork] as? String,
+//                                let imgUrl = URL(string: urlString),
+//                                let imgData = NSData(contentsOf: imgUrl) {
+//                                title = songRow[AppleMusicConvenience.jsonResponseKeys.trackName] as? String
+//                                albumTitle = songRow[AppleMusicConvenience.jsonResponseKeys.albumName] as? String
+//                                artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
+//                                artist = songRow[AppleMusicConvenience.jsonResponseKeys.artist] as? String
+//                                let song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(9999), artist: artist)
+//                                
+//                                songArr.append(song)
+//                            }
+//                        }
+//                    }
+//                }
+//                completionHandler(songArr, nil)
+//            }
+//        }
     }
     
     
