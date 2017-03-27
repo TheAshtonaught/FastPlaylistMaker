@@ -115,14 +115,14 @@ class CreatePlaylistVC: UIViewController {
                         songTitleArray.append(contentsOf: arr)
                     }
                     
-                    print(song ?? 000)
+                    //print(song ?? 000)
                     print("\n")
-                    print(songTitleArray.count)
+                    print(songTitleArray)
                 })
             }
             
         }
-                
+        
         if addedSongs.count > 0 {
             CreatePlaylistBtn.alpha = 1
             CreatePlaylistBtn.isEnabled = true
