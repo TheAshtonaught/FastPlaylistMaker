@@ -103,7 +103,7 @@ class CreatePlaylistVC: UIViewController {
         var songTitleArray = [String]()
         
         addedSongs.append(songsArr[currentIndex])
-        if addedSongs.count > 4 {
+        if addedSongs.count > 0 {
             for song in addedSongs {
                 lastFmClient.getSimilarSongs(song: song, completionHandler: { (song, error) in
                     
@@ -112,8 +112,8 @@ class CreatePlaylistVC: UIViewController {
                     }
                     
                     //print(song ?? 000)
-                    print("\n")
-                    print(songTitleArray)
+                    //print("\n")
+                    //print(songTitleArray)
                 })
             }
             

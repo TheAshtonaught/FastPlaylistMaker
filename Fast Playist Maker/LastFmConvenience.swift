@@ -63,8 +63,25 @@ class LastFmConvenience {
                 if let dict = jsonDict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
                     for sim in similars {
                         
-                        if let name = sim["name"], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] {
+                        if let name = sim["name"], let imageDict = sim["image"] as? [[String: AnyObject]], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] {
                             
+                            
+                            var albumTitle: String!
+                            var artwork: UIImage
+                            var id: String!
+                            
+                            var imageString: String!
+                            
+                            for image in imageDict {
+                                
+                                if image["size"] as? String == "extralarge" {
+                                    if let imageUrl = image["#text"] as? String {
+                                       imageString = imageUrl
+                                    }
+                                }
+                                
+                            }
+                            print(imageString ?? 99)
                             let songString = "\(name) \(artist)"
                             arr.append(songString)
                         }
