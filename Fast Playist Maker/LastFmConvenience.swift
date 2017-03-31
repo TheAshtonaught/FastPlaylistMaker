@@ -51,7 +51,7 @@ class LastFmConvenience {
                 parameterKeys.limit: parameterValues.limit]
             
             let url = apiConvenience.apiUrlForMethod(method: nil, PathExt: nil, parameters: parameters as [String : AnyObject]?)
-            print(url)
+            //print(url)
             
             lastFmApiRequest(url: url, method: "GET") { (jsonDict, error) in
                 
@@ -76,7 +76,7 @@ class LastFmConvenience {
                         
                     }
                 } else {
-                    print("error getting similar")
+                    //print("error getting similar")
                 }
             }
         

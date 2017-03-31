@@ -107,10 +107,6 @@ class CreatePlaylistVC: UIViewController {
             for song in addedSongs {
                 lastFmClient.getSimilarSongs(song: song, completionHandler: { (song, error) in
                     
-                    //                for so in self.addedSongs {
-                    //                   print(so.title)
-                    //                }
-
                     if let arr = song {
                         songTitleArray.append(contentsOf: arr)
                     }
