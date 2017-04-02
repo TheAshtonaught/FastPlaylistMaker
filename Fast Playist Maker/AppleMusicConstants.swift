@@ -27,6 +27,10 @@ extension AppleMusicConvenience {
         static let albumName = "collectionName"
         static let artist = "artistName"
     }
+    
+    struct ids {
+        static let similarSongId: UInt64 = 888
+    }
 }
 
 

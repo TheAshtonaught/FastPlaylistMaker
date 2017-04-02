@@ -26,6 +26,20 @@ struct Song {
         self.artist = artist
     }
     
+    init(similarSong: SimilarSong) {
+        self.artist = similarSong.artist
+        self.title = similarSong.title
+        self.persitentID = similarSong.persitentID
+        self.album = ""
+        
+        if let imageData = NSData(contentsOf: similarSong.imageUrl) as? Data {
+            
+            self.artwork = UIImage(data: imageData) ?? UIImage(named: "noAlbumArt.png")!
+        } else {
+            self.artwork = UIImage(named: "noAlbumArt.png")!
+        }
+    }
+    
     init(songItem: MPMediaItem) {
         title = songItem.title ?? ""
         album = songItem.albumTitle ?? ""

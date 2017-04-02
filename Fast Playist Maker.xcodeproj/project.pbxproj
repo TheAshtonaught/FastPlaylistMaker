@@ -32,6 +32,7 @@
 		09B7C00F1E381ABB006FFE86 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7C00E1E381ABB006FFE86 /* CoreDataStack.swift */; };
 		09B973371E7E728000E27E3D /* LastFmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B973361E7E728000E27E3D /* LastFmConstants.swift */; };
 		09C149361E330D8300742BE1 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C149351E330D8300742BE1 /* Song.swift */; };
+		09D5A6491E911E750058661A /* SimilarSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5A6481E911E750058661A /* SimilarSong.swift */; };
 		09E3DEAF1E42B7130019C163 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E3DEAE1E42B7130019C163 /* Global.swift */; };
 		09F27F2E1E302D9D00F763AD /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F27F2D1E302D9D00F763AD /* BorderedButton.swift */; };
 		09FC72B81E3C061900C08A06 /* CoreDataTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FC72B71E3C061900C08A06 /* CoreDataTableVC.swift */; };
@@ -65,6 +66,7 @@
 		09B7C00E1E381ABB006FFE86 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		09B973361E7E728000E27E3D /* LastFmConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastFmConstants.swift; sourceTree = "<group>"; };
 		09C149351E330D8300742BE1 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		09D5A6481E911E750058661A /* SimilarSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarSong.swift; sourceTree = "<group>"; };
 		09E3DEAE1E42B7130019C163 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		09F27F2D1E302D9D00F763AD /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		09FC72B71E3C061900C08A06 /* CoreDataTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableVC.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				09B7C0081E381A18006FFE86 /* Playlist+CoreDataClass.swift */,
 				09B7C0061E381A18006FFE86 /* SavedSong+CoreDataClass.swift */,
 				09E3DEAE1E42B7130019C163 /* Global.swift */,
+				09D5A6481E911E750058661A /* SimilarSong.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				09B7C0021E3806C7006FFE86 /* SongListTableVC.swift in Sources */,
 				09B7C00C1E381A18006FFE86 /* Playlist+CoreDataClass.swift in Sources */,
 				094A17601E3F1A610040255E /* AppleMusicConvience.swift in Sources */,
+				09D5A6491E911E750058661A /* SimilarSong.swift in Sources */,
 				094A17621E3F1A760040255E /* AppleMusicConstants.swift in Sources */,
 				09B7C00F1E381ABB006FFE86 /* CoreDataStack.swift in Sources */,
 				094A17681E3F3D920040255E /* AMSearchVC.swift in Sources */,

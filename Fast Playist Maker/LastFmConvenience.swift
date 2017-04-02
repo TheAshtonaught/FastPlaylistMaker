@@ -41,6 +41,7 @@ class LastFmConvenience {
     func getSimilarSongs(song: Song, completionHandler: @escaping (_ songString: [String]?, _ error: NSError?) -> Void) {
         
         var arr = [String]()
+        var songArray = [Song]()
         
             let parameters: [String:Any] = [
                 parameterKeys.method: parameterValues.method,
@@ -65,15 +66,10 @@ class LastFmConvenience {
                         
                         if let name = sim["name"], let imageDict = sim["image"] as? [[String: AnyObject]], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] {
                             
-                            
-                            var albumTitle: String!
                             var artwork: UIImage
-                            var id: String!
-                            
                             var imageString: String!
                             
                             for image in imageDict {
-                                
                                 if image["size"] as? String == "extralarge" {
                                     if let imageUrl = image["#text"] as? String {
                                        imageString = imageUrl
@@ -81,7 +77,16 @@ class LastFmConvenience {
                                 }
                                 
                             }
-                            print(imageString ?? 99)
+
+                            if let imageUrl = URL(string: imageString), let imageData = NSData(contentsOf: imageUrl) {
+                                
+                                artwork = UIImage(data: imageData as Data) ?? UIImage(named: "noAlbumArt.png")!
+                                
+                                let song = Song(artwork: artwork, title: name as! String, album: "", id: AppleMusicConvenience.ids.similarSongId, artist: artist as! String)
+                                songArray.append(song)
+                            }
+                            
+                            print(songArray.count)
                             let songString = "\(name) \(artist)"
                             arr.append(songString)
                         }
