@@ -75,7 +75,6 @@ class SongListTableVC: CoreDataTableVC {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let song = fetchedResultsController?.object(at: indexPath) as! SavedSong
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SongTableCell", for: indexPath) as! SongTableCell
@@ -93,11 +92,16 @@ class SongListTableVC: CoreDataTableVC {
         if editingStyle == .delete {
             tableView.beginUpdates()
             
-            let song = fetchedResultsController?.object(at: indexPath) as! SavedSong
-            stack.mainContext.delete(song)
-            stack.save()
+            if (fetchedResultsController?.fetchedObjects?.count)! > 1 {
+                
+                let song = fetchedResultsController?.object(at: indexPath) as! SavedSong
+                stack.mainContext.delete(song)
+                stack.save()
+                
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
             
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
             tableView.endUpdates()
         }
     }

@@ -41,7 +41,7 @@ class LastFmConvenience {
     func getSimilarSongs(song: Song, completionHandler: @escaping (_ songString: [String]?, _ error: NSError?) -> Void) {
         
         var arr = [String]()
-        var songArray = [Song]()
+        var songArray = [SimilarSong]()
         
             let parameters: [String:Any] = [
                 parameterKeys.method: parameterValues.method,
@@ -64,7 +64,7 @@ class LastFmConvenience {
                 if let dict = jsonDict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
                     for sim in similars {
                         
-                        if let name = sim["name"], let imageDict = sim["image"] as? [[String: AnyObject]], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] {
+                        if let name = sim["name"] as? String, let imageDict = sim["image"] as? [[String: AnyObject]], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] as? String {
                             
                             var artwork: UIImage
                             var imageString: String!
@@ -78,15 +78,14 @@ class LastFmConvenience {
                                 
                             }
 
-                            if let imageUrl = URL(string: imageString), let imageData = NSData(contentsOf: imageUrl) {
+                            if let imageUrl = URL(string: imageString) {
                                 
-                                artwork = UIImage(data: imageData as Data) ?? UIImage(named: "noAlbumArt.png")!
+                                let song = SimilarSong(imageUrl: imageUrl, title: name, id: AppleMusicConvenience.ids.similarSongId, artist: artist)
                                 
-                                let song = Song(artwork: artwork, title: name as! String, album: "", id: AppleMusicConvenience.ids.similarSongId, artist: artist as! String)
                                 songArray.append(song)
                             }
                             
-                            print(songArray.count)
+                            //print(songArray)
                             let songString = "\(name) \(artist)"
                             arr.append(songString)
                         }
@@ -101,8 +100,6 @@ class LastFmConvenience {
                     //print("error getting similar")
                 }
             }
-        
-
     }
     
     
