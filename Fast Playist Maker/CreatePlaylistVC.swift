@@ -100,20 +100,23 @@ class CreatePlaylistVC: UIViewController {
     
     func added() {
         
-        var songTitleArray = [String]()
+        var similarSongsArray = [SimilarSong]()
         
         addedSongs.append(songsArr[currentIndex])
         if addedSongs.count > 0 {
             for song in addedSongs {
                 lastFmClient.getSimilarSongs(song: song, completionHandler: { (song, error) in
                     
-                    if let arr = song {
-                        songTitleArray.append(contentsOf: arr)
+                    if let array = song {
+                        for arr in array {
+                            print(arr.title)
+                        similarSongsArray.append(arr)
+                        }
                     }
                     
-                    //print(song ?? 000)
-                    //print("\n")
-                    //print(songTitleArray)
+                    
+                    print("\n")
+                    //print(similarSongsArray)
                 })
             }
             

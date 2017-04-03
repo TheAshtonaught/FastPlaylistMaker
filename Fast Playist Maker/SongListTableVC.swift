@@ -93,7 +93,6 @@ class SongListTableVC: CoreDataTableVC {
             tableView.beginUpdates()
             
             if (fetchedResultsController?.fetchedObjects?.count)! > 1 {
-                
                 let song = fetchedResultsController?.object(at: indexPath) as! SavedSong
                 stack.mainContext.delete(song)
                 stack.save()

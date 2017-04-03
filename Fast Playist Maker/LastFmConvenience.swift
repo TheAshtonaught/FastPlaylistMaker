@@ -38,9 +38,9 @@ class LastFmConvenience {
         }
     }
     
-    func getSimilarSongs(song: Song, completionHandler: @escaping (_ songString: [String]?, _ error: NSError?) -> Void) {
+    func getSimilarSongs(song: Song, completionHandler: @escaping (_ similarSongs: [SimilarSong]?, _ error: NSError?) -> Void) {
         
-        var arr = [String]()
+        //var arr = [String]()
         var songArray = [SimilarSong]()
         
             let parameters: [String:Any] = [
@@ -66,7 +66,6 @@ class LastFmConvenience {
                         
                         if let name = sim["name"] as? String, let imageDict = sim["image"] as? [[String: AnyObject]], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] as? String {
                             
-                            var artwork: UIImage
                             var imageString: String!
                             
                             for image in imageDict {
@@ -75,7 +74,6 @@ class LastFmConvenience {
                                        imageString = imageUrl
                                     }
                                 }
-                                
                             }
 
                             if let imageUrl = URL(string: imageString) {
@@ -86,18 +84,15 @@ class LastFmConvenience {
                             }
                             
                             //print(songArray)
-                            let songString = "\(name) \(artist)"
-                            arr.append(songString)
+                            //let songString = "\(name) \(artist)"
+                            //arr.append(songString)
                         }
                     }
                     //print(arr.count)
-                    if arr.count > 0 {
+                    if songArray.count > 0 {
                         //print(arr)
-                        completionHandler(arr, nil)
-                        
+                        completionHandler(songArray, nil)
                     }
-                } else {
-                    //print("error getting similar")
                 }
             }
     }
