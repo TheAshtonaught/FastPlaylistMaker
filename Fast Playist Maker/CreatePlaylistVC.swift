@@ -34,6 +34,8 @@ class CreatePlaylistVC: UIViewController {
     @IBOutlet weak var addPlaylistBtn: UIBarButtonItem!
     @IBOutlet weak var fetchLibBtn: UILabel!
     @IBOutlet weak var cheetah: UIImageView!
+    
+    
 
 //MARK: Life Cycle
     override func viewDidLoad() {
@@ -100,27 +102,9 @@ class CreatePlaylistVC: UIViewController {
     
     func added() {
         
-        var similarSongsArray = [SimilarSong]()
         
         addedSongs.append(songsArr[currentIndex])
-        if addedSongs.count > 0 {
-            for song in addedSongs {
-                lastFmClient.getSimilarSongs(song: song, completionHandler: { (song, error) in
-                    
-                    if let array = song {
-                        for arr in array {
-                            print(arr.title)
-                        similarSongsArray.append(arr)
-                        }
-                    }
-                    
-                    
-                    print("\n")
-                    //print(similarSongsArray)
-                })
-            }
-            
-        }
+        
         
         if addedSongs.count > 0 {
             CreatePlaylistBtn.alpha = 1
@@ -272,6 +256,28 @@ class CreatePlaylistVC: UIViewController {
         }))
         present(alert, animated: true, completion: nil)
     }
+    
+    @IBAction func songSuggestionSwitch(_ sender: Any) {
+        
+        var similarSongsArray = [SimilarSong]()
+
+        if addedSongs.count > 0 {
+            for song in addedSongs {
+                lastFmClient.getSimilarSongs(song: song, completionHandler: { (song, error) in
+                    
+                    if let array = song {
+                        for arr in array {
+                            print(arr.title)
+                            similarSongsArray.append(arr)
+                        }
+                    }
+                    print("\n")
+                    //print(similarSongsArray)
+                })
+            }
+        }
+    }
+    
     
     @IBAction func cancelPlaylist(_ sender: Any) {
         resetLib()
