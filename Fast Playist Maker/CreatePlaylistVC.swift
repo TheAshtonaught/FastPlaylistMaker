@@ -102,9 +102,7 @@ class CreatePlaylistVC: UIViewController {
     
     func added() {
         
-        
         addedSongs.append(songsArr[currentIndex])
-        
         
         if addedSongs.count > 0 {
             CreatePlaylistBtn.alpha = 1
@@ -124,6 +122,7 @@ class CreatePlaylistVC: UIViewController {
 //MARK: Navigation
     // after playlist is created show table with list of songs
     func presentSongTable() {
+        
         let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
         
         for song in addedSongs {
@@ -164,9 +163,9 @@ class CreatePlaylistVC: UIViewController {
                 updateSong()
                 setAddedLbl(added: true)
             } else if imgView.center.x > self.view.bounds.width - 100 {
+                songsArr.remove(at: currentIndex)
                 updateSong()
                 setAddedLbl(added: false)
-                songsArr.remove(at: currentIndex)
             }
             
             rotation = CGAffineTransform(rotationAngle: 0)
