@@ -99,6 +99,10 @@
                                     <action selector="songSuggestionSwitch:" destination="d2t-32-T39" eventType="valueChanged" id="ns7-Ha-XKX"/>
                                 </connections>
                             </switch>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PXo-WE-o2j">
+                                <rect key="frame" x="177" y="197" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -133,12 +137,15 @@
                     <connections>
                         <outlet property="AlbumImgView" destination="0Px-Ke-ZCg" id="uF0-Ng-7JJ"/>
                         <outlet property="CreatePlaylistBtn" destination="ZD9-h4-9DC" id="2ev-Rt-IEB"/>
+                        <outlet property="activityIndicatorOfSimilarSongs" destination="PXo-WE-o2j" id="Jp4-wj-08I"/>
                         <outlet property="addPlaylistBtn" destination="Jey-H7-jTF" id="22C-gA-8YI"/>
                         <outlet property="addedLbl" destination="Pz5-pM-eGz" id="y6g-M8-qb8"/>
                         <outlet property="albumTitleLbl" destination="rUr-Xq-sUa" id="DwC-ig-ppR"/>
                         <outlet property="cheetah" destination="iCJ-AJ-yas" id="dPv-iW-kbA"/>
                         <outlet property="fetchLibBtn" destination="lJe-1h-ZTa" id="zQ1-7s-3kj"/>
+                        <outlet property="songSuggestionLabel" destination="Qc9-cU-2wW" id="s7g-9I-Cbm"/>
                         <outlet property="songTitleLbl" destination="In6-tw-IY3" id="7Cf-da-ZRM"/>
+                        <outlet property="suggestionsSwitch" destination="OcK-kt-8jW" id="jCa-Kl-D7S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XhL-uF-rIU" userLabel="First Responder" sceneMemberID="firstResponder"/>

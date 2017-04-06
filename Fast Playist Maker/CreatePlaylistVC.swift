@@ -19,11 +19,13 @@ class CreatePlaylistVC: UIViewController {
     var savedSongs = [SavedSong]()
     var stack: CoreDataStack!
     var addedSongs = [Song]()
+    var similarSongsArray = [SimilarSong]()
     var currentIndex = 0
     var playlistTitle: UITextField!
     var appDel: AppDelegate!
     var global = Global.sharedClient()
     let lastFmClient = LastFmConvenience.sharedClient()
+    
 
 // MARK: Outlets
     @IBOutlet weak var AlbumImgView: DraggableImage!
@@ -34,8 +36,9 @@ class CreatePlaylistVC: UIViewController {
     @IBOutlet weak var addPlaylistBtn: UIBarButtonItem!
     @IBOutlet weak var fetchLibBtn: UILabel!
     @IBOutlet weak var cheetah: UIImageView!
-    
-    
+    @IBOutlet weak var suggestionsSwitch: UISwitch!
+    @IBOutlet weak var songSuggestionLabel: UILabel!
+    @IBOutlet weak var activityIndicatorOfSimilarSongs: UIActivityIndicatorView!
 
 //MARK: Life Cycle
     override func viewDidLoad() {
@@ -48,7 +51,6 @@ class CreatePlaylistVC: UIViewController {
         AlbumImgView.addGestureRecognizer(gesture)
     
         configUI(createMode: false)
-        
         initializeLibrary()
     }
     
@@ -60,6 +62,7 @@ class CreatePlaylistVC: UIViewController {
             if addedSongs.count > 0 {
                 CreatePlaylistBtn.alpha = 1
                 CreatePlaylistBtn.isEnabled = true
+                suggestionsSwitch.isEnabled = true
             }
             global.appleMusicPicks = nil
         }
@@ -101,12 +104,12 @@ class CreatePlaylistVC: UIViewController {
     // appends the songs the user has picked to add to an array
     
     func added() {
-        
         addedSongs.append(songsArr[currentIndex])
         
         if addedSongs.count > 0 {
             CreatePlaylistBtn.alpha = 1
             CreatePlaylistBtn.isEnabled = true
+            suggestionsSwitch.isEnabled = true
         }
         songsArr.remove(at: currentIndex)
     }
@@ -117,6 +120,26 @@ class CreatePlaylistVC: UIViewController {
         updateSong()
         CreatePlaylistBtn.alpha = 0.3
         CreatePlaylistBtn.isEnabled = false
+    }
+    
+    func getSimilarSongs() {
+        
+        
+        if addedSongs.count > 0 {
+            for song in addedSongs {
+                lastFmClient.getSimilarSongs(song: song, completionHandler: { (song, error) in
+                    
+                    if let songArray = song {
+                        for similar in songArray {
+                            //print(songArray.count)
+                            self.similarSongsArray.append(similar)
+                        }
+                    }
+                    //print("\n")
+                    //print(self.similarSongsArray.count)
+                })
+            }
+        }
     }
     
 //MARK: Navigation
@@ -137,8 +160,6 @@ class CreatePlaylistVC: UIViewController {
             songListTableVC.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(songListTableVC, animated: true)
         }
-        
-        
     }
     
 //MARK: UI
@@ -175,17 +196,57 @@ class CreatePlaylistVC: UIViewController {
             imgView.center = CGPoint(x: self.view.bounds.width / 2, y: (UIApplication.shared.statusBarFrame.height + 44 + (imgView.frame.height / 2)))
         }
     }
+    func similarSongsloadingUI(loading: Bool) {
+        activityIndicatorOfSimilarSongs.color = CreatePlaylistBtn.backgroundColor
+        if loading {
+            activityIndicatorOfSimilarSongs.isHidden = false
+            activityIndicatorOfSimilarSongs.startAnimating()
+        } else {
+           activityIndicatorOfSimilarSongs.stopAnimating()
+        }
+        
+        AlbumImgView.isHidden = loading
+        songTitleLbl.isHidden = loading
+        albumTitleLbl.isHidden = loading
+        
+    }
+    
     // grabs random song an updates UI accordingly
     func updateSong() {
+        if suggestionsSwitch.isOn && similarSongsArray.count > 0 {
+            
+            DispatchQueue.main.async {
+                self.similarSongsloadingUI(loading: true)
+            }
+            
+            var newSong: Song
+            
+            let randIndex = Int(arc4random_uniform(UInt32((similarSongsArray.count))))
+            currentIndex = randIndex
+            
+            newSong = Song(similarSong: similarSongsArray[currentIndex])
+
+            //DispatchQueue.main.async {
+                self.AlbumImgView.image = newSong.artwork
+                self.songTitleLbl.text = newSong.title
+                self.albumTitleLbl.text = newSong.album
+                self.similarSongsloadingUI(loading: false)
+            //}
+            
+            
+        } else {
         let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
         currentIndex = randIndex
         
         AlbumImgView.image = songsArr[currentIndex].artwork
         songTitleLbl.text = songsArr[currentIndex].title
         albumTitleLbl.text = songsArr[currentIndex].album
+            
+        }
     }
     
     func configUI(createMode: Bool) {
+        activityIndicatorOfSimilarSongs.isHidden = true
         fetchLibBtn.isHidden = createMode
         cheetahAnimation(animate: !createMode)
         cheetah.isHidden = createMode
@@ -195,6 +256,9 @@ class CreatePlaylistVC: UIViewController {
         albumTitleLbl.isHidden = !createMode
         CreatePlaylistBtn.isHidden = !createMode
         CreatePlaylistBtn.isEnabled = false
+        suggestionsSwitch.isHidden = !createMode
+        suggestionsSwitch.isEnabled = false
+        songSuggestionLabel.isHidden = !createMode
     }
     
     func cheetahAnimation(animate: Bool) {
@@ -258,23 +322,10 @@ class CreatePlaylistVC: UIViewController {
     
     @IBAction func songSuggestionSwitch(_ sender: Any) {
         
-        var similarSongsArray = [SimilarSong]()
-
-        if addedSongs.count > 0 {
-            for song in addedSongs {
-                lastFmClient.getSimilarSongs(song: song, completionHandler: { (song, error) in
-                    
-                    if let array = song {
-                        for arr in array {
-                            print(arr.title)
-                            similarSongsArray.append(arr)
-                        }
-                    }
-                    print("\n")
-                    //print(similarSongsArray)
-                })
-            }
+        if suggestionsSwitch.isOn {
+            getSimilarSongs()
         }
+        
     }
     
     
