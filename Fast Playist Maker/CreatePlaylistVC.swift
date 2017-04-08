@@ -124,6 +124,7 @@ class CreatePlaylistVC: UIViewController {
     
     func getSimilarSongs() {
         
+        var simArray = [SimilarSong]()
         
         if addedSongs.count > 0 {
             for song in addedSongs {
@@ -132,11 +133,10 @@ class CreatePlaylistVC: UIViewController {
                     if let songArray = song {
                         for similar in songArray {
                             //print(songArray.count)
-                            self.similarSongsArray.append(similar)
+                            simArray.append(similar)
                         }
                     }
-                    //print("\n")
-                    //print(self.similarSongsArray.count)
+                    self.similarSongsArray = simArray
                 })
             }
         }
@@ -180,13 +180,13 @@ class CreatePlaylistVC: UIViewController {
         if gesture.state == UIGestureRecognizerState.ended {
             
             if imgView.center.x < 100 {
+                //songsArr.remove(at: currentIndex)
+                updateSong()
+                setAddedLbl(added: false)
+            } else if imgView.center.x > self.view.bounds.width - 100 {
                 added()
                 updateSong()
                 setAddedLbl(added: true)
-            } else if imgView.center.x > self.view.bounds.width - 100 {
-                songsArr.remove(at: currentIndex)
-                updateSong()
-                setAddedLbl(added: false)
             }
             
             rotation = CGAffineTransform(rotationAngle: 0)
@@ -196,18 +196,13 @@ class CreatePlaylistVC: UIViewController {
             imgView.center = CGPoint(x: self.view.bounds.width / 2, y: (UIApplication.shared.statusBarFrame.height + 44 + (imgView.frame.height / 2)))
         }
     }
-    func similarSongsloadingUI(loading: Bool) {
-        activityIndicatorOfSimilarSongs.color = CreatePlaylistBtn.backgroundColor
-        if loading {
-            activityIndicatorOfSimilarSongs.isHidden = false
-            activityIndicatorOfSimilarSongs.startAnimating()
-        } else {
-           activityIndicatorOfSimilarSongs.stopAnimating()
-        }
+    
+    func loadSimilarSong(similarSong: SimilarSong, completion: (_ song: Song?) -> Void) {
+        var newSong: Song
         
-        AlbumImgView.isHidden = loading
-        songTitleLbl.isHidden = loading
-        albumTitleLbl.isHidden = loading
+        newSong = Song(artwork: #imageLiteral(resourceName: "noAlbumArt"), title: similarSong.title, album: similarSong.artist, id: AppleMusicConvenience.ids.similarSongId, artist: similarSong.artist)
+        
+        completion(newSong)
         
     }
     
@@ -215,24 +210,18 @@ class CreatePlaylistVC: UIViewController {
     func updateSong() {
         if suggestionsSwitch.isOn && similarSongsArray.count > 0 {
             
-            DispatchQueue.main.async {
-                self.similarSongsloadingUI(loading: true)
-            }
-            
-            var newSong: Song
-            
             let randIndex = Int(arc4random_uniform(UInt32((similarSongsArray.count))))
             currentIndex = randIndex
             
-            newSong = Song(similarSong: similarSongsArray[currentIndex])
-
-            //DispatchQueue.main.async {
-                self.AlbumImgView.image = newSong.artwork
-                self.songTitleLbl.text = newSong.title
-                self.albumTitleLbl.text = newSong.album
-                self.similarSongsloadingUI(loading: false)
-            //}
-            
+            loadSimilarSong(similarSong: similarSongsArray[currentIndex], completion: { (loadedSimSong) in
+                if let song = loadedSimSong {
+                    DispatchQueue.main.async {
+                        self.AlbumImgView.image = song.artwork
+                        self.songTitleLbl.text = song.title
+                        self.albumTitleLbl.text = song.album
+                    }
+                }
+            })
             
         } else {
         let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))

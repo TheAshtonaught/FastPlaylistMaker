@@ -40,7 +40,6 @@ class LastFmConvenience {
     
     func getSimilarSongs(song: Song, completionHandler: @escaping (_ similarSongs: [SimilarSong]?, _ error: NSError?) -> Void) {
         
-        //var arr = [String]()
         var songArray = [SimilarSong]()
         
             let parameters: [String:Any] = [
@@ -82,15 +81,9 @@ class LastFmConvenience {
                                 
                                 songArray.append(song)
                             }
-                            
-                            //print(songArray)
-                            //let songString = "\(name) \(artist)"
-                            //arr.append(songString)
                         }
                     }
-                    //print(arr.count)
                     if songArray.count > 0 {
-                        //print(arr)
                         completionHandler(songArray, nil)
                     }
                 }
@@ -150,46 +143,7 @@ class LastFmConvenience {
     }
     
     
-//    func createSongFromLastFmJson(dictionary: [String: AnyObject]) {
-//        
-//        var title: String?
-//        var albumTitle: String?
-//        var artwork: UIImage?
-//        let id = UInt64(9999)
-//        var artist: String?
-//        
-//        
-//        if let songResults = dictionary["similartracks"] as? [String: AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
-//            
-//            for sim in similars {
-//                
-//                title = sim["name"] as? String
-//                
-//                
-//                if let imageResults = sim["image"] as? [[String: AnyObject]] {
-//                    let largeImageResults = imageResults[3]
-//                    if let urlString = largeImageResults["#text"] as? String, let imgUrl = URL(string: urlString), let imgData = NSData(contentsOf: imgUrl) {
-//                        
-//                        artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
-//                    }
-//                    
-//                }
-//                
-//            }
-//        }
-//        
-//    }
-    
-    
-    
-//    lastFmClient.getSimilarSongs(song: songsArr[currentIndex])                  { (dict, error) in
-//    DispatchQueue.main.async {
-//    
-    
-    
-//    }
-//    }
-    
+  
     
 }
 
