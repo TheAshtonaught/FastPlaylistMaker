@@ -25,6 +25,7 @@ class CreatePlaylistVC: UIViewController {
     var appDel: AppDelegate!
     var global = Global.sharedClient()
     let lastFmClient = LastFmConvenience.sharedClient()
+    var showingSimilarSong = false
     
 
 // MARK: Outlets
@@ -104,14 +105,23 @@ class CreatePlaylistVC: UIViewController {
     // appends the songs the user has picked to add to an array
     
     func added() {
-        addedSongs.append(songsArr[currentIndex])
         
-        if addedSongs.count > 0 {
-            CreatePlaylistBtn.alpha = 1
-            CreatePlaylistBtn.isEnabled = true
-            suggestionsSwitch.isEnabled = true
+        if showingSimilarSong {
+            let simSong = similarSongsArray[currentIndex]
+            let song = Song(artwork: #imageLiteral(resourceName: "noAlbumArt"), title: simSong.title, album: simSong.artist, id: AppleMusicConvenience.ids.similarSongId, artist: simSong.artist)
+            addedSongs.append(song)
+            
+        } else {
+            addedSongs.append(songsArr[currentIndex])
+            
+            if addedSongs.count > 0 {
+                CreatePlaylistBtn.alpha = 1
+                CreatePlaylistBtn.isEnabled = true
+                suggestionsSwitch.isEnabled = true
+            }
+            songsArr.remove(at: currentIndex)
         }
-        songsArr.remove(at: currentIndex)
+        
     }
     
     func resetLib() {
@@ -139,6 +149,7 @@ class CreatePlaylistVC: UIViewController {
                     self.similarSongsArray = simArray
                 })
             }
+            
         }
     }
     
@@ -213,20 +224,29 @@ class CreatePlaylistVC: UIViewController {
             let randIndex = Int(arc4random_uniform(UInt32((similarSongsArray.count))))
             currentIndex = randIndex
             
-            loadSimilarSong(similarSong: similarSongsArray[currentIndex], completion: { (loadedSimSong) in
-                if let song = loadedSimSong {
-                    DispatchQueue.main.async {
-                        self.AlbumImgView.image = song.artwork
-                        self.songTitleLbl.text = song.title
-                        self.albumTitleLbl.text = song.album
-                    }
-                }
-            })
+            let song = similarSongsArray[currentIndex]
+            
+            showingSimilarSong = true
+            AlbumImgView.image = #imageLiteral(resourceName: "noAlbumArt")
+            songTitleLbl.text = song.title
+            albumTitleLbl.text = song.artist
+            
+//            loadSimilarSong(similarSong: similarSongsArray[currentIndex], completion: { (loadedSimSong) in
+//                if let song = loadedSimSong {
+//                    DispatchQueue.main.async {
+//                        self.showingSimilarSong = true
+//                        self.AlbumImgView.image = song.artwork
+//                        self.songTitleLbl.text = song.title
+//                        self.albumTitleLbl.text = song.album
+//                    }
+//                }
+//            })
             
         } else {
         let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
         currentIndex = randIndex
         
+        showingSimilarSong = false
         AlbumImgView.image = songsArr[currentIndex].artwork
         songTitleLbl.text = songsArr[currentIndex].title
         albumTitleLbl.text = songsArr[currentIndex].album
@@ -313,6 +333,7 @@ class CreatePlaylistVC: UIViewController {
         
         if suggestionsSwitch.isOn {
             getSimilarSongs()
+            //updateSong()
         }
         
     }
