@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class AppleMusicConvenience {
     
@@ -62,10 +63,53 @@ class AppleMusicConvenience {
     }
     
     
-    
-    
-    
+    func addSimilarSongToLibrary(similarSong: Song, completion: @escaping (_ song: Song?) -> Void) {
+        
+        let searchTerm = "\(similarSong.title) \(similarSong.artist)"
+        
+        getSongs(searchTerm: searchTerm) { (songDict, error) in
+            
+            guard error == nil else { return }
+            
+            if let dict = songDict {
+                var title: String!
+                var albumTitle: String!
+                var artwork: UIImage
+                var id: String!
+                var artist: String!
+                
+                if dict.count > 1 {
+                    
+                let songRow = dict[0]
+                
+                    if let urlString = songRow[AppleMusicConvenience.jsonResponseKeys.artwork] as? String,
+                    let imgUrl = URL(string: urlString),
+                    let imgData = NSData(contentsOf: imgUrl) {
+                    title = songRow[AppleMusicConvenience.jsonResponseKeys.trackName] as? String
+                    albumTitle = songRow[AppleMusicConvenience.jsonResponseKeys.albumName] as? String
+                    artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
+                    id = String(songRow["trackId"] as! Int)
+                    artist = songRow[AppleMusicConvenience.jsonResponseKeys.artist] as? String
+                    let song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(id)!, artist: artist)
+                    
+                    completion(song)
+                    
+                }
+                
+            }
+            }
+                
+        }
+            
+    }
+        
 }
+    
+    
+    
+    
+    
+
 
 
 

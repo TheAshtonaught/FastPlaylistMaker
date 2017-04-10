@@ -8,6 +8,7 @@
 
 import UIKit
 import MediaPlayer
+import StoreKit
 import CoreData
 
 class CreatePlaylistVC: UIViewController {
@@ -24,9 +25,10 @@ class CreatePlaylistVC: UIViewController {
     var playlistTitle: UITextField!
     var appDel: AppDelegate!
     var global = Global.sharedClient()
+    let appleMusicClient = AppleMusicConvenience.sharedClient()
     let lastFmClient = LastFmConvenience.sharedClient()
     var showingSimilarSong = false
-    
+    let controller = SKCloudServiceController()
 
 // MARK: Outlets
     @IBOutlet weak var AlbumImgView: DraggableImage!
@@ -111,6 +113,7 @@ class CreatePlaylistVC: UIViewController {
             let song = Song(artwork: #imageLiteral(resourceName: "noAlbumArt"), title: simSong.title, album: simSong.artist, id: AppleMusicConvenience.ids.similarSongId, artist: simSong.artist)
             addedSongs.append(song)
             
+            similarSongsArray.remove(at: currentIndex)
         } else {
             addedSongs.append(songsArr[currentIndex])
             
@@ -122,6 +125,34 @@ class CreatePlaylistVC: UIViewController {
             songsArr.remove(at: currentIndex)
         }
         
+    }
+    
+    
+    func addSimilarSongs(song: Song, completion: @escaping (_ song: Song?) -> Void) {
+        appleMusicClient.addSimilarSongToLibrary(similarSong: song, completion: completion)
+        
+    }
+    
+    func addSongToLibrary(song: Song, completion: @escaping (_ success: Bool?) -> Void) {
+        addSimilarSongs(song: song, completion: { (sng) in
+            
+            if let song = sng {
+                let pID = String(song.persitentID)
+                
+                self.controller.requestCapabilities(completionHandler: { (capability, error) in
+                    if capability.contains(SKCloudServiceCapability.addToCloudMusicLibrary)  {
+                        MPMediaLibrary.default().addItem(withProductID: pID, completionHandler: { (arr, err) in
+                            
+                            if err == nil {
+                                completion(true)
+                            }
+                            
+                        })
+                    }
+                })
+                
+            }
+        })
     }
     
     func resetLib() {
@@ -160,12 +191,28 @@ class CreatePlaylistVC: UIViewController {
         let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
         
         for song in addedSongs {
-            let savedSong = SavedSong(song: song, context: stack.mainContext)
-            savedSong.playlist = playlist
+            
+            if song.persitentID == AppleMusicConvenience.ids.similarSongId {
+                
+                addSongToLibrary(song: song, completion: { (success) in
+                    if let success = success {
+                        if success {
+                            let savedSong = SavedSong(song: song, context: self.stack.mainContext)
+                            savedSong.playlist = playlist
+                        }
+                    }
+                })
+                
+            } else {
+                let savedSong = SavedSong(song: song, context: stack.mainContext)
+                savedSong.playlist = playlist
+            }
+            
         }
         stack.save()
         resetLib()
         DispatchQueue.main.async {
+            //TODO: Drop all task
             let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
             songListTableVC.playlist = playlist
             songListTableVC.hidesBottomBarWhenPushed = true
