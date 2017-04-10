@@ -33,7 +33,11 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
         
         appDel = UIApplication.shared.delegate as! AppDelegate
         appDel.noConnectionCheckLoop(30, vc: self)
+        
+        searchBar.delegate = self
     }
+    
+    
 // MARK: Determines if the user has access to Apple Music
     func checkAppleMusicAccess() {
         SKCloudServiceController.requestAuthorization { (status) in
@@ -93,6 +97,7 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
         
     }
     
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
@@ -121,6 +126,7 @@ extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchBar.resignFirstResponder()
         var title: String!
         var albumTitle: String!
         var artwork: UIImage
