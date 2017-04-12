@@ -203,7 +203,7 @@
                     <navigationItem key="navigationItem" id="O8a-Dj-rQz">
                         <nil key="title"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Yjk-Xg-wrE" customClass="BorderedButton" customModule="Fast_Playist_Maker" customModuleProvider="target">
-                            <rect key="frame" x="147.5" y="7" width="80" height="30"/>
+                            <rect key="frame" x="148" y="7" width="80" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.99607843137254903" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="18"/>
@@ -335,6 +335,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dtJ-kF-gMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1397.5999999999999" y="413.3433283358321"/>
+        </scene>
+        <!--Login To Apple MusicVC-->
+        <scene sceneID="ocS-ob-iUD">
+            <objects>
+                <viewController storyboardIdentifier="LoginToAppleMusicVC" id="YDg-aj-SbL" customClass="LoginToAppleMusicVC" customModule="Fast_Playist_Maker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LWT-rp-6xR"/>
+                        <viewControllerLayoutGuide type="bottom" id="t23-mf-wzq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fyF-lo-a85">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Apple_Music_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="p9x-P0-EcP">
+                                <rect key="frame" x="97" y="96" width="180" height="180"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzW-eK-Dag">
+                                <rect key="frame" x="16" y="510" width="343" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <state key="normal" title="GET 3 MONTHS FREE">
+                                    <color key="titleColor" red="0.55707079172134399" green="0.36810049414634705" blue="0.96827059984207153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signupButton:" destination="YDg-aj-SbL" eventType="touchUpInside" id="sgt-EC-aMg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYz-pk-Po9">
+                                <rect key="frame" x="97" y="580" width="180" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="SKIP">
+                                    <color key="titleColor" red="0.71800094842910767" green="0.45457363128662109" blue="0.652840256690979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="skip:" destination="YDg-aj-SbL" eventType="touchUpInside" id="eFq-9y-cDL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAP-KW-cr6">
+                                <rect key="frame" x="16" y="450" width="343" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <state key="normal" title="I'M A MEMBER">
+                                    <color key="titleColor" red="0.86892169713973999" green="0.40137147903442383" blue="0.57302623987197876" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="memberButton:" destination="YDg-aj-SbL" eventType="touchUpInside" id="jw8-mR-zFl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93195575475692749" green="0.51262110471725464" blue="0.98046094179153442" alpha="0.65087890625" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ttw-1p-qNd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2248.8000000000002" y="412.44377811094455"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="zof-BJ-b3L">
@@ -555,6 +612,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Apple_Music_Icon" width="1920" height="1920"/>
         <image name="PlaylistIcon" width="30" height="30"/>
         <image name="cheetahIcon" width="30" height="30"/>
     </resources>

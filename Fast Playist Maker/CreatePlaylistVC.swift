@@ -105,7 +105,6 @@ class CreatePlaylistVC: UIViewController {
     }
     
     // appends the songs the user has picked to add to an array
-    
     func added() {
         
         if showingSimilarSong {
@@ -191,7 +190,6 @@ class CreatePlaylistVC: UIViewController {
         let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
         
         for song in addedSongs {
-            
             if song.persitentID == AppleMusicConvenience.ids.similarSongId {
                 
                 addSongToLibrary(song: song, completion: { (success) in
@@ -277,18 +275,6 @@ class CreatePlaylistVC: UIViewController {
             AlbumImgView.image = #imageLiteral(resourceName: "noAlbumArt")
             songTitleLbl.text = song.title
             albumTitleLbl.text = song.artist
-            
-//            loadSimilarSong(similarSong: similarSongsArray[currentIndex], completion: { (loadedSimSong) in
-//                if let song = loadedSimSong {
-//                    DispatchQueue.main.async {
-//                        self.showingSimilarSong = true
-//                        self.AlbumImgView.image = song.artwork
-//                        self.songTitleLbl.text = song.title
-//                        self.albumTitleLbl.text = song.album
-//                    }
-//                }
-//            })
-            
         } else {
         let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
         currentIndex = randIndex
@@ -387,7 +373,8 @@ class CreatePlaylistVC: UIViewController {
     
     
     @IBAction func cancelPlaylist(_ sender: Any) {
-        resetLib()
+        
+        cancelPlaylistWarning()
     }
     
     @IBAction func searchAppleMusicButtonPressed(_ sender: Any) {
@@ -403,10 +390,14 @@ extension CreatePlaylistVC {
 //MARK: Explainers
     
     func checkIfFirstLaunch() {
-        if let firstLaunch = UserDefaults.standard.value(forKey: "firstLaunch") {
+        if let firstLaunch = UserDefaults.standard.value(forKey: "afirstLaunch") {
             if firstLaunch as! Bool {}
         } else {
             showExplainerThenDismiss()
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginToAppleMusicVC") {
+            present(vc, animated: true, completion: nil)
+                
+            }
             UserDefaults.standard.set(false, forKey: "firstLaunch")
         }
     }
@@ -448,6 +439,17 @@ extension CreatePlaylistVC {
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
         
+    }
+    
+    func cancelPlaylistWarning() {
+        let alert = UIAlertController(title: "Cancel Playlist", message: "Are you sure you want to cancel making playlist?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "NO", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "I'M SURE", style: .default, handler: { (UIAlertAction) in
+            self.resetLib()
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 

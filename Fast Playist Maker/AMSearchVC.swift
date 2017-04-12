@@ -51,7 +51,7 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
                 })
             } else if status != .authorized {
                 DispatchQueue.main.async {
-                    self.showAlert(title: "Error", error: "You must be and Apple Music member to use this feature")
+                    self.showAlert(title: "Error", error: "You must be an Apple Music member to use this feature")
                     _ = self.navigationController?.popViewController(animated: true)
                 }
             }
