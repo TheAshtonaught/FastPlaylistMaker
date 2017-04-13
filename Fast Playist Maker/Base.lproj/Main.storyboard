@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -127,12 +128,20 @@
                                 <action selector="cancelPlaylist:" destination="d2t-32-T39" id="zRX-Yy-lLB"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="Jey-H7-jTF">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="searchAppleMusicButtonPressed:" destination="d2t-32-T39" id="OIt-lq-NYO"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="search" id="Jey-H7-jTF">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="searchAppleMusicButtonPressed:" destination="d2t-32-T39" id="OIt-lq-NYO"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="info" id="8rJ-Xg-C80">
+                                <connections>
+                                    <action selector="infoButton:" destination="d2t-32-T39" id="O4j-dv-mWb"/>
+                                    <segue destination="jB0-U1-A32" kind="show" id="FGq-IK-Eb6"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="AlbumImgView" destination="0Px-Ke-ZCg" id="uF0-Ng-7JJ"/>
@@ -143,6 +152,7 @@
                         <outlet property="albumTitleLbl" destination="rUr-Xq-sUa" id="DwC-ig-ppR"/>
                         <outlet property="cheetah" destination="iCJ-AJ-yas" id="dPv-iW-kbA"/>
                         <outlet property="fetchLibBtn" destination="lJe-1h-ZTa" id="zQ1-7s-3kj"/>
+                        <outlet property="info" destination="8rJ-Xg-C80" id="PQa-kB-576"/>
                         <outlet property="songSuggestionLabel" destination="Qc9-cU-2wW" id="s7g-9I-Cbm"/>
                         <outlet property="songTitleLbl" destination="In6-tw-IY3" id="7Cf-da-ZRM"/>
                         <outlet property="suggestionsSwitch" destination="OcK-kt-8jW" id="jCa-Kl-D7S"/>
@@ -165,7 +175,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="61f-Tf-Ykb" id="HBK-f4-VGT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IdX-Ey-R3h" customClass="DraggableImage" customModule="Fast_Playist_Maker" customModuleProvider="target">
@@ -295,7 +305,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="86"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t5K-Ve-9vy" id="lId-SZ-KYV">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQY-5Y-UGE" customClass="DraggableImage" customModule="Fast_Playist_Maker" customModuleProvider="target">
@@ -386,12 +396,57 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.93195575475692749" green="0.51262110471725464" blue="0.98046094179153442" alpha="0.65087890625" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93195575475692749" green="0.51262110471725464" blue="0.98046094179153442" alpha="0.55751546223958337" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ttw-1p-qNd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2248.8000000000002" y="412.44377811094455"/>
+        </scene>
+        <!--SupportVC-->
+        <scene sceneID="xlb-HL-xtM">
+            <objects>
+                <viewController storyboardIdentifier="SupportVC" hidesBottomBarWhenPushed="YES" id="jB0-U1-A32" customClass="SupportVC" customModule="Fast_Playist_Maker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lP7-g0-hnx"/>
+                        <viewControllerLayoutGuide type="bottom" id="vDO-n8-CF5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wSh-gs-i8C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thanks for checking out Playlist Cheetah!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="rlC-QQ-Az7">
+                                <rect key="frame" x="0.0" y="64" width="375" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="We are constantly looking to make the app better so if you any questions or suggetions to help us improve shoot us an email" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="hw3-Lc-Ghf">
+                                <rect key="frame" x="16" y="170" width="343" height="155"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LnE-hj-fru" customClass="BorderedButton" customModule="Fast_Playist_Maker" customModuleProvider="target">
+                                <rect key="frame" x="69" y="374" width="236" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Send us an email!">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendEmail:" destination="jB0-U1-A32" eventType="touchUpInside" id="iKU-3P-jpz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.9505888819694519" green="0.71533447504043579" blue="0.98652046918869019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Osh-E7-EYN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V34-Ho-6zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3543" y="429"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="zof-BJ-b3L">
@@ -615,5 +670,6 @@
         <image name="Apple_Music_Icon" width="1920" height="1920"/>
         <image name="PlaylistIcon" width="30" height="30"/>
         <image name="cheetahIcon" width="30" height="30"/>
+        <image name="info" width="30" height="30"/>
     </resources>
 </document>

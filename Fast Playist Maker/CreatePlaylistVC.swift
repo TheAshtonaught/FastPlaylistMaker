@@ -29,6 +29,7 @@ class CreatePlaylistVC: UIViewController {
     let lastFmClient = LastFmConvenience.sharedClient()
     var showingSimilarSong = false
     let controller = SKCloudServiceController()
+    
 
 // MARK: Outlets
     @IBOutlet weak var AlbumImgView: DraggableImage!
@@ -42,6 +43,7 @@ class CreatePlaylistVC: UIViewController {
     @IBOutlet weak var suggestionsSwitch: UISwitch!
     @IBOutlet weak var songSuggestionLabel: UILabel!
     @IBOutlet weak var activityIndicatorOfSimilarSongs: UIActivityIndicatorView!
+    @IBOutlet weak var info: UIBarButtonItem!
 
 //MARK: Life Cycle
     override func viewDidLoad() {
@@ -69,6 +71,10 @@ class CreatePlaylistVC: UIViewController {
             }
             global.appleMusicPicks = nil
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        shouldShowExplainer()
     }
 
     func initializeLibrary() {
@@ -100,6 +106,9 @@ class CreatePlaylistVC: UIViewController {
                 } else {
                     completion(Song.newSongFromMPItemArray(itemArr: songs), nil)
                 }
+            } else {
+                self.cheetahAnimation(animate: false)
+                self.displayAlert("Error", errorMsg: "Unable to access your music library please check your settings")
             }
         }
     }
@@ -301,6 +310,8 @@ class CreatePlaylistVC: UIViewController {
         suggestionsSwitch.isHidden = !createMode
         suggestionsSwitch.isEnabled = false
         songSuggestionLabel.isHidden = !createMode
+        
+        info.tintColor = .black
     }
     
     func cheetahAnimation(animate: Bool) {
@@ -312,6 +323,8 @@ class CreatePlaylistVC: UIViewController {
             cheetah.animationImages = imgArray
             cheetah.animationDuration = 0.4
             cheetah.startAnimating()
+        } else {
+            cheetah.stopAnimating()
         }
     }
     // Temporarily presents a label when a song is added or skiped
@@ -362,20 +375,27 @@ class CreatePlaylistVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    
+    
     @IBAction func songSuggestionSwitch(_ sender: Any) {
         
         if suggestionsSwitch.isOn {
             getSimilarSongs()
-            //updateSong()
+
         }
         
     }
     
-    
     @IBAction func cancelPlaylist(_ sender: Any) {
-        
-        cancelPlaylistWarning()
+        if addedSongs.count > 0 {
+            cancelPlaylistWarning()
+        }
     }
+    
+    @IBAction func infoButton(_ sender: Any) {
+        
+    }
+    
     
     @IBAction func searchAppleMusicButtonPressed(_ sender: Any) {
         let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "AMSearchVC") as! AMSearchVC
@@ -390,15 +410,20 @@ extension CreatePlaylistVC {
 //MARK: Explainers
     
     func checkIfFirstLaunch() {
-        if let firstLaunch = UserDefaults.standard.value(forKey: "afirstLaunch") {
+        if let firstLaunch = UserDefaults.standard.value(forKey: "FirstLaunch") {
             if firstLaunch as! Bool {}
         } else {
-            showExplainerThenDismiss()
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginToAppleMusicVC") {
             present(vc, animated: true, completion: nil)
-                
             }
-            UserDefaults.standard.set(false, forKey: "firstLaunch")
+        }
+        
+    }
+    
+    func shouldShowExplainer() {
+        if global.showExplainer != nil {
+            showExplainerThenDismiss()
+            UserDefaults.standard.set(false, forKey: "FirstLaunch")
         }
     }
     

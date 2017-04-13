@@ -100,11 +100,10 @@ class AddSongsToPlaylistVC: UIViewController {
         if gesture.state == UIGestureRecognizerState.ended {
             
             if imgView.center.x < 100 {
+                setAddedLbl(added: false)
+            } else if imgView.center.x > self.view.bounds.width - 100 {
                 added()
                 setAddedLbl(added: true)
-            } else if imgView.center.x > self.view.bounds.width - 100 {
-                setAddedLbl(added: false)
-                songsArr.remove(at: currentIndex)
             }
             
             rotation = CGAffineTransform(rotationAngle: 0)
@@ -117,10 +116,6 @@ class AddSongsToPlaylistVC: UIViewController {
     
     func added() {
         addedSongs.append(songsArr[currentIndex])
-        if addedSongs.count > 0 {
-            
-            songsArr.remove(at: currentIndex)
-        }
         
     }
     
@@ -160,7 +155,10 @@ class AddSongsToPlaylistVC: UIViewController {
             }
             stack.save()
         }
-        _ = navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+           _ = self.navigationController?.popViewController(animated: true)
+        }
+        
     }
     
     @IBAction func search(_ sender: Any) {

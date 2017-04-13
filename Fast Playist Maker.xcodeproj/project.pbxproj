@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09413A781E9DD11C00F3783E /* LoginToAppleMusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */; };
+		09413A7A1E9F418700F3783E /* SupportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09413A791E9F418700F3783E /* SupportVC.swift */; };
 		094710621E485E1300DFBE4A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094710611E485E1300DFBE4A /* Reachability.swift */; };
 		094994CF1E7E3A2E00024C5A /* LastFmConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094994CE1E7E3A2E00024C5A /* LastFmConvenience.swift */; };
 		094A17601E3F1A610040255E /* AppleMusicConvience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A175F1E3F1A610040255E /* AppleMusicConvience.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginToAppleMusicVC.swift; sourceTree = "<group>"; };
+		09413A791E9F418700F3783E /* SupportVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportVC.swift; sourceTree = "<group>"; };
 		094710611E485E1300DFBE4A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		094994CE1E7E3A2E00024C5A /* LastFmConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastFmConvenience.swift; sourceTree = "<group>"; };
 		094A175F1E3F1A610040255E /* AppleMusicConvience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMusicConvience.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				094A17671E3F3D920040255E /* AMSearchVC.swift */,
 				098037061E758561007C6C91 /* AddSongsToPlaylistVC.swift */,
 				09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */,
+				09413A791E9F418700F3783E /* SupportVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				09B973371E7E728000E27E3D /* LastFmConstants.swift in Sources */,
 				094A17661E3F1C6A0040255E /* ApiConstants.swift in Sources */,
 				09B7C00B1E381A18006FFE86 /* SavedSong+CoreDataProperties.swift in Sources */,
+				09413A7A1E9F418700F3783E /* SupportVC.swift in Sources */,
 				09B7C0051E380D29006FFE86 /* Model.xcdatamodeld in Sources */,
 				09B7C00A1E381A18006FFE86 /* SavedSong+CoreDataClass.swift in Sources */,
 				0977A5751E2B776F00C554A8 /* AppDelegate.swift in Sources */,
