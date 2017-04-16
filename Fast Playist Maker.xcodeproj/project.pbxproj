@@ -51,7 +51,7 @@
 		094A17651E3F1C6A0040255E /* ApiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		094A17671E3F3D920040255E /* AMSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMSearchVC.swift; sourceTree = "<group>"; };
 		095356B91E2CAEB700F70B83 /* DraggableImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableImage.swift; sourceTree = "<group>"; };
-		0977A5711E2B776F00C554A8 /* Fast Playist Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast Playist Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0977A5711E2B776F00C554A8 /* Playlist Cheetah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Playlist Cheetah.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0977A5741E2B776F00C554A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0977A5791E2B776F00C554A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0977A57B1E2B777000C554A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 		0977A5721E2B776F00C554A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0977A5711E2B776F00C554A8 /* Fast Playist Maker.app */,
+				0977A5711E2B776F00C554A8 /* Playlist Cheetah.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,7 +215,7 @@
 			);
 			name = "Fast Playist Maker";
 			productName = "Fast Playist Maker";
-			productReference = 0977A5711E2B776F00C554A8 /* Fast Playist Maker.app */;
+			productReference = 0977A5711E2B776F00C554A8 /* Playlist Cheetah.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -431,8 +431,8 @@
 				INFOPLIST_FILE = "Fast Playist Maker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ALGEBET.Fast-Playist-Maker";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = ALGEBET.PlaylistCheetah;
+				PRODUCT_NAME = "Playlist Cheetah";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -446,8 +446,8 @@
 				INFOPLIST_FILE = "Fast Playist Maker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ALGEBET.Fast-Playist-Maker";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = ALGEBET.PlaylistCheetah;
+				PRODUCT_NAME = "Playlist Cheetah";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
