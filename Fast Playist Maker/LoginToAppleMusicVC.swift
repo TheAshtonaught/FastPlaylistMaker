@@ -30,12 +30,4 @@ class LoginToAppleMusicVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        let alert = UIAlertController(title: nil, message: "Some features of this app requires an Apple Music account", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    
-    
-
 }

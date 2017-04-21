@@ -168,11 +168,10 @@ class CreatePlaylistVC: UIViewController {
         addedSongs.removeAll(keepingCapacity: true)
         updateSong()
         CreatePlaylistBtn.alpha = 0.3
-        CreatePlaylistBtn.isEnabled = false
+        //CreatePlaylistBtn.isEnabled = false
     }
     
     func getSimilarSongs() {
-        
         var simArray = [SimilarSong]()
         
         if addedSongs.count > 0 {
@@ -306,9 +305,9 @@ class CreatePlaylistVC: UIViewController {
         songTitleLbl.isHidden = !createMode
         albumTitleLbl.isHidden = !createMode
         CreatePlaylistBtn.isHidden = !createMode
-        CreatePlaylistBtn.isEnabled = false
+        //CreatePlaylistBtn.isEnabled = false
         suggestionsSwitch.isHidden = !createMode
-        suggestionsSwitch.isEnabled = false
+        //suggestionsSwitch.isEnabled = false
         songSuggestionLabel.isHidden = !createMode
         
         info.tintColor = .black
@@ -372,7 +371,13 @@ class CreatePlaylistVC: UIViewController {
                 self.displayAlert("No Title", errorMsg: "Pleast name your playlist")
             }
         }))
-        present(alert, animated: true, completion: nil)
+        
+        if addedSongs.count > 0 {
+           present(alert, animated: true, completion: nil)
+        } else {
+            displayAlert("NO SONGS ADDED", errorMsg: "Add songs to a playlist by swiping right on the song you want to add")
+        }
+        
     }
     
     
@@ -380,8 +385,12 @@ class CreatePlaylistVC: UIViewController {
     @IBAction func songSuggestionSwitch(_ sender: Any) {
         
         if suggestionsSwitch.isOn {
-            getSimilarSongs()
-
+            if addedSongs.count > 0 {
+                getSimilarSongs()
+            } else {
+                displayAlert("No songs added", errorMsg: "Discover suggest new songs based on songs you've added to your current playlist")
+                suggestionsSwitch.isOn = false
+            }
         }
         
     }
@@ -396,7 +405,6 @@ class CreatePlaylistVC: UIViewController {
         
     }
     
-    
     @IBAction func searchAppleMusicButtonPressed(_ sender: Any) {
         let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "AMSearchVC") as! AMSearchVC
         searchVC.hidesBottomBarWhenPushed = true
@@ -410,7 +418,7 @@ extension CreatePlaylistVC {
 //MARK: Explainers
     
     func checkIfFirstLaunch() {
-        if let firstLaunch = UserDefaults.standard.value(forKey: "FirstLaunch") {
+        if let firstLaunch = UserDefaults.standard.value(forKey: "AFirstLaunch") {
             if firstLaunch as! Bool {}
         } else {
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginToAppleMusicVC") {
