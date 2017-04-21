@@ -418,7 +418,7 @@ extension CreatePlaylistVC {
 //MARK: Explainers
     
     func checkIfFirstLaunch() {
-        if let firstLaunch = UserDefaults.standard.value(forKey: "AFirstLaunch") {
+        if let firstLaunch = UserDefaults.standard.value(forKey: "FirstLaunch") {
             if firstLaunch as! Bool {}
         } else {
             if let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginToAppleMusicVC") {
