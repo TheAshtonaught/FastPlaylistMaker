@@ -17,6 +17,8 @@ class SongListTableVC: CoreDataTableVC {
     var appleMusicClient = AppleMusicConvenience.sharedClient()
     let controller = MPMusicPlayerController.systemMusicPlayer()
     var stack: CoreDataStack!
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    
 // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +35,16 @@ class SongListTableVC: CoreDataTableVC {
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
     }
+    
+    func setupActivityIndicator() {
+        self.navigationItem.titleView = activityIndicator
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+    }
 
     @IBAction func play(_ sender: Any) {
+        setupActivityIndicator()
         let songs = fetchedResultsController?.fetchedObjects as! [SavedSong]
         var arr = [MPMediaItem]()
         
@@ -56,6 +66,7 @@ class SongListTableVC: CoreDataTableVC {
         controller.setQueue(with: collection)
         controller.prepareToPlay()
         controller.play()
+        activityIndicator.stopAnimating()
         
         let url = URL(string: "music://")!
         UIApplication.shared.open(url)
@@ -89,6 +100,46 @@ class SongListTableVC: CoreDataTableVC {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        setupActivityIndicator()
+        let selectedSong = fetchedResultsController?.object(at: indexPath) as! SavedSong
+        var arr = [MPMediaItem]()
+        var picked: MPMediaItem?
+        
+        let songs = fetchedResultsController?.fetchedObjects as! [SavedSong]
+        
+        for song in songs {
+            let query = MPMediaQuery.songs()
+            let songPredicate = MPMediaPropertyPredicate(value: song.title, forProperty: MPMediaItemPropertyTitle)
+            query.addFilterPredicate(songPredicate)
+            
+            if let items = query.items {
+                if items.count > 0 {
+                    let result = items[0]
+                    arr.append(result)
+                    
+                    if result.title == selectedSong.title {
+                        picked = result
+                    }
+                }
+            }
+        }
+        
+        let collection = MPMediaItemCollection(items: arr)
+        
+        controller.setQueue(with: collection)
+        controller.prepareToPlay()
+        if let pick = picked {
+            controller.nowPlayingItem = pick
+        }
+        controller.repeatMode = .all
+        controller.play()
+        activityIndicator.stopAnimating()
+        
+        let url = URL(string: "music://")!
+        UIApplication.shared.open(url)
+    }
  
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -103,7 +154,6 @@ class SongListTableVC: CoreDataTableVC {
                 
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
-            
             
             tableView.endUpdates()
         }
