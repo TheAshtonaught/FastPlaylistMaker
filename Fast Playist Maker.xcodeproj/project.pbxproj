@@ -439,6 +439,7 @@
 				PROVISIONING_PROFILE = "09ab8a91-0dec-44e3-bfe1-e65a2c987c8b";
 				PROVISIONING_PROFILE_SPECIFIER = "Ashton Morgan";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -457,6 +458,7 @@
 				PROVISIONING_PROFILE = "5def5a11-490c-41f8-9cb9-f5f6268cbeb0";
 				PROVISIONING_PROFILE_SPECIFIER = "Playlist Cheetah";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

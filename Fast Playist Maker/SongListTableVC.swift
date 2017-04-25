@@ -96,7 +96,7 @@ class SongListTableVC: CoreDataTableVC {
 
         cell.songTitleLbl.text = song.title
         cell.albumTitleLbl.text = song.albumTitle
-        cell.albumImageView.image = UIImage(data: song.albumImg as! Data)
+        cell.albumImageView.image = UIImage(data: song.albumImg! as Data)
 
         return cell
     }

@@ -154,44 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fast Playist Maker/CreatePlaylistVC.swift"
-            timestampString = "514034045.912785"
+            timestampString = "514772945.492694"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
-            landmarkName = "drag(gesture:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Fast Playist Maker/CreatePlaylistVC.swift"
-            timestampString = "514034054.102141"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
-            landmarkName = "drag(gesture:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Fast Playist Maker/CreatePlaylistVC.swift"
-            timestampString = "514034736.153575"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
-            landmarkName = "dismissAdded()"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
+            landmarkName = "setAddedLbl(added:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

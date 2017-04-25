@@ -132,15 +132,27 @@ class AddSongsToPlaylistVC: UIViewController {
             
             Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.dismissAdded), userInfo: nil, repeats: false)
         }
+        
         updateSong()
     }
     
     func updateSong() {
-        let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
-        currentIndex = randIndex
-        AlbumImageView.image = songsArr[currentIndex].artwork
-        songTitleLabel.text = songsArr[currentIndex].title
-        artistTitleLabel.text = songsArr[currentIndex].album
+        
+        if songsArr.count > 0 {
+            
+            let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
+            currentIndex = randIndex
+            
+            DispatchQueue.main.async {
+                self.AlbumImageView.image = self.songsArr[self.currentIndex].artwork
+                self.songTitleLabel.text = self.songsArr[self.currentIndex].title
+                self.artistTitleLabel.text = self.songsArr[self.currentIndex].album
+                
+            }
+            
+        }
+        
+        
     }
     
     func dismissAdded() {

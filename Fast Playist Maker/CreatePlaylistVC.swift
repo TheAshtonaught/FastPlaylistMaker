@@ -279,19 +279,29 @@ class CreatePlaylistVC: UIViewController {
             
             let song = similarSongsArray[currentIndex]
             
-            showingSimilarSong = true
-            AlbumImgView.image = #imageLiteral(resourceName: "noAlbumArt")
-            songTitleLbl.text = song.title
-            albumTitleLbl.text = song.artist
-        } else {
-        let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
-        currentIndex = randIndex
-        
-        showingSimilarSong = false
-        AlbumImgView.image = songsArr[currentIndex].artwork
-        songTitleLbl.text = songsArr[currentIndex].title
-        albumTitleLbl.text = songsArr[currentIndex].album
             
+            showingSimilarSong = true
+            DispatchQueue.main.async {
+                self.AlbumImgView.image = #imageLiteral(resourceName: "noAlbumArt")
+                self.songTitleLbl.text = song.title
+                self.albumTitleLbl.text = song.artist
+            }
+            
+        } else if songsArr.count > 0 {
+        let randIndex = Int(arc4random_uniform(UInt32((songsArr.count))))
+            
+        currentIndex = randIndex
+        showingSimilarSong = false
+            
+            DispatchQueue.main.async {
+                self.AlbumImgView.image = self.songsArr[self.currentIndex].artwork
+                self.songTitleLbl.text = self.songsArr[self.currentIndex].title
+                self.albumTitleLbl.text = self.songsArr[self.currentIndex].album
+            }
+        
+            
+        } else {
+            displayAlert("error", errorMsg: "there was an error getting the next song")
         }
     }
     

@@ -32,7 +32,7 @@ struct Song {
         self.persitentID = similarSong.persitentID
         self.album = ""
         
-        if let imageData = NSData(contentsOf: similarSong.imageUrl) as? Data {
+        if let imageData = NSData(contentsOf: similarSong.imageUrl) as Data? {
             
             self.artwork = UIImage(data: imageData) ?? UIImage(named: "noAlbumArt.png")!
         } else {
