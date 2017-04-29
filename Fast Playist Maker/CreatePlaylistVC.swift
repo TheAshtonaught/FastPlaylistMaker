@@ -57,11 +57,19 @@ class CreatePlaylistVC: UIViewController {
     
         configUI(createMode: false)
         initializeLibrary()
+        
+        
+    }
+    
+    func hideWhenPushed() {
+        if presentingViewController != nil {
+            navigationController?.navigationBar.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        hideWhenPushed()
             if let amsongs = global.appleMusicPicks {
             addedSongs.append(contentsOf: amsongs)
             if addedSongs.count > 0 {
@@ -80,7 +88,10 @@ class CreatePlaylistVC: UIViewController {
     func initializeLibrary() {
         getLibrary { (songArray, error) in
             guard error == nil else {
-                self.displayAlert("There was an error", errorMsg: error!.description)
+                self.displayAlert("No songs to show", errorMsg: "Do you have songs in your music Library? If so, please make sure that Playlist Cheetah has access to your music library in your settings.")
+                self.configUI(createMode: true)
+                self.AlbumImgView.isUserInteractionEnabled = false
+                
                 return
             }
             if let Arr = songArray {
@@ -107,8 +118,10 @@ class CreatePlaylistVC: UIViewController {
                     completion(Song.newSongFromMPItemArray(itemArr: songs), nil)
                 }
             } else {
-                self.cheetahAnimation(animate: false)
-                self.displayAlert("Error", errorMsg: "Unable to access your music library please check your settings")
+                
+                self.configUI(createMode: true)
+                self.AlbumImgView.isUserInteractionEnabled = false
+                completion(nil, self.errorReturn(code: 0, description: "Could not get user library", domain: "MPlibrary"))
             }
         }
     }
@@ -416,6 +429,8 @@ class CreatePlaylistVC: UIViewController {
     }
     
     @IBAction func searchAppleMusicButtonPressed(_ sender: Any) {
+        
+        
         let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "AMSearchVC") as! AMSearchVC
         searchVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(searchVC, animated: true)

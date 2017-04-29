@@ -22,7 +22,7 @@ class SongListTableVC: CoreDataTableVC {
 // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = playlistTitle
         
         let appDel = UIApplication.shared.delegate as! AppDelegate
@@ -35,16 +35,8 @@ class SongListTableVC: CoreDataTableVC {
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
     }
-    
-    func setupActivityIndicator() {
-        self.navigationItem.titleView = activityIndicator
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
-    }
 
     @IBAction func play(_ sender: Any) {
-        setupActivityIndicator()
         let songs = fetchedResultsController?.fetchedObjects as! [SavedSong]
         var arr = [MPMediaItem]()
         
@@ -66,11 +58,15 @@ class SongListTableVC: CoreDataTableVC {
         controller.setQueue(with: collection)
         controller.prepareToPlay()
         controller.play()
-        activityIndicator.stopAnimating()
         
-        let url = URL(string: "music://")!
-        UIApplication.shared.open(url)
+        presentMusicPlayer()
         
+    }
+    
+    func presentMusicPlayer() {
+        let musicPlayerVC = self.storyboard?.instantiateViewController(withIdentifier: "MusicPlayerNavigationController") as! UINavigationController
+        
+        present(musicPlayerVC, animated: true, completion: nil)
     }
     
     //MARK: Navigation
@@ -97,12 +93,13 @@ class SongListTableVC: CoreDataTableVC {
         cell.songTitleLbl.text = song.title
         cell.albumTitleLbl.text = song.albumTitle
         cell.albumImageView.image = UIImage(data: song.albumImg! as Data)
+        
+        //TODO: image cache
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        setupActivityIndicator()
         let selectedSong = fetchedResultsController?.object(at: indexPath) as! SavedSong
         var arr = [MPMediaItem]()
         var picked: MPMediaItem?
@@ -135,10 +132,8 @@ class SongListTableVC: CoreDataTableVC {
         }
         controller.repeatMode = .all
         controller.play()
-        activityIndicator.stopAnimating()
+        presentMusicPlayer()
         
-        let url = URL(string: "music://")!
-        UIApplication.shared.open(url)
     }
  
     

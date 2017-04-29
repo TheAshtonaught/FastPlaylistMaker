@@ -19,7 +19,6 @@
 		095356BA1E2CAEB700F70B83 /* DraggableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095356B91E2CAEB700F70B83 /* DraggableImage.swift */; };
 		0977A5751E2B776F00C554A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A5741E2B776F00C554A8 /* AppDelegate.swift */; };
 		0977A57A1E2B776F00C554A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0977A5781E2B776F00C554A8 /* Main.storyboard */; };
-		0977A57C1E2B777000C554A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0977A57B1E2B777000C554A8 /* Assets.xcassets */; };
 		0977A57F1E2B777000C554A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0977A57D1E2B777000C554A8 /* LaunchScreen.storyboard */; };
 		0977A5871E2B8CB000C554A8 /* CreatePlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A5861E2B8CB000C554A8 /* CreatePlaylistVC.swift */; };
 		0977A58A1E2B8E7400C554A8 /* PlaylistTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A5891E2B8E7400C554A8 /* PlaylistTableVC.swift */; };
@@ -37,6 +36,8 @@
 		09D5A6491E911E750058661A /* SimilarSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5A6481E911E750058661A /* SimilarSong.swift */; };
 		09E3DEAF1E42B7130019C163 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E3DEAE1E42B7130019C163 /* Global.swift */; };
 		09F27F2E1E302D9D00F763AD /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F27F2D1E302D9D00F763AD /* BorderedButton.swift */; };
+		09FB4A041EB3FFA5007A16A5 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FB4A031EB3FFA5007A16A5 /* MusicPlayerViewController.swift */; };
+		09FB4A061EB438FF007A16A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09FB4A051EB438FF007A16A5 /* Assets.xcassets */; };
 		09FC72B81E3C061900C08A06 /* CoreDataTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FC72B71E3C061900C08A06 /* CoreDataTableVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +55,6 @@
 		0977A5711E2B776F00C554A8 /* Playlist Cheetah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Playlist Cheetah.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0977A5741E2B776F00C554A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0977A5791E2B776F00C554A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0977A57B1E2B777000C554A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0977A57E1E2B777000C554A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0977A5801E2B777000C554A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0977A5861E2B8CB000C554A8 /* CreatePlaylistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlaylistVC.swift; sourceTree = "<group>"; };
@@ -73,6 +73,8 @@
 		09D5A6481E911E750058661A /* SimilarSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarSong.swift; sourceTree = "<group>"; };
 		09E3DEAE1E42B7130019C163 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		09F27F2D1E302D9D00F763AD /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
+		09FB4A031EB3FFA5007A16A5 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
+		09FB4A051EB438FF007A16A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09FC72B71E3C061900C08A06 /* CoreDataTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,8 +95,8 @@
 				0977A5741E2B776F00C554A8 /* AppDelegate.swift */,
 				0977A5801E2B777000C554A8 /* Info.plist */,
 				0977A5781E2B776F00C554A8 /* Main.storyboard */,
+				09FB4A051EB438FF007A16A5 /* Assets.xcassets */,
 				094710611E485E1300DFBE4A /* Reachability.swift */,
-				0977A57B1E2B777000C554A8 /* Assets.xcassets */,
 				0977A57D1E2B777000C554A8 /* LaunchScreen.storyboard */,
 			);
 			name = Utilities;
@@ -185,6 +187,7 @@
 				098037061E758561007C6C91 /* AddSongsToPlaylistVC.swift */,
 				09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */,
 				09413A791E9F418700F3783E /* SupportVC.swift */,
+				09FB4A031EB3FFA5007A16A5 /* MusicPlayerViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -264,7 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0977A57F1E2B777000C554A8 /* LaunchScreen.storyboard in Resources */,
-				0977A57C1E2B777000C554A8 /* Assets.xcassets in Resources */,
+				09FB4A061EB438FF007A16A5 /* Assets.xcassets in Resources */,
 				0977A57A1E2B776F00C554A8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +297,7 @@
 				09FC72B81E3C061900C08A06 /* CoreDataTableVC.swift in Sources */,
 				094994CF1E7E3A2E00024C5A /* LastFmConvenience.swift in Sources */,
 				09B973371E7E728000E27E3D /* LastFmConstants.swift in Sources */,
+				09FB4A041EB3FFA5007A16A5 /* MusicPlayerViewController.swift in Sources */,
 				094A17661E3F1C6A0040255E /* ApiConstants.swift in Sources */,
 				09B7C00B1E381A18006FFE86 /* SavedSong+CoreDataProperties.swift in Sources */,
 				09413A7A1E9F418700F3783E /* SupportVC.swift in Sources */,
