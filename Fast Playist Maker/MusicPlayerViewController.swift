@@ -32,6 +32,10 @@ class MusicPlayerViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setSongInfo()
+    }
+    
     deinit {
         controller.endGeneratingPlaybackNotifications()
     }
@@ -89,7 +93,6 @@ class MusicPlayerViewController: UIViewController {
         
         songLable.text = controller.nowPlayingItem?.title ?? ""
         artistLabel.text = controller.nowPlayingItem?.albumArtist ?? ""
-        
         
     }
     
