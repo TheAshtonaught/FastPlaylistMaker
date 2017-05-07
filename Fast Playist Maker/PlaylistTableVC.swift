@@ -39,9 +39,12 @@ class PlaylistTableVC: CoreDataTableVC {
         let rand = Int(arc4random_uniform(UInt32((numberOfSongs))))
         let randomSong = playlist.savedSong?.allObjects[rand] as! SavedSong
         
-        cell.albumImageView.image = UIImage(data: randomSong.albumImg! as Data)
+        //cell.albumImageView.image = UIImage(data: randomSong.albumImg! as Data)
         cell.songTitleLbl.text = playlist.name
         cell.albumTitleLbl.text = "\(numberOfSongs) Songs"
+        let uniqueString = "\(String(describing: randomSong.title))\(String(describing: randomSong.albumTitle))"
+        cell.albumImageView.loadImageUsingCacheWithUniqueString(uniqueString, imageData: randomSong.albumImg!)
+        
         
         return cell
     }

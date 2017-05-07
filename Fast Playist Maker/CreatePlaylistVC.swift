@@ -180,6 +180,7 @@ class CreatePlaylistVC: UIViewController {
         songsArr = userLibrary
         addedSongs.removeAll(keepingCapacity: true)
         updateSong()
+        similarSongsArray = [SimilarSong]()
         CreatePlaylistBtn.alpha = 0.3
         //CreatePlaylistBtn.isEnabled = false
     }
@@ -292,7 +293,6 @@ class CreatePlaylistVC: UIViewController {
             
             let song = similarSongsArray[currentIndex]
             
-            
             showingSimilarSong = true
             DispatchQueue.main.async {
                 self.AlbumImgView.image = #imageLiteral(resourceName: "noAlbumArt")
@@ -380,7 +380,7 @@ class CreatePlaylistVC: UIViewController {
         }
         
         func cancel(alertView: UIAlertAction!){
-            resetLib()
+
         }
       
         let alert = UIAlertController(title: nil, message: "You've just created something EPIC give it a Name", preferredStyle: .alert)

@@ -86,16 +86,18 @@ class SongListTableVC: CoreDataTableVC {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let song = fetchedResultsController?.object(at: indexPath) as! SavedSong
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SongTableCell", for: indexPath) as! SongTableCell
 
         cell.songTitleLbl.text = song.title
         cell.albumTitleLbl.text = song.albumTitle
-        cell.albumImageView.image = UIImage(data: song.albumImg! as Data)
         
-        //TODO: image cache
-
+       let uniqueString = "\(String(describing: song.title))\(String(describing: song.albumTitle))"
+        cell.albumImageView.loadImageUsingCacheWithUniqueString(uniqueString, imageData: song.albumImg!)
+        
+        
         return cell
     }
     

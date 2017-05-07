@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0915EA721EBF4ACE00EDE3B5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915EA711EBF4ACE00EDE3B5 /* Extensions.swift */; };
 		09413A781E9DD11C00F3783E /* LoginToAppleMusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */; };
 		09413A7A1E9F418700F3783E /* SupportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09413A791E9F418700F3783E /* SupportVC.swift */; };
 		094710621E485E1300DFBE4A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094710611E485E1300DFBE4A /* Reachability.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0915EA711EBF4ACE00EDE3B5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginToAppleMusicVC.swift; sourceTree = "<group>"; };
 		09413A791E9F418700F3783E /* SupportVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportVC.swift; sourceTree = "<group>"; };
 		094710611E485E1300DFBE4A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0915EA701EBF4AAE00EDE3B5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				0915EA711EBF4ACE00EDE3B5 /* Extensions.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		094710631E485E3600DFBE4A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +181,7 @@
 				095356B81E2CAE7300F70B83 /* Model */,
 				095356B71E2CAE6A00F70B83 /* View */,
 				0977A5881E2B8E4900C554A8 /* Controller */,
+				0915EA701EBF4AAE00EDE3B5 /* Helper */,
 				094710631E485E3600DFBE4A /* Utilities */,
 			);
 			path = "Fast Playist Maker";
@@ -304,6 +315,7 @@
 				09B7C0051E380D29006FFE86 /* Model.xcdatamodeld in Sources */,
 				09B7C00A1E381A18006FFE86 /* SavedSong+CoreDataClass.swift in Sources */,
 				0977A5751E2B776F00C554A8 /* AppDelegate.swift in Sources */,
+				0915EA721EBF4ACE00EDE3B5 /* Extensions.swift in Sources */,
 				094710621E485E1300DFBE4A /* Reachability.swift in Sources */,
 				0981049C1E3DBB5D00070293 /* SongTableCell.swift in Sources */,
 				095356BA1E2CAEB700F70B83 /* DraggableImage.swift in Sources */,
