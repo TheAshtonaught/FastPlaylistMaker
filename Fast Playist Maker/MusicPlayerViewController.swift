@@ -24,15 +24,13 @@ class MusicPlayerViewController: UIViewController {
         
         controller.beginGeneratingPlaybackNotifications()
 
-        
-        
-        NotificationCenter.default.addObserver(self,selector:#selector(MusicPlayerViewController.setPlaybackUI), name: NSNotification.Name.MPMusicPlayerControllerPlaybackStateDidChange, object: controller)
+        NotificationCenter.default.addObserver(self,selector:#selector(self.setPlaybackUI), name: NSNotification.Name.MPMusicPlayerControllerPlaybackStateDidChange, object: controller)
 
         setSongInfo()
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         setSongInfo()
     }
     
@@ -70,19 +68,16 @@ class MusicPlayerViewController: UIViewController {
     
     @IBAction func dismiss(_ sender: Any) {
         
-        
         let initial = self.storyboard?.instantiateViewController(withIdentifier: "initialTabBar") as! UITabBarController
         
         navigationController?.pushViewController(initial, animated: true)
-        
-        
     }
+    
     @IBAction func launchMusic(_ sender: Any) {
         let url = URL(string: "music://")!
         UIApplication.shared.open(url)
     }
 
-    
     func setSongInfo() {
         
         if let image = controller.nowPlayingItem?.artwork?.image(at: albumImage.frame.size) {
@@ -96,7 +91,4 @@ class MusicPlayerViewController: UIViewController {
         
     }
     
-    
-
-
 }

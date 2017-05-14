@@ -95,7 +95,10 @@ class SongListTableVC: CoreDataTableVC {
         cell.albumTitleLbl.text = song.albumTitle
         
        let uniqueString = "\(String(describing: song.title))\(String(describing: song.albumTitle))"
-        cell.albumImageView.loadImageUsingCacheWithUniqueString(uniqueString, imageData: song.albumImg!)
+        DispatchQueue.main.async {
+           cell.albumImageView.loadImageUsingCacheWithUniqueString(uniqueString, imageData: song.albumImg!) 
+        }
+        
         
         
         return cell

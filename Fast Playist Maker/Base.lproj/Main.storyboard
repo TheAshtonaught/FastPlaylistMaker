@@ -818,7 +818,6 @@
         <!--Navigation Controller-->
         <scene sceneID="UdA-rw-4Yt">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pJ0-4C-AEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="MusicPlayerNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Jlm-br-alB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hO7-Ey-wLW">
@@ -830,6 +829,7 @@
                         <segue destination="ckt-LS-l9d" kind="relationship" relationship="rootViewController" id="unZ-mD-0qs"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pJ0-4C-AEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4968.8000000000002" y="402.54872563718146"/>
         </scene>
