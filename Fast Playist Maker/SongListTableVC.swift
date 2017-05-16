@@ -64,9 +64,15 @@ class SongListTableVC: CoreDataTableVC {
     }
     
     func presentMusicPlayer() {
-        let musicPlayerVC = self.storyboard?.instantiateViewController(withIdentifier: "MusicPlayerNavigationController") as! UINavigationController
         
-        present(musicPlayerVC, animated: true, completion: nil)
+
+        tabBarController?.animateToTab(toIndex: 2)
+        
+        //self.tabBarController?.selectedIndex = 2
+        
+//        let musicPlayerVC = self.storyboard?.instantiateViewController(withIdentifier: "MusicPlayerNavigationController") as! UINavigationController
+//        
+//        present(musicPlayerVC, animated: true, completion: nil)
     }
     
     //MARK: Navigation

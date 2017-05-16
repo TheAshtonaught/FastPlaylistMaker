@@ -54,6 +54,7 @@ class PlaylistTableVC: CoreDataTableVC {
         let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
         songListTableVC.playlist = playlist
         songListTableVC.hidesBottomBarWhenPushed = true
+        
         self.navigationController?.pushViewController(songListTableVC, animated: true)
         
     }

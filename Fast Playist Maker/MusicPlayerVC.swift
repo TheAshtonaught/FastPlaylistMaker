@@ -49,23 +49,25 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
     
     @IBAction func playButtonTapped(_ sender: UIButton) {
         
-        controller.play()
+        if controller.playbackState == .playing {
+            controller.pause()
+        } else { controller.play() }
         
         setSongInfo()
         
-        playButton.isHidden = true
-        pauseButton.isHidden = false
+//        playButton.isHidden = true
+//        pauseButton.isHidden = false
         
     }
     
     @IBAction func pauseButtonTapped(_ sender: UIButton) {
         
-        controller.pause()
+//        controller.pause()
+//        
+//        ipv.stop()
         
-        ipv.stop()
-        
-        playButton.isHidden = false
-        pauseButton.isHidden = true
+//        playButton.isHidden = false
+//        pauseButton.isHidden = true
     }
     
     @IBAction func nextTapped(sender: AnyObject) {
@@ -84,10 +86,20 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
     
     func setSongInfo() {
         if controller.nowPlayingItem != nil {
+            setPlaybackUI()
             displayAlbumArtistString()
             displayAlbumImage()
             setSongTimeAndProgressCircle()
         }
+    }
+    
+    func setPlaybackUI() {
+        if controller.playbackState == .playing {
+            playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        } else {
+            playButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        }
+        
     }
     
     func displayAlbumArtistString() {
@@ -99,7 +111,7 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
         if artistString == "" || albumString == "" {
             albumTitleLabel.text = artistString + albumString
         } else {
-            albumTitleLabel.text = artistString + "-" + albumString
+            albumTitleLabel.text = artistString + "- " + albumString
         }
     }
     
@@ -141,22 +153,24 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
     
     /* InteractivePlayerViewDelegate METHODS */
     func actionOneButtonTapped(sender: UIButton, isSelected: Bool) {
-        print("shuffle \(isSelected.description)")
+        
     }
     
     func actionTwoButtonTapped(sender: UIButton, isSelected: Bool) {
-        print("like \(isSelected.description)")
+        
+        
     }
     
     func actionThreeButtonTapped(sender: UIButton, isSelected: Bool) {
-        print("replay \(isSelected.description)")
+        
+        
         
     }
     
     func interactivePlayerViewDidChangedDuration(playerInteractive: InteractivePlayerView, currentDuration: Double) {
         
         
-        //print("current Duration : \(currentDuration)")
+        
     }
     func userDidChangeTimer(currentTime: Double) {
         
@@ -170,12 +184,12 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
     }
     
     func interactivePlayerViewDidStartPlaying(playerInteractive: InteractivePlayerView) {
-        print("interactive player did start")
+        //print("interactive player did start")
     }
     
     
     func interactivePlayerViewDidStopPlaying(playerInteractive: InteractivePlayerView) {
-        print("interactive player did stop")
+        //print("interactive player did stop")
     }
     
     func makeItRounded(view : UIView!, newSize : CGFloat!){

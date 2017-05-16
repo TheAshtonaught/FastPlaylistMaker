@@ -436,12 +436,19 @@ class InteractivePlayerView : UIView {
         if timer == nil {
 
            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(InteractivePlayerView.updateTime), userInfo: nil, repeats: true)
+            didStartPlayingDelegateCallback()
         } else if !timer.isValid {
-           timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(InteractivePlayerView.updateTime), userInfo: nil, repeats: true) 
+           timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(InteractivePlayerView.updateTime), userInfo: nil, repeats: true)
+            
+            didStartPlayingDelegateCallback()
         }
         
         
 
+        
+    }
+    
+    private func didStartPlayingDelegateCallback() {
         if let theDelegate = self.delegate {
             theDelegate.interactivePlayerViewDidStartPlaying(playerInteractive: self)
         }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0915EA721EBF4ACE00EDE3B5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915EA711EBF4ACE00EDE3B5 /* Extensions.swift */; };
+		0915EA721EBF4ACE00EDE3B5 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915EA711EBF4ACE00EDE3B5 /* Extension+UIImageView.swift */; };
 		09413A781E9DD11C00F3783E /* LoginToAppleMusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */; };
 		09413A7A1E9F418700F3783E /* SupportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09413A791E9F418700F3783E /* SupportVC.swift */; };
 		094710621E485E1300DFBE4A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094710611E485E1300DFBE4A /* Reachability.swift */; };
@@ -36,6 +36,7 @@
 		09C149361E330D8300742BE1 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C149351E330D8300742BE1 /* Song.swift */; };
 		09D5A6491E911E750058661A /* SimilarSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5A6481E911E750058661A /* SimilarSong.swift */; };
 		09D5C0281EC9771000A38280 /* MusicPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5C0271EC9771000A38280 /* MusicPlayerVC.swift */; };
+		09D5C02A1ECABFA300A38280 /* Extension+UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */; };
 		09DC6BAC1EC897C1009872A2 /* InteractivePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DC6BAA1EC897C1009872A2 /* InteractivePlayerView.swift */; };
 		09DC6BAD1EC897C1009872A2 /* InteractivePlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DC6BAB1EC897C1009872A2 /* InteractivePlayerView.xib */; };
 		09E3DEAF1E42B7130019C163 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E3DEAE1E42B7130019C163 /* Global.swift */; };
@@ -46,7 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0915EA711EBF4ACE00EDE3B5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0915EA711EBF4ACE00EDE3B5 /* Extension+UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginToAppleMusicVC.swift; sourceTree = "<group>"; };
 		09413A791E9F418700F3783E /* SupportVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportVC.swift; sourceTree = "<group>"; };
 		094710611E485E1300DFBE4A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		09C149351E330D8300742BE1 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		09D5A6481E911E750058661A /* SimilarSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarSong.swift; sourceTree = "<group>"; };
 		09D5C0271EC9771000A38280 /* MusicPlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerVC.swift; sourceTree = "<group>"; };
+		09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UITabBarController.swift"; sourceTree = "<group>"; };
 		09DC6BAA1EC897C1009872A2 /* InteractivePlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractivePlayerView.swift; sourceTree = "<group>"; };
 		09DC6BAB1EC897C1009872A2 /* InteractivePlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractivePlayerView.xib; sourceTree = "<group>"; };
 		09E3DEAE1E42B7130019C163 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -100,7 +102,8 @@
 		0915EA701EBF4AAE00EDE3B5 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				0915EA711EBF4ACE00EDE3B5 /* Extensions.swift */,
+				0915EA711EBF4ACE00EDE3B5 /* Extension+UIImageView.swift */,
+				09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				0977A5871E2B8CB000C554A8 /* CreatePlaylistVC.swift in Sources */,
 				09F27F2E1E302D9D00F763AD /* BorderedButton.swift in Sources */,
 				098037071E758561007C6C91 /* AddSongsToPlaylistVC.swift in Sources */,
+				09D5C02A1ECABFA300A38280 /* Extension+UITabBarController.swift in Sources */,
 				09E3DEAF1E42B7130019C163 /* Global.swift in Sources */,
 				09413A781E9DD11C00F3783E /* LoginToAppleMusicVC.swift in Sources */,
 				09B7C0021E3806C7006FFE86 /* SongListTableVC.swift in Sources */,
@@ -334,7 +338,7 @@
 				09B7C0051E380D29006FFE86 /* Model.xcdatamodeld in Sources */,
 				09B7C00A1E381A18006FFE86 /* SavedSong+CoreDataClass.swift in Sources */,
 				0977A5751E2B776F00C554A8 /* AppDelegate.swift in Sources */,
-				0915EA721EBF4ACE00EDE3B5 /* Extensions.swift in Sources */,
+				0915EA721EBF4ACE00EDE3B5 /* Extension+UIImageView.swift in Sources */,
 				094710621E485E1300DFBE4A /* Reachability.swift in Sources */,
 				09DC6BAC1EC897C1009872A2 /* InteractivePlayerView.swift in Sources */,
 				0981049C1E3DBB5D00070293 /* SongTableCell.swift in Sources */,

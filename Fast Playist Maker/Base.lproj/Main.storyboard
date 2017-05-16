@@ -903,7 +903,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="3rf-fR-h0q"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="21"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -912,7 +912,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="dYB-Jw-tqi"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -975,7 +975,7 @@
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJ1-zp-ppE">
                                         <rect key="frame" x="15" y="15" width="30" height="30"/>
-                                        <state key="normal" image="pause">
+                                        <state key="normal">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -1011,7 +1011,7 @@
                             <constraint firstItem="MOZ-0D-4pr" firstAttribute="leading" secondItem="tci-bj-Qgi" secondAttribute="leading" id="s03-xl-Ruc"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="lKK-Qa-dZa"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="lKK-Qa-dZa"/>
                     <navigationItem key="navigationItem" id="e0n-gH-PZO"/>
                     <connections>
                         <outlet property="albumTitleLabel" destination="n8H-e2-VvR" id="qmp-QS-nql"/>
@@ -1043,7 +1043,6 @@
         <image name="like_unselected" width="64" height="64"/>
         <image name="nextTrackButton" width="128" height="128"/>
         <image name="noAlbumArt" width="480" height="480"/>
-        <image name="pause" width="64" height="64"/>
         <image name="pauseTrack" width="128" height="128"/>
         <image name="play" width="64" height="64"/>
         <image name="previousTrack" width="128" height="128"/>
