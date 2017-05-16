@@ -65,14 +65,7 @@ class SongListTableVC: CoreDataTableVC {
     
     func presentMusicPlayer() {
         
-
         tabBarController?.animateToTab(toIndex: 2)
-        
-        //self.tabBarController?.selectedIndex = 2
-        
-//        let musicPlayerVC = self.storyboard?.instantiateViewController(withIdentifier: "MusicPlayerNavigationController") as! UINavigationController
-//        
-//        present(musicPlayerVC, animated: true, completion: nil)
     }
     
     //MARK: Navigation
@@ -134,11 +127,14 @@ class SongListTableVC: CoreDataTableVC {
             }
         }
         
+        controller.prepareToPlay()
         let collection = MPMediaItemCollection(items: arr)
         
+        
+        controller.stop()
         controller.setQueue(with: collection)
-        controller.prepareToPlay()
         if let pick = picked {
+            print(pick.title ?? "err")
             controller.nowPlayingItem = pick
         }
         controller.repeatMode = .all
