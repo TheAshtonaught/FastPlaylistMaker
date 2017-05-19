@@ -55,19 +55,11 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
         
         setSongInfo()
         
-//        playButton.isHidden = true
-//        pauseButton.isHidden = false
         
     }
     
     @IBAction func pauseButtonTapped(_ sender: UIButton) {
-        
-//        controller.pause()
-//        
-//        ipv.stop()
-        
-//        playButton.isHidden = false
-//        pauseButton.isHidden = true
+        //TODO: remove outlet
     }
     
     @IBAction func nextTapped(sender: AnyObject) {
@@ -111,7 +103,7 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
         if artistString == "" || albumString == "" {
             albumTitleLabel.text = artistString + albumString
         } else {
-            albumTitleLabel.text = artistString + "- " + albumString
+            albumTitleLabel.text = artistString + " - " + albumString
         }
     }
     

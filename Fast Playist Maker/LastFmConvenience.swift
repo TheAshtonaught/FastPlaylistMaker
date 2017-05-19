@@ -38,6 +38,8 @@ class LastFmConvenience {
         }
     }
     
+    
+    
     func getSimilarSongs(song: Song, completionHandler: @escaping (_ similarSongs: [SimilarSong]?, _ error: NSError?) -> Void) {
         
         var songArray = [SimilarSong]()
@@ -88,5 +90,9 @@ class LastFmConvenience {
                     }
                 }
             }
+    }
+    
+    func stopTask() {
+        self.apiConvenience.dropAllTask(apiConstants: ApiConstants(scheme: Components.Scheme, host: Components.Host, path: Components.Path, domain: "LastFmClient"))
     }
 }

@@ -61,6 +61,10 @@ class CreatePlaylistVC: UIViewController {
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        lastFmClient.stopTask()
+    }
+    
     func hideWhenPushed() {
         if presentingViewController != nil {
             navigationController?.navigationBar.isHidden = true
@@ -208,6 +212,7 @@ class CreatePlaylistVC: UIViewController {
 //MARK: Navigation
     // after playlist is created show table with list of songs
     func presentSongTable() {
+        //TODO: Refractor add to playlist
         
         let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
         
@@ -232,7 +237,7 @@ class CreatePlaylistVC: UIViewController {
         stack.save()
         resetLib()
         DispatchQueue.main.async {
-            //TODO: Drop all task
+            
             let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
             songListTableVC.playlist = playlist
             songListTableVC.hidesBottomBarWhenPushed = true

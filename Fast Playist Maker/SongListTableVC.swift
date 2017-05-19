@@ -18,6 +18,8 @@ class SongListTableVC: CoreDataTableVC {
     let controller = MPMusicPlayerController.systemMusicPlayer()
     var stack: CoreDataStack!
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    var arr = [MPMediaItem]()
+    
     
 // MARK: Life Cycle
     override func viewDidLoad() {
@@ -34,11 +36,15 @@ class SongListTableVC: CoreDataTableVC {
         fr.predicate = pred
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        querysongs()
     }
-
-    @IBAction func play(_ sender: Any) {
-        let songs = fetchedResultsController?.fetchedObjects as! [SavedSong]
-        var arr = [MPMediaItem]()
+    
+    func querysongs() {
+        
+        guard let songs = fetchedResultsController?.fetchedObjects as? [SavedSong] else {
+            return
+        }
         
         for song in songs {
             let query = MPMediaQuery.songs()
@@ -52,20 +58,6 @@ class SongListTableVC: CoreDataTableVC {
                 }
             }
         }
-
-        let collection = MPMediaItemCollection(items: arr)
-        
-        controller.setQueue(with: collection)
-        controller.prepareToPlay()
-        controller.play()
-        
-        presentMusicPlayer()
-        
-    }
-    
-    func presentMusicPlayer() {
-        
-        tabBarController?.animateToTab(toIndex: 2)
     }
     
     //MARK: Navigation
@@ -75,6 +67,23 @@ class SongListTableVC: CoreDataTableVC {
             let vc = segue.destination as! AddSongsToPlaylistVC
             vc.playlist = self.playlist
         }
+    }
+    
+    func presentMusicPlayer() {
+        
+        tabBarController?.animateToTab(toIndex: 2)
+    }
+
+    @IBAction func play(_ sender: Any) {
+        
+        let collection = MPMediaItemCollection(items: arr)
+        
+        controller.setQueue(with: collection)
+        controller.prepareToPlay()
+        controller.play()
+        
+        presentMusicPlayer()
+        
     }
     
     
@@ -98,43 +107,24 @@ class SongListTableVC: CoreDataTableVC {
            cell.albumImageView.loadImageUsingCacheWithUniqueString(uniqueString, imageData: song.albumImg!) 
         }
         
-        
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedSong = fetchedResultsController?.object(at: indexPath) as! SavedSong
-        var arr = [MPMediaItem]()
         var picked: MPMediaItem?
         
-        let songs = fetchedResultsController?.fetchedObjects as! [SavedSong]
-        
-        for song in songs {
-            let query = MPMediaQuery.songs()
-            let songPredicate = MPMediaPropertyPredicate(value: song.title, forProperty: MPMediaItemPropertyTitle)
-            query.addFilterPredicate(songPredicate)
-            
-            if let items = query.items {
-                if items.count > 0 {
-                    let result = items[0]
-                    arr.append(result)
-                    
-                    if result.title == selectedSong.title {
-                        picked = result
-                    }
-                }
+        for song in arr {
+            if song.title == selectedSong.title {
+                picked = song
             }
         }
         
+        controller.stop()
         controller.prepareToPlay()
         let collection = MPMediaItemCollection(items: arr)
-        
-        
-        controller.stop()
         controller.setQueue(with: collection)
         if let pick = picked {
-            print(pick.title ?? "err")
             controller.nowPlayingItem = pick
         }
         controller.repeatMode = .all
