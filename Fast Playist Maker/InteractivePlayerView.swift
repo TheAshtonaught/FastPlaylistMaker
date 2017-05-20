@@ -28,9 +28,9 @@ class InteractivePlayerView : UIView {
     
     @IBOutlet private var coverImageView: UIImageView!
     @IBOutlet var timeLabel: UILabel!
-    @IBOutlet private var actionOne: UIButton!
-    @IBOutlet private var actionTwo: UIButton!
-    @IBOutlet private var actionThree: UIButton!
+    @IBOutlet var actionOne: UIButton!
+    @IBOutlet var actionTwo: UIButton!
+    @IBOutlet var actionThree: UIButton!
     @IBOutlet private var actionOneButtonWidth: NSLayoutConstraint!
     @IBOutlet private var actionOneButtonHeight: NSLayoutConstraint!
     @IBOutlet private var actionTwoButtonWidth: NSLayoutConstraint!

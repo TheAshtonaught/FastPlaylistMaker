@@ -37,6 +37,7 @@
 		09D5A6491E911E750058661A /* SimilarSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5A6481E911E750058661A /* SimilarSong.swift */; };
 		09D5C0281EC9771000A38280 /* MusicPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5C0271EC9771000A38280 /* MusicPlayerVC.swift */; };
 		09D5C02A1ECABFA300A38280 /* Extension+UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */; };
+		09D5C04C1ECFB08900A38280 /* SecondPlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5C04B1ECFB08900A38280 /* SecondPlaylistVC.swift */; };
 		09DC6BAC1EC897C1009872A2 /* InteractivePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DC6BAA1EC897C1009872A2 /* InteractivePlayerView.swift */; };
 		09DC6BAD1EC897C1009872A2 /* InteractivePlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DC6BAB1EC897C1009872A2 /* InteractivePlayerView.xib */; };
 		09E3DEAF1E42B7130019C163 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E3DEAE1E42B7130019C163 /* Global.swift */; };
@@ -79,6 +80,7 @@
 		09D5A6481E911E750058661A /* SimilarSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarSong.swift; sourceTree = "<group>"; };
 		09D5C0271EC9771000A38280 /* MusicPlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerVC.swift; sourceTree = "<group>"; };
 		09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UITabBarController.swift"; sourceTree = "<group>"; };
+		09D5C04B1ECFB08900A38280 /* SecondPlaylistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondPlaylistVC.swift; sourceTree = "<group>"; };
 		09DC6BAA1EC897C1009872A2 /* InteractivePlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractivePlayerView.swift; sourceTree = "<group>"; };
 		09DC6BAB1EC897C1009872A2 /* InteractivePlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractivePlayerView.xib; sourceTree = "<group>"; };
 		09E3DEAE1E42B7130019C163 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				09413A791E9F418700F3783E /* SupportVC.swift */,
 				09FB4A031EB3FFA5007A16A5 /* MusicPlayerViewController.swift */,
 				09D5C0271EC9771000A38280 /* MusicPlayerVC.swift */,
+				09D5C04B1ECFB08900A38280 /* SecondPlaylistVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09D5C04C1ECFB08900A38280 /* SecondPlaylistVC.swift in Sources */,
 				094A17641E3F1C380040255E /* ApiConvience.swift in Sources */,
 				09B7C00D1E381A18006FFE86 /* Playlist+CoreDataProperties.swift in Sources */,
 				09C149361E330D8300742BE1 /* Song.swift in Sources */,

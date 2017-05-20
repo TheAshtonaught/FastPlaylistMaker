@@ -41,6 +41,7 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         setSongInfo()
+        setPlaybackModeButtons()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -54,7 +55,6 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
         } else { controller.play() }
         
         setSongInfo()
-        
         
     }
     
@@ -129,9 +129,9 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
     }
     
     func configUI() {
-        self.view.layoutIfNeeded()
-        self.view.backgroundColor = UIColor.clear
-        self.makeItRounded(view: self.playPauseButtonView, newSize: self.playPauseButtonView.frame.width)
+        view.layoutIfNeeded()
+        view.backgroundColor = UIColor.clear
+        makeItRounded(view: self.playPauseButtonView, newSize: self.playPauseButtonView.frame.width)
         
         blurBgImage.addBlurEffect()
         blurBgImage.alpha = 0.8
@@ -146,22 +146,31 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
     /* InteractivePlayerViewDelegate METHODS */
     func actionOneButtonTapped(sender: UIButton, isSelected: Bool) {
         
+        // shuffle button
+        if isSelected {
+            controller.shuffleMode = .songs
+        } else if !isSelected {
+            controller.shuffleMode = .off
+        }
+        
     }
     
     func actionTwoButtonTapped(sender: UIButton, isSelected: Bool) {
-        
         
     }
     
     func actionThreeButtonTapped(sender: UIButton, isSelected: Bool) {
         
+        if isSelected {
+            controller.repeatMode = .one
+        } else if !isSelected {
+            controller.repeatMode = .all
+        }
         
         
     }
     
     func interactivePlayerViewDidChangedDuration(playerInteractive: InteractivePlayerView, currentDuration: Double) {
-        
-        
         
     }
     func userDidChangeTimer(currentTime: Double) {
@@ -182,6 +191,21 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
     
     func interactivePlayerViewDidStopPlaying(playerInteractive: InteractivePlayerView) {
         //print("interactive player did stop")
+    }
+    
+    func setPlaybackModeButtons() {
+        
+        if controller.repeatMode == .one {
+            ipv.actionThree.setImage(#imageLiteral(resourceName: "replay_selected"), for: .normal)
+        } else {
+            ipv.actionThree.setImage(#imageLiteral(resourceName: "replay_unselected"), for: .normal)
+        }
+        
+        if controller.shuffleMode == .off {
+            ipv.actionOne.setImage(#imageLiteral(resourceName: "shuffle_unselected"), for: .normal)
+        } else {
+            ipv.actionOne.setImage(#imageLiteral(resourceName: "shuffle_selected"), for: .normal)
+        }
     }
     
     func makeItRounded(view : UIView!, newSize : CGFloat!){

@@ -266,7 +266,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="oxe-5B-C01">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="a0O-Dy-1pA" kind="relationship" relationship="viewControllers" id="yDZ-YR-p0y"/>
@@ -948,17 +948,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UaN-uw-dUM">
                                 <rect key="frame" x="0.0" y="418" width="375" height="200"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0oj-YH-RzL">
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npz-lY-Qlr">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </tableView>
+                                        <connections>
+                                            <segue destination="YEQ-S8-Pei" kind="embed" id="nA0-hM-xEG"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="0oj-YH-RzL" firstAttribute="leading" secondItem="UaN-uw-dUM" secondAttribute="leading" id="ADL-Uv-rxH"/>
-                                    <constraint firstItem="0oj-YH-RzL" firstAttribute="width" secondItem="UaN-uw-dUM" secondAttribute="width" id="Urs-TC-P6x"/>
-                                    <constraint firstItem="0oj-YH-RzL" firstAttribute="top" secondItem="UaN-uw-dUM" secondAttribute="top" id="cG8-sy-zsi"/>
+                                    <constraint firstItem="npz-lY-Qlr" firstAttribute="centerY" secondItem="UaN-uw-dUM" secondAttribute="centerY" id="78Q-Iw-a4B"/>
+                                    <constraint firstItem="npz-lY-Qlr" firstAttribute="height" secondItem="UaN-uw-dUM" secondAttribute="height" id="FpB-KG-FpQ"/>
                                     <constraint firstAttribute="height" constant="200" id="gSt-tM-qbm"/>
-                                    <constraint firstItem="0oj-YH-RzL" firstAttribute="height" secondItem="UaN-uw-dUM" secondAttribute="height" id="h3h-Ej-41Q"/>
+                                    <constraint firstItem="npz-lY-Qlr" firstAttribute="centerX" secondItem="UaN-uw-dUM" secondAttribute="centerX" id="x1v-A0-I9F"/>
+                                    <constraint firstItem="npz-lY-Qlr" firstAttribute="width" secondItem="UaN-uw-dUM" secondAttribute="width" id="xEY-DZ-bR8"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxr-D2-VsJ">
@@ -1011,7 +1014,7 @@
                             <constraint firstItem="MOZ-0D-4pr" firstAttribute="leading" secondItem="tci-bj-Qgi" secondAttribute="leading" id="s03-xl-Ruc"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="lKK-Qa-dZa"/>
+                    <tabBarItem key="tabBarItem" image="Music-icon" selectedImage="Music-icon" id="lKK-Qa-dZa"/>
                     <navigationItem key="navigationItem" id="e0n-gH-PZO"/>
                     <connections>
                         <outlet property="albumTitleLabel" destination="n8H-e2-VvR" id="qmp-QS-nql"/>
@@ -1030,9 +1033,79 @@
             </objects>
             <point key="canvasLocation" x="1399" y="1190"/>
         </scene>
+        <!--Second PlaylistVC-->
+        <scene sceneID="Fcp-KC-rUP">
+            <objects>
+                <tableViewController storyboardIdentifier="SecondPlaylistVC" id="YEQ-S8-Pei" customClass="SecondPlaylistVC" customModule="Playlist_Cheetah" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" id="ioi-xQ-wDf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaylistCell" rowHeight="86" id="we6-Zt-F4K" customClass="SongTableCell" customModule="Playlist_Cheetah" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="86"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="we6-Zt-F4K" id="zWb-WM-htw">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kpy-6B-3gV" customClass="DraggableImage" customModule="Playlist_Cheetah" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="8" width="77" height="77"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="77" id="Z2T-ld-gZU"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLa-dK-Grs">
+                                            <rect key="frame" x="93" y="8" width="274" height="35"/>
+                                            <fontDescription key="fontDescription" name="EuphemiaUCAS-Bold" family="Euphemia UCAS" pointSize="25"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqm-ku-IMm">
+                                            <rect key="frame" x="101" y="51" width="266" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="tcL-9F-AXJ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kpy-6B-3gV" firstAttribute="top" secondItem="zWb-WM-htw" secondAttribute="topMargin" id="1Pr-B9-zWI"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Tqm-ku-IMm" secondAttribute="bottom" constant="5.5" id="4Xd-fO-EoR"/>
+                                        <constraint firstItem="sLa-dK-Grs" firstAttribute="trailing" secondItem="zWb-WM-htw" secondAttribute="trailingMargin" id="5aI-zK-Oe0"/>
+                                        <constraint firstItem="Tqm-ku-IMm" firstAttribute="top" secondItem="sLa-dK-Grs" secondAttribute="bottom" constant="8" symbolic="YES" id="FOb-Of-LHu"/>
+                                        <constraint firstItem="Tqm-ku-IMm" firstAttribute="leading" secondItem="kpy-6B-3gV" secondAttribute="trailing" constant="16" id="FRa-mC-MyC"/>
+                                        <constraint firstItem="kpy-6B-3gV" firstAttribute="leading" secondItem="zWb-WM-htw" secondAttribute="leadingMargin" id="GMF-eq-ukB"/>
+                                        <constraint firstItem="kpy-6B-3gV" firstAttribute="top" secondItem="sLa-dK-Grs" secondAttribute="top" id="KR6-EQ-9UP"/>
+                                        <constraint firstItem="sLa-dK-Grs" firstAttribute="leading" secondItem="kpy-6B-3gV" secondAttribute="trailing" constant="8" symbolic="YES" id="XyI-En-ypK"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kpy-6B-3gV" secondAttribute="bottom" constant="-7.5" id="ioT-s4-9OF"/>
+                                        <constraint firstItem="sLa-dK-Grs" firstAttribute="trailing" secondItem="Tqm-ku-IMm" secondAttribute="trailing" id="oAq-vB-GeH"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="albumImageView" destination="kpy-6B-3gV" id="ylM-wh-kQ3"/>
+                                    <outlet property="albumTitleLbl" destination="Tqm-ku-IMm" id="Fsb-9e-wN5"/>
+                                    <outlet property="songTitleLbl" destination="sLa-dK-Grs" id="sa4-Uh-plC"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YEQ-S8-Pei" id="6Zd-Ht-qt4"/>
+                            <outlet property="delegate" destination="YEQ-S8-Pei" id="Nss-YR-HHh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="q4c-qx-EaB"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QWB-mF-r0v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2448.8000000000002" y="1240.4797601199402"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Apple_Music_Icon" width="1920" height="1920"/>
+        <image name="Music-icon" width="25" height="25"/>
         <image name="PlaylistIcon" width="30" height="30"/>
         <image name="cheetahIcon" width="30" height="30"/>
         <image name="forwardIcon" width="20" height="20"/>
