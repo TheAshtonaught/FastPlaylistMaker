@@ -55,7 +55,6 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
         } else { controller.play() }
         
         setSongInfo()
-        
     }
     
     @IBAction func pauseButtonTapped(_ sender: UIButton) {

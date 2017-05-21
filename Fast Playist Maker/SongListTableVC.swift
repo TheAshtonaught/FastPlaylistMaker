@@ -76,11 +76,7 @@ class SongListTableVC: CoreDataTableVC {
 
     @IBAction func play(_ sender: Any) {
         
-        let collection = MPMediaItemCollection(items: arr)
-        
-        controller.setQueue(with: collection)
-        controller.prepareToPlay()
-        controller.play()
+        playlist.playSongsFromPlaylist(controller: controller)
         
         presentMusicPlayer()
         
