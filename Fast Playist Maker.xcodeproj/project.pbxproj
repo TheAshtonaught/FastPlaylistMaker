@@ -473,14 +473,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Deshae Morgan (6U6L84D2JU)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Deshae Morgan (6U6L84D2JU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Z89QL7GP4Y;
 				INFOPLIST_FILE = "Fast Playist Maker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.algebet.playlistcheetah1Xz;
 				PRODUCT_NAME = "Playlist Cheetah";
-				PROVISIONING_PROFILE = "09ab8a91-0dec-44e3-bfe1-e65a2c987c8b";
+				PROVISIONING_PROFILE = "513fc966-81f8-4716-8131-bc8558f9ee14";
 				PROVISIONING_PROFILE_SPECIFIER = "Ashton Morgan";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -492,15 +492,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ashton Morgan (Z89QL7GP4Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ashton Morgan (Z89QL7GP4Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Z89QL7GP4Y;
 				INFOPLIST_FILE = "Fast Playist Maker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.algebet.playlistcheetah1Xz;
 				PRODUCT_NAME = "Playlist Cheetah";
-				PROVISIONING_PROFILE = "5def5a11-490c-41f8-9cb9-f5f6268cbeb0";
-				PROVISIONING_PROFILE_SPECIFIER = "Playlist Cheetah";
+				PROVISIONING_PROFILE = "513fc966-81f8-4716-8131-bc8558f9ee14";
+				PROVISIONING_PROFILE_SPECIFIER = "Ashton Morgan";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

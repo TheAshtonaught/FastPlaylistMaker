@@ -48,7 +48,7 @@ class CreatePlaylistVC: UIViewController {
 //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         appDel = UIApplication.shared.delegate as! AppDelegate
         stack = appDel.stack
         

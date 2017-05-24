@@ -36,8 +36,9 @@ class PlaylistTableVC: CoreDataTableVC {
         let playlist = fetchedResultsController?.object(at: indexPath) as! Playlist
         let numberOfSongs = (playlist.savedSong?.allObjects.count)!
         
-        let rand = Int(arc4random_uniform(UInt32((numberOfSongs))))
-        let randomSong = playlist.savedSong?.allObjects[rand] as! SavedSong
+//        let rand = Int(arc4random_uniform(UInt32((numberOfSongs))))
+        
+        let randomSong = playlist.savedSong?.allObjects[0] as! SavedSong
         
         //cell.albumImageView.image = UIImage(data: randomSong.albumImg! as Data)
         cell.songTitleLbl.text = playlist.name
