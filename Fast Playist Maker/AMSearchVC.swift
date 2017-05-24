@@ -37,6 +37,10 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
         searchBar.delegate = self
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        appleMusicClient.cancelSearch()
+    }
+    
     
 // MARK: Determines if the user has access to Apple Music
     func checkAppleMusicAccess() {
@@ -111,6 +115,7 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        appleMusicClient.cancelSearch()
         searchBar.resignFirstResponder()
     }
 }

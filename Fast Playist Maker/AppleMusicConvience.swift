@@ -29,9 +29,14 @@ class AppleMusicConvenience {
         apiConvenience.apiRequest(url: url, method: method) { (data, error) in
             
             if let data = data {
-                let jsonDict = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
                 
-                completionHandler(jsonDict,nil)
+                do {
+                    if let jsonDict = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:AnyObject] {
+                        
+                        completionHandler(jsonDict,nil)
+                    }
+                } catch { return }
+                
             } else {
                 completionHandler(nil, error)
             }
@@ -60,6 +65,10 @@ class AppleMusicConvenience {
             }
         }
         
+    }
+    
+    func cancelSearch() {
+        self.apiConvenience.dropAllTask(apiConstants: ApiConstants(scheme: Components.Scheme, host: Components.Host, path: Components.Path, domain: "AppleMusicClient"))
     }
     
     
