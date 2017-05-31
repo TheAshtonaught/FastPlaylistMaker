@@ -29,6 +29,9 @@ class ViewController: UIViewController {
     var global = Global.sharedClient()
     let appleMusicClient = AppleMusicConvenience.sharedClient()
     let lastFmClient = LastFmConvenience.sharedClient()
+    var stack: CoreDataStack!
+
+    
     
     var songArray: [Song]? {
         didSet {
@@ -52,6 +55,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         getLibrary()
         kolodaView.dataSource = self
         kolodaView.delegate = self
@@ -59,7 +64,7 @@ class ViewController: UIViewController {
         
         
         appDel = UIApplication.shared.delegate as! AppDelegate
-        
+        stack = appDel.stack
         
     }
     
@@ -72,6 +77,10 @@ class ViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
         setNavBar(isHidden: false)
+    }
+    
+    deinit {
+        lastFmClient.stopTask()
     }
     
     
@@ -97,7 +106,7 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: cancel))
         alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { (UIAlertAction) in
             if let text = self.playlistTitle.text, !text.isEmpty {
-//                self.presentSongTable()
+                self.addSongsToPlaylist()
             } else {
                 self.displayAlert("No Title", errorMsg: "Pleast name your playlist")
             }
@@ -175,7 +184,7 @@ class ViewController: UIViewController {
     
     func added(song: Song) {
         addedSongs.append(song)
-        print(song.title)
+        //print(song.title)
         if addedSongs.count > 0 {
             createPlaylistBtn.alpha = 1
             createPlaylistBtn.isEnabled = true
@@ -229,17 +238,88 @@ class ViewController: UIViewController {
         
         
         myGroup.notify(queue: DispatchQueue.main, execute: {
-            print(self.similarSongsArray.count)
-            self.similarSongsArray.sort(by: { $0.match > $1.match })
-            self.positionInSongArray = self.kolodaView.currentCardIndex
-            self.showingSimilarSong = true
-            self.kolodaView.reloadData()
-            self.kolodaView.resetCurrentCardIndex()
-            self.songArray!.removeSubrange(0..<self.positionInSongArray)
+            self.displaySimilarSongs()
         })
 
     }
+    
+    func displaySimilarSongs() {
+        print(similarSongsArray.count)
+        similarSongsArray.sort(by: { $0.match > $1.match })
+        positionInSongArray = self.kolodaView.currentCardIndex
+        showingSimilarSong = true
+        kolodaView.reloadData()
+        kolodaView.resetCurrentCardIndex()
+        songArray!.removeSubrange(0..<positionInSongArray)
+    }
 
+    func addSimilarSongs(song: Song, completion: @escaping (_ song: Song?) -> Void) {
+        appleMusicClient.addSimilarSongToLibrary(similarSong: song, completion: completion)
+        
+    }
+    
+    func addSongToLibrary(song: Song, completion: @escaping (_ success: Bool?) -> Void) {
+        addSimilarSongs(song: song, completion: { (sng) in
+            
+            if let song = sng {
+                let pID = String(song.persitentID)
+                
+                self.controller.requestCapabilities(completionHandler: { (capability, error) in
+                    if capability.contains(SKCloudServiceCapability.addToCloudMusicLibrary)  {
+                        MPMediaLibrary.default().addItem(withProductID: pID, completionHandler: { (arr, err) in
+                            
+                            if err == nil {
+                                completion(true)
+                            }
+                            
+                        })
+                    }
+                })
+                
+            }
+        })
+    }
+    
+    func addSongsToPlaylist() {
+        
+        let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
+        
+        for song in addedSongs {
+            if song.persitentID == AppleMusicConvenience.ids.similarSongId {
+                addSimilarSongTolibrary(song: song, playlist: playlist)
+                
+            } else {
+                let savedSong = SavedSong(song: song, context: stack.mainContext)
+                savedSong.playlist = playlist
+            }
+            
+        }
+        stack.save()
+        resetLib()
+        DispatchQueue.main.async {
+            self.presentSongTable(playlist: playlist)
+        }
+        
+    }
+    
+    func addSimilarSongTolibrary(song: Song, playlist: Playlist) {
+        addSongToLibrary(song: song, completion: { (success) in
+            if let success = success {
+                if success {
+                    let savedSong = SavedSong(song: song, context: self.stack.mainContext)
+                    savedSong.playlist = playlist
+                }
+            }
+        })
+    }
+    
+    func presentSongTable(playlist: Playlist) {
+        let songListTableVC = self.storyboard!.instantiateViewController(withIdentifier: "SongListTableVC") as! SongListTableVC
+        songListTableVC.playlist = playlist
+        songListTableVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(songListTableVC, animated: true)
+    }
+    
     func setNavBar(isHidden: Bool) {
         navigationController?.setNavigationBarHidden(isHidden, animated: !isHidden)
     }
@@ -268,9 +348,7 @@ extension ViewController: KolodaViewDelegate {
             
             if discoverSwitch.isOn && similarSongsArray.count > 0 {
                 
-                
-                //TODO: Add similar song image to avoid downloading on init
-                let songToAdd = Song(similarSong: similarSongsArray[index])
+                let songToAdd = Song(similarSong: similarSongsArray[index], albumImage: similarSongsArray[index].loadImageUsingUrlString())
                 added(song: songToAdd)
             } else if songArray != nil {
                 let songToAdd = songArray![index]
@@ -301,7 +379,6 @@ extension ViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         
         let cardContainer = Bundle.main.loadNibNamed("CardContainer", owner: self, options: nil)?.first as! CardContainer
-        
         //print(index)
         
         if discoverSwitch.isOn && similarSongsArray.count > 0 {

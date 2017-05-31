@@ -52,6 +52,7 @@ class CardContainer: UIView {
         self.songTitleLabel.text = similarSong.title
         self.albumTitleLabel.text = similarSong.artist
         
+        
     }
     
     

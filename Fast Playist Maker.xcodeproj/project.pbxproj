@@ -24,6 +24,7 @@
 		094A17661E3F1C6A0040255E /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A17651E3F1C6A0040255E /* ApiConstants.swift */; };
 		094A17681E3F3D920040255E /* AMSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A17671E3F3D920040255E /* AMSearchVC.swift */; };
 		095356BA1E2CAEB700F70B83 /* DraggableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095356B91E2CAEB700F70B83 /* DraggableImage.swift */; };
+		096E81781EDF3012000C7271 /* Extension+UIimage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E81771EDF3012000C7271 /* Extension+UIimage.swift */; };
 		0977A5751E2B776F00C554A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A5741E2B776F00C554A8 /* AppDelegate.swift */; };
 		0977A57A1E2B776F00C554A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0977A5781E2B776F00C554A8 /* Main.storyboard */; };
 		0977A57F1E2B777000C554A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0977A57D1E2B777000C554A8 /* LaunchScreen.storyboard */; };
@@ -72,6 +73,7 @@
 		094A17651E3F1C6A0040255E /* ApiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		094A17671E3F3D920040255E /* AMSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMSearchVC.swift; sourceTree = "<group>"; };
 		095356B91E2CAEB700F70B83 /* DraggableImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableImage.swift; sourceTree = "<group>"; };
+		096E81771EDF3012000C7271 /* Extension+UIimage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIimage.swift"; sourceTree = "<group>"; };
 		0977A5711E2B776F00C554A8 /* Playlist Cheetah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Playlist Cheetah.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0977A5741E2B776F00C554A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0977A5791E2B776F00C554A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				0915EA711EBF4ACE00EDE3B5 /* Extension+UIImageView.swift */,
 				09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */,
 				090D6B7E1ED7DA88002831CE /* Extension+MutableConatainers.swift */,
+				096E81771EDF3012000C7271 /* Extension+UIimage.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				090D6B731ED64D1B002831CE /* CardContainer.swift in Sources */,
 				090D6B7A1ED65080002831CE /* ExampleOverlayView.swift in Sources */,
 				0981049C1E3DBB5D00070293 /* SongTableCell.swift in Sources */,
+				096E81781EDF3012000C7271 /* Extension+UIimage.swift in Sources */,
 				095356BA1E2CAEB700F70B83 /* DraggableImage.swift in Sources */,
 				0977A58A1E2B8E7400C554A8 /* PlaylistTableVC.swift in Sources */,
 			);
