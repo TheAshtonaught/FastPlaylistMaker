@@ -26,6 +26,9 @@ class AMSearchVC: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
+        
+        
+        
         super.viewDidLoad()
 
         activityIndicator.isHidden = true

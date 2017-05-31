@@ -12,6 +12,7 @@
 		090D6B781ED65005002831CE /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090D6B771ED65005002831CE /* OverlayView.xib */; };
 		090D6B7A1ED65080002831CE /* ExampleOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090D6B791ED65080002831CE /* ExampleOverlayView.swift */; };
 		090D6B7D1ED6538F002831CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090D6B7C1ED6538F002831CE /* ViewController.swift */; };
+		090D6B7F1ED7DA88002831CE /* Extension+MutableConatainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090D6B7E1ED7DA88002831CE /* Extension+MutableConatainers.swift */; };
 		0915EA721EBF4ACE00EDE3B5 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915EA711EBF4ACE00EDE3B5 /* Extension+UIImageView.swift */; };
 		09413A781E9DD11C00F3783E /* LoginToAppleMusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */; };
 		09413A7A1E9F418700F3783E /* SupportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09413A791E9F418700F3783E /* SupportVC.swift */; };
@@ -59,6 +60,7 @@
 		090D6B761ED65005002831CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OverlayView.xib; sourceTree = "<group>"; };
 		090D6B791ED65080002831CE /* ExampleOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleOverlayView.swift; sourceTree = "<group>"; };
 		090D6B7C1ED6538F002831CE /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		090D6B7E1ED7DA88002831CE /* Extension+MutableConatainers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+MutableConatainers.swift"; sourceTree = "<group>"; };
 		0915EA711EBF4ACE00EDE3B5 /* Extension+UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginToAppleMusicVC.swift; sourceTree = "<group>"; };
 		09413A791E9F418700F3783E /* SupportVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportVC.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			children = (
 				0915EA711EBF4ACE00EDE3B5 /* Extension+UIImageView.swift */,
 				09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */,
+				090D6B7E1ED7DA88002831CE /* Extension+MutableConatainers.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				094A17641E3F1C380040255E /* ApiConvience.swift in Sources */,
 				09B7C00D1E381A18006FFE86 /* Playlist+CoreDataProperties.swift in Sources */,
 				09C149361E330D8300742BE1 /* Song.swift in Sources */,
+				090D6B7F1ED7DA88002831CE /* Extension+MutableConatainers.swift in Sources */,
 				0977A5871E2B8CB000C554A8 /* CreatePlaylistVC.swift in Sources */,
 				09F27F2E1E302D9D00F763AD /* BorderedButton.swift in Sources */,
 				098037071E758561007C6C91 /* AddSongsToPlaylistVC.swift in Sources */,

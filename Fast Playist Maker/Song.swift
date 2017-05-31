@@ -40,6 +40,16 @@ struct Song {
         }
     }
     
+    init(similarSong: SimilarSong, albumImage: UIImage) {
+        self.artist = similarSong.artist
+        self.title = similarSong.title
+        self.persitentID = similarSong.persitentID
+        self.album = ""
+        self.artwork = albumImage
+        
+    }
+    
+    
     init(songItem: MPMediaItem) {
         title = songItem.title ?? ""
         album = songItem.albumTitle ?? ""

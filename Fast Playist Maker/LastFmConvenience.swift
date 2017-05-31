@@ -29,6 +29,7 @@ class LastFmConvenience {
         apiConvenience.apiRequest(url: url, method: method) { (data, error) in
             
             if let data = data {
+        //TODO: Make json serialization safe
                 let jsonDict = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
                 
                 completionHandler(jsonDict,nil)
@@ -65,7 +66,8 @@ class LastFmConvenience {
                 if let dict = jsonDict, let songResults = dict["similartracks"] as? [String:AnyObject], let similars = songResults["track"] as? [[String: AnyObject]] {
                     for sim in similars {
                         
-                        if let name = sim["name"] as? String, let imageDict = sim["image"] as? [[String: AnyObject]], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] as? String {
+                        if let name = sim[jsonResponseKeys.name] as? String, let match = sim[jsonResponseKeys.match] as? Double, let imageDict = sim["image"] as? [[String: AnyObject]], let artistDict = sim["artist"] as? [String:AnyObject], let artist = artistDict["name"] as? String {
+                            
                             
                             var imageString: String!
                             
@@ -79,16 +81,15 @@ class LastFmConvenience {
 
                             if let imageUrl = URL(string: imageString) {
                                 
-                                let song = SimilarSong(imageUrl: imageUrl, title: name, id: AppleMusicConvenience.ids.similarSongId, artist: artist)
+                                let song = SimilarSong(withMatch: match, imageUrl: imageUrl, title: name, id: AppleMusicConvenience.ids.similarSongId, artist: artist)
                                 
                                 songArray.append(song)
                             }
                         }
                     }
-                    if songArray.count > 0 {
-                        completionHandler(songArray, nil)
-                    }
                 }
+                
+                completionHandler(songArray, nil)
             }
     }
     

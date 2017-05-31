@@ -62,19 +62,15 @@ class CreatePlaylistVC: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        
         lastFmClient.stopTask()
     }
     
-    func hideWhenPushed() {
-        if presentingViewController != nil {
-            navigationController?.navigationBar.isHidden = true
-        }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hideWhenPushed()
-            if let amsongs = global.appleMusicPicks {
+
+        if let amsongs = global.appleMusicPicks {
             addedSongs.append(contentsOf: amsongs)
             if addedSongs.count > 0 {
                 CreatePlaylistBtn.alpha = 1
@@ -198,7 +194,7 @@ class CreatePlaylistVC: UIViewController {
                     
                     if let songArray = song {
                         for similar in songArray {
-                            //print(songArray.count)
+                            
                             simArray.append(similar)
                         }
                     }

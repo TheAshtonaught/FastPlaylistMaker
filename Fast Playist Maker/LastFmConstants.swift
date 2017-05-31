@@ -37,6 +37,7 @@ extension LastFmConvenience {
         static let track = "track"
         static let name = "name"
         static let artist = "artist"
+        static let match = "match"
         
         
     }

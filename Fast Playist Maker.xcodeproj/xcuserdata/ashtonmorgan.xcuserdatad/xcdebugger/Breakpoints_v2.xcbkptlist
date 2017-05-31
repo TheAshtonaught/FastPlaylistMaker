@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fast Playist Maker/CreatePlaylistVC.swift"
-            timestampString = "517349521.627089"
+            timestampString = "517461121.438009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
             landmarkName = "setAddedLbl(added:)"
             landmarkType = "7">
          </BreakpointContent>
