@@ -30,6 +30,8 @@
 		0977A57F1E2B777000C554A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0977A57D1E2B777000C554A8 /* LaunchScreen.storyboard */; };
 		0977A5871E2B8CB000C554A8 /* CreatePlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A5861E2B8CB000C554A8 /* CreatePlaylistVC.swift */; };
 		0977A58A1E2B8E7400C554A8 /* PlaylistTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A5891E2B8E7400C554A8 /* PlaylistTableVC.swift */; };
+		097D30A01EE5169100AC880A /* LoadingLibraryUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097D309F1EE5169100AC880A /* LoadingLibraryUI.swift */; };
+		097D30A21EE516C000AC880A /* FetchLibrary.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097D30A11EE516C000AC880A /* FetchLibrary.xib */; };
 		098037071E758561007C6C91 /* AddSongsToPlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098037061E758561007C6C91 /* AddSongsToPlaylistVC.swift */; };
 		0981049C1E3DBB5D00070293 /* SongTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0981049B1E3DBB5D00070293 /* SongTableCell.swift */; };
 		09B7C0021E3806C7006FFE86 /* SongListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7C0011E3806C7006FFE86 /* SongListTableVC.swift */; };
@@ -81,6 +83,8 @@
 		0977A5801E2B777000C554A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0977A5861E2B8CB000C554A8 /* CreatePlaylistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlaylistVC.swift; sourceTree = "<group>"; };
 		0977A5891E2B8E7400C554A8 /* PlaylistTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistTableVC.swift; sourceTree = "<group>"; };
+		097D309F1EE5169100AC880A /* LoadingLibraryUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingLibraryUI.swift; sourceTree = "<group>"; };
+		097D30A11EE516C000AC880A /* FetchLibrary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FetchLibrary.xib; sourceTree = "<group>"; };
 		098037061E758561007C6C91 /* AddSongsToPlaylistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSongsToPlaylistVC.swift; sourceTree = "<group>"; };
 		0981049B1E3DBB5D00070293 /* SongTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableCell.swift; sourceTree = "<group>"; };
 		09B7C0011E3806C7006FFE86 /* SongListTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableVC.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 		095356B71E2CAE6A00F70B83 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				097D309E1EE5163300AC880A /* Cheetah Animation */,
 				090D6B7B1ED65089002831CE /* OverlayView */,
 				090D6B711ED64D05002831CE /* CardContainerView */,
 				09DC6BA91EC89728009872A2 /* MusicPlayer */,
@@ -267,6 +272,15 @@
 				09D5C04B1ECFB08900A38280 /* SecondPlaylistVC.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		097D309E1EE5163300AC880A /* Cheetah Animation */ = {
+			isa = PBXGroup;
+			children = (
+				097D309F1EE5169100AC880A /* LoadingLibraryUI.swift */,
+				097D30A11EE516C000AC880A /* FetchLibrary.xib */,
+			);
+			name = "Cheetah Animation";
 			sourceTree = "<group>";
 		};
 		09B7C0101E381D8A006FFE86 /* Properties */ = {
@@ -365,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09DC6BAD1EC897C1009872A2 /* InteractivePlayerView.xib in Resources */,
+				097D30A21EE516C000AC880A /* FetchLibrary.xib in Resources */,
 				090D6B781ED65005002831CE /* OverlayView.xib in Resources */,
 				090D6B751ED64D22002831CE /* CardContainer.xib in Resources */,
 				0977A57F1E2B777000C554A8 /* LaunchScreen.storyboard in Resources */,
@@ -438,6 +453,7 @@
 				098037071E758561007C6C91 /* AddSongsToPlaylistVC.swift in Sources */,
 				09D5C02A1ECABFA300A38280 /* Extension+UITabBarController.swift in Sources */,
 				09E3DEAF1E42B7130019C163 /* Global.swift in Sources */,
+				097D30A01EE5169100AC880A /* LoadingLibraryUI.swift in Sources */,
 				09413A781E9DD11C00F3783E /* LoginToAppleMusicVC.swift in Sources */,
 				09B7C0021E3806C7006FFE86 /* SongListTableVC.swift in Sources */,
 				09B7C00C1E381A18006FFE86 /* Playlist+CoreDataClass.swift in Sources */,

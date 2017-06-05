@@ -51,12 +51,12 @@ class SongListTableVC: CoreDataTableVC {
             let songPredicate = MPMediaPropertyPredicate(value: song.title, forProperty: MPMediaItemPropertyTitle)
             query.addFilterPredicate(songPredicate)
             
-            if let items = query.items {
-                if items.count > 0 {
-                    let result = items[0]
-                    arr.append(result)
-                }
+            if let result = query.items?.first {
+               
+                arr.append(result)
             }
+            
+
         }
     }
     
@@ -81,7 +81,6 @@ class SongListTableVC: CoreDataTableVC {
         presentMusicPlayer()
         
     }
-    
     
     @IBAction func addSongsBtnPressed(_ sender: Any) {
         //TODO: Add code

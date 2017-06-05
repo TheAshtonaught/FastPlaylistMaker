@@ -1175,9 +1175,18 @@
                                             <segue destination="jB0-U1-A32" kind="show" id="SMY-uR-00N"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9K-JR-l86">
+                                        <rect key="frame" x="276" y="30" width="25" height="25"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="music-folder-icon"/>
+                                        <connections>
+                                            <action selector="musicLibraryBtnPressed:" destination="YF6-U0-lQZ" eventType="touchUpInside" id="BJi-rl-T9N"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="x9K-JR-l86" firstAttribute="top" secondItem="meG-Pd-Yld" secondAttribute="top" constant="30" id="12H-8I-Y9C"/>
                                     <constraint firstAttribute="trailing" secondItem="9FI-18-wmV" secondAttribute="trailing" constant="8" id="2xY-61-cK5"/>
                                     <constraint firstItem="ZvM-IZ-7Hs" firstAttribute="top" secondItem="meG-Pd-Yld" secondAttribute="top" constant="30" id="9Ik-eA-O55"/>
                                     <constraint firstAttribute="height" constant="80" id="COS-tq-8nu"/>
@@ -1185,7 +1194,10 @@
                                     <constraint firstItem="xNr-hl-vwN" firstAttribute="top" secondItem="meG-Pd-Yld" secondAttribute="top" constant="30" id="J9N-Yr-wJC"/>
                                     <constraint firstAttribute="bottom" secondItem="xNr-hl-vwN" secondAttribute="bottom" constant="25" id="LZi-E3-a1E"/>
                                     <constraint firstItem="9FI-18-wmV" firstAttribute="leading" secondItem="ZvM-IZ-7Hs" secondAttribute="trailing" constant="8" id="Ps2-Ao-jpM"/>
+                                    <constraint firstAttribute="bottom" secondItem="x9K-JR-l86" secondAttribute="bottom" constant="25" id="QU9-dg-Z1Q"/>
                                     <constraint firstAttribute="bottom" secondItem="9FI-18-wmV" secondAttribute="bottom" constant="25" id="dQq-g3-VGW"/>
+                                    <constraint firstItem="ZvM-IZ-7Hs" firstAttribute="leading" secondItem="x9K-JR-l86" secondAttribute="trailing" constant="8" id="iJm-bQ-GAr"/>
+                                    <constraint firstItem="x9K-JR-l86" firstAttribute="width" secondItem="x9K-JR-l86" secondAttribute="height" id="mYA-ot-aH8"/>
                                     <constraint firstItem="xNr-hl-vwN" firstAttribute="leading" secondItem="meG-Pd-Yld" secondAttribute="leading" constant="8" id="qRb-45-GxV"/>
                                     <constraint firstItem="9FI-18-wmV" firstAttribute="top" secondItem="meG-Pd-Yld" secondAttribute="top" constant="30" id="swz-xM-a4l"/>
                                     <constraint firstItem="ZvM-IZ-7Hs" firstAttribute="width" secondItem="ZvM-IZ-7Hs" secondAttribute="height" id="wuK-Hg-UuB"/>
@@ -1280,6 +1292,7 @@
         <image name="like_selected" width="64" height="64"/>
         <image name="like_unselected" width="64" height="64"/>
         <image name="moreInfoIcon" width="64" height="64"/>
+        <image name="music-folder-icon" width="64" height="64"/>
         <image name="nextTrackButton" width="128" height="128"/>
         <image name="noAlbumArt" width="480" height="480"/>
         <image name="pauseTrack" width="128" height="128"/>

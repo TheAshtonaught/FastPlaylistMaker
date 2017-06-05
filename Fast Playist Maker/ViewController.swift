@@ -1,9 +1,9 @@
 //
-//  ViewController.swift
-//  Koloda
+//  CreatePlaylistVC.swift
+//  Fast Playist Maker
 //
-//  Created by Eugene Andreyev on 4/23/15.
-//  Copyright (c) 2015 Eugene Andreyev. All rights reserved.
+//  Created by Ashton Morgan on 5/28/17.
+//  Copyright © 2017 Ashton Morgan. All rights reserved.
 //
 
 import UIKit
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     var similarSongsArray = [SimilarSong]()
     var positionInSongArray = 0
     var savedSongs = [SavedSong]()
-    var currentIndex = 0
+//    var currentIndex = 0
     let controller = SKCloudServiceController()
     var showingSimilarSong = false
     var userLibrary: [Song]?
@@ -30,14 +30,15 @@ class ViewController: UIViewController {
     let appleMusicClient = AppleMusicConvenience.sharedClient()
     let lastFmClient = LastFmConvenience.sharedClient()
     var stack: CoreDataStack!
+    var fetchLibraryView: LoadingLibraryUI!
 
-    
-    
     var songArray: [Song]? {
         didSet {
             DispatchQueue.main.async {
                 self.kolodaView.reloadData()
                 self.kolodaView.isHidden = false
+                self.removeFetchLibView()
+                
             }
             
         }
@@ -55,13 +56,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setFetchLibView()
         
-        
-        getLibrary()
         kolodaView.dataSource = self
         kolodaView.delegate = self
         kolodaView.isHidden = true
         
+        getLibrary()
+
         
         appDel = UIApplication.shared.delegate as! AppDelegate
         stack = appDel.stack
@@ -157,6 +159,16 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func musicLibraryBtnPressed(_ sender: Any) {
+        
+        let picker = MPMediaPickerController(mediaTypes: .music)
+        picker.delegate = self
+        picker.allowsPickingMultipleItems = true
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func moreInfo(_ sender: Any) {
         
     }
@@ -168,14 +180,25 @@ class ViewController: UIViewController {
         
         MPMediaLibrary.requestAuthorization { (status) in
             if status == .authorized {
-                var songs = MPMediaQuery.songs().items! as [MPMediaItem]
-                songs.shuffle()
-
-                self.songArray = Song.newSongFromMPItemArray(itemArr: songs)
-                self.userLibrary = self.songArray
-                print(self.songArray?.count ?? 0)
+                
+                if let songItems = MPMediaQuery.songs().items {
+                    
+                    self.songArray = Song.newSongFromMPItemArray(itemArr: songItems.shuffled())
+                    
+                    self.userLibrary = self.songArray
+                    print(self.songArray?.count ?? 0)
+                    
+                } else {
+                    self.removeFetchLibView()
+                    
+                    self.displayAlert("No songs to show", errorMsg: "Do you have songs in your music Library? If so, please make sure that Playlist Cheetah has access to your music library in your settings.")
+                    
+                }
                 
             } else {
+                
+               self.removeFetchLibView()
+                
                self.displayAlert("Can't Get Songs From Your Library", errorMsg: "Playlist Cheetah does not have access to your music library. Please check your settings and allow Playlist Cheetah to have access to your library if you want to use songs from your library to make playlist")
             }
         }
@@ -253,13 +276,13 @@ class ViewController: UIViewController {
         songArray!.removeSubrange(0..<positionInSongArray)
     }
 
-    func addSimilarSongs(song: Song, completion: @escaping (_ song: Song?) -> Void) {
+    func getAppleMusicVersionOfSimilarSong(song: Song, completion: @escaping (_ song: Song?) -> Void) {
         appleMusicClient.addSimilarSongToLibrary(similarSong: song, completion: completion)
         
     }
     
     func addSongToLibrary(song: Song, completion: @escaping (_ success: Bool?) -> Void) {
-        addSimilarSongs(song: song, completion: { (sng) in
+        getAppleMusicVersionOfSimilarSong(song: song, completion: { (sng) in
             
             if let song = sng {
                 let pID = String(song.persitentID)
@@ -320,6 +343,26 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(songListTableVC, animated: true)
     }
     
+    func setFetchLibView() {
+        let mainView = self.view!
+        
+        fetchLibraryView = Bundle.main.loadNibNamed("FetchLibrary", owner: self, options: nil)?.first as! LoadingLibraryUI
+        
+        fetchLibraryView.frame.size = CGSize(width: 250, height: 250)
+        fetchLibraryView.center = mainView.center
+        
+        mainView.addSubview(fetchLibraryView)
+        
+        fetchLibraryView.cheetahAnimation(animate: true)
+    }
+    
+    func removeFetchLibView() {
+        self.fetchLibraryView.cheetahAnimation(animate: false)
+        self.fetchLibraryView.removeFromSuperview()
+    }
+    
+    
+    
     func setNavBar(isHidden: Bool) {
         navigationController?.setNavigationBarHidden(isHidden, animated: !isHidden)
     }
@@ -366,6 +409,7 @@ extension ViewController: KolodaViewDataSource {
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
         
+        
         if similarSongsArray.count > 0 {
             return similarSongsArray.count
         } else if songArray != nil {
@@ -379,14 +423,19 @@ extension ViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         
         let cardContainer = Bundle.main.loadNibNamed("CardContainer", owner: self, options: nil)?.first as! CardContainer
-        //print(index)
+        
+        print(index)
         
         if discoverSwitch.isOn && similarSongsArray.count > 0 {
-            
-            DispatchQueue.main.async {
-                cardContainer.setWithSong(similarSong: self.similarSongsArray[index])
+            if index < similarSongsArray.count {
+                
+                DispatchQueue.main.async {
+                    cardContainer.setWithSong(similarSong: self.similarSongsArray[index])
+                }
+                
+                return cardContainer
             }
-            return cardContainer
+            
         } else if songArray != nil {
             let song = songArray![index]
             
@@ -431,6 +480,29 @@ extension ViewController {
         
         present(alert, animated: true, completion: nil)
     }
+}
+
+extension ViewController: MPMediaPickerControllerDelegate {
+    
+    func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
+        
+        let items = mediaItemCollection.items
+        
+        for item in items {
+            let newSong = Song(songItem: item)
+            added(song: newSong)
+        }
+        
+    }
+    
+    func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
+        dismiss(animated: true) {
+            
+        }
+    }
+    
+    
+    
 }
 
 
