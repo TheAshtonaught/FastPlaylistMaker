@@ -16,11 +16,12 @@ import CoreData
 
 class ViewController: UIViewController {
     
+    //MARK: Properties
+    
     var addedSongs = [Song]()
     var similarSongsArray = [SimilarSong]()
     var positionInSongArray = 0
     var savedSongs = [SavedSong]()
-//    var currentIndex = 0
     let controller = SKCloudServiceController()
     var showingSimilarSong = false
     var userLibrary: [Song]?
@@ -38,13 +39,14 @@ class ViewController: UIViewController {
                 self.kolodaView.reloadData()
                 self.kolodaView.isHidden = false
                 self.removeFetchLibView()
+                self.checkIfFirstLaunch()
                 
             }
             
         }
     }
     
-    
+    //MARK: Outlets
     
     @IBOutlet weak var kolodaView: KolodaView!
     @IBOutlet weak var createPlaylistBtn: BorderedButton!
@@ -64,7 +66,6 @@ class ViewController: UIViewController {
         
         getLibrary()
 
-        
         appDel = UIApplication.shared.delegate as! AppDelegate
         stack = appDel.stack
         
@@ -76,12 +77,16 @@ class ViewController: UIViewController {
         loadPurgatorySongs()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        shouldShowExplainer()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         
         setNavBar(isHidden: false)
     }
     
-    deinit {
+    override func viewDidDisappear(_ animated: Bool) {
         lastFmClient.stopTask()
     }
     
@@ -91,6 +96,7 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
+    //MARK: Actions
     
     @IBAction func createPlaylist(_ sender: Any) {
         func configTextField(textField: UITextField) {
@@ -173,9 +179,6 @@ class ViewController: UIViewController {
         
     }
 
-    
-    
-    
     func getLibrary() {
         
         MPMediaLibrary.requestAuthorization { (status) in
@@ -207,7 +210,7 @@ class ViewController: UIViewController {
     
     func added(song: Song) {
         addedSongs.append(song)
-        //print(song.title)
+
         if addedSongs.count > 0 {
             createPlaylistBtn.alpha = 1
             createPlaylistBtn.isEnabled = true
@@ -224,8 +227,6 @@ class ViewController: UIViewController {
         createPlaylistBtn.alpha = 0.3
         
         kolodaView.resetCurrentCardIndex()
-
-        
     }
     
     func loadPurgatorySongs() {
@@ -243,8 +244,6 @@ class ViewController: UIViewController {
     func getSimilarSongs() {
         let myGroup = DispatchGroup()
         
-        //similarSongsArray = [SimilarSong]()
-        
         for song in addedSongs {
             myGroup.enter()
             lastFmClient.getSimilarSongs(song: song, completionHandler: { (song, error) in
@@ -252,13 +251,10 @@ class ViewController: UIViewController {
                 if let songArray = song {
                     self.similarSongsArray.append(contentsOf: songArray)
                     
-                    //print(self.similarSongsArray.count)
-                    
                 }
                 myGroup.leave()
             })
         }
-        
         
         myGroup.notify(queue: DispatchQueue.main, execute: {
             self.displaySimilarSongs()
@@ -502,6 +498,54 @@ extension ViewController: MPMediaPickerControllerDelegate {
     }
     
     
+    
+}
+
+extension ViewController {
+    //MARK: Explainers
+    
+    func checkIfFirstLaunch() {
+        if let firstLaunch = UserDefaults.standard.value(forKey: "FirstLaunch") {
+            if firstLaunch as! Bool {}
+        } else {
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginToAppleMusicVC") {
+                present(vc, animated: true, completion: nil)
+            }
+        }
+        
+    }
+    
+    func shouldShowExplainer() {
+        if global.showExplainer != nil {
+            showExplainerThenDismiss()
+            UserDefaults.standard.set(false, forKey: "FirstLaunch")
+        }
+    }
+    
+    func showExplainerThenDismiss() {
+        let swipeImg = UIImage(named: "swipeExplainer.png")
+        let swipeImgView = UIImageView(frame: kolodaView.frame)
+        swipeImgView.image = swipeImg
+        swipeImgView.backgroundColor = UIColor.lightGray
+        swipeImgView.alpha = 0.7
+        var delayInNanoSeconds = UInt64(1.5) * NSEC_PER_SEC
+        var time = DispatchTime.now() + Double(Int64(delayInNanoSeconds)) / Double(NSEC_PER_SEC)
+        
+        DispatchQueue.main.asyncAfter(deadline: time) {
+            
+            
+            self.view.addSubview(swipeImgView)
+            
+        }
+        
+        delayInNanoSeconds = UInt64(4.5) * NSEC_PER_SEC
+        time = DispatchTime.now() + Double(Int64(delayInNanoSeconds)) / Double(NSEC_PER_SEC)
+        
+        DispatchQueue.main.asyncAfter(deadline: time) {
+            
+            swipeImgView.removeFromSuperview()
+        }
+    }
     
 }
 

@@ -24,7 +24,7 @@ public class Playlist: NSManagedObject {
     
     func playSongsFromPlaylist(controller: MPMusicPlayerController) {
         
-        if let songArray = querysongs() {
+        if let songArray = songQuery() {
             
             let collection = MPMediaItemCollection(items: songArray)
             
@@ -37,7 +37,7 @@ public class Playlist: NSManagedObject {
         
     }
     
-    private func querysongs() ->[MPMediaItem]? {
+    private func songQuery() ->[MPMediaItem]? {
         
         var arr = [MPMediaItem]()
         
@@ -50,11 +50,8 @@ public class Playlist: NSManagedObject {
             let songPredicate = MPMediaPropertyPredicate(value: song.title, forProperty: MPMediaItemPropertyTitle)
             query.addFilterPredicate(songPredicate)
             
-            if let items = query.items {
-                if items.count > 0 {
-                    let result = items[0]
-                    arr.append(result)
-                }
+            if let result = query.items?.first {
+                arr.append(result)
             }
         }
         return arr

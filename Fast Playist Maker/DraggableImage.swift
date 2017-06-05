@@ -18,7 +18,7 @@ class DraggableImage: UIImageView {
         self.superview?.layoutIfNeeded()
         self.clipsToBounds = true
         layer.masksToBounds = true
-        layer.cornerRadius = 20.0
+        layer.cornerRadius = 9.0
         
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 3)

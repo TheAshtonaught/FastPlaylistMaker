@@ -44,7 +44,7 @@ struct Song {
         self.artist = similarSong.artist
         self.title = similarSong.title
         self.persitentID = similarSong.persitentID
-        self.album = ""
+        self.album = similarSong.artist
         self.artwork = albumImage
         
     }
