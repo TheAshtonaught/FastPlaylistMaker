@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fast Playist Maker/ViewController.swift"
-            timestampString = "518357624.842412"
+            timestampString = "518384650.959213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "431"
@@ -22,16 +22,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Fast Playist Maker/Extension+UIImageView.swift"
-            timestampString = "517804419.753384"
+            filePath = "Fast Playist Maker/ViewController.swift"
+            timestampString = "518383548.403354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "loadImageUsingUrlString(urlString:)"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
+            landmarkName = "koloda(_:didSwipeCardAt:in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
