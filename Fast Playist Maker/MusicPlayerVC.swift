@@ -39,9 +39,12 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
         controller.endGeneratingPlaybackNotifications()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
         setSongInfo()
         setPlaybackModeButtons()
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
