@@ -17,6 +17,8 @@ class LoginToAppleMusicVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    // use open url to test firebase url
+    
     @IBAction func signupButton(_ sender: Any) {
         let url = URL(string: "https://www.apple.com/apple-music/membership/")!
         if UIApplication.shared.canOpenURL(url) {

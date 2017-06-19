@@ -34,6 +34,7 @@
 		097D30A21EE516C000AC880A /* FetchLibrary.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097D30A11EE516C000AC880A /* FetchLibrary.xib */; };
 		098037071E758561007C6C91 /* AddSongsToPlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098037061E758561007C6C91 /* AddSongsToPlaylistVC.swift */; };
 		0981049C1E3DBB5D00070293 /* SongTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0981049B1E3DBB5D00070293 /* SongTableCell.swift */; };
+		09819F1E1EEEB23400C19657 /* TestDynamicLinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09819F1D1EEEB23400C19657 /* TestDynamicLinksViewController.swift */; };
 		09B7C0021E3806C7006FFE86 /* SongListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7C0011E3806C7006FFE86 /* SongListTableVC.swift */; };
 		09B7C0051E380D29006FFE86 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 09B7C0031E380D29006FFE86 /* Model.xcdatamodeld */; };
 		09B7C00A1E381A18006FFE86 /* SavedSong+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7C0061E381A18006FFE86 /* SavedSong+CoreDataClass.swift */; };
@@ -43,6 +44,10 @@
 		09B7C00F1E381ABB006FFE86 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7C00E1E381ABB006FFE86 /* CoreDataStack.swift */; };
 		09B973371E7E728000E27E3D /* LastFmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B973361E7E728000E27E3D /* LastFmConstants.swift */; };
 		09C149361E330D8300742BE1 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C149351E330D8300742BE1 /* Song.swift */; };
+		09C203871EED338B009AA27C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09C203861EED338B009AA27C /* GoogleService-Info.plist */; };
+		09C9BC171EEE735E00CE303B /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C9BC161EEE735E00CE303B /* HeaderCell.swift */; };
+		09C9BC191EEE736500CE303B /* ParamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C9BC181EEE736500CE303B /* ParamTableViewCell.swift */; };
+		09CDE5251EEE7E7500BF683F /* DynamicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CDE5241EEE7E7500BF683F /* DynamicViewController.swift */; };
 		09D5A6491E911E750058661A /* SimilarSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5A6481E911E750058661A /* SimilarSong.swift */; };
 		09D5C0281EC9771000A38280 /* MusicPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5C0271EC9771000A38280 /* MusicPlayerVC.swift */; };
 		09D5C02A1ECABFA300A38280 /* Extension+UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */; };
@@ -87,6 +92,7 @@
 		097D30A11EE516C000AC880A /* FetchLibrary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FetchLibrary.xib; sourceTree = "<group>"; };
 		098037061E758561007C6C91 /* AddSongsToPlaylistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSongsToPlaylistVC.swift; sourceTree = "<group>"; };
 		0981049B1E3DBB5D00070293 /* SongTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableCell.swift; sourceTree = "<group>"; };
+		09819F1D1EEEB23400C19657 /* TestDynamicLinksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDynamicLinksViewController.swift; sourceTree = "<group>"; };
 		09B7C0011E3806C7006FFE86 /* SongListTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableVC.swift; sourceTree = "<group>"; };
 		09B7C0041E380D29006FFE86 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		09B7C0061E381A18006FFE86 /* SavedSong+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedSong+CoreDataClass.swift"; path = "../SavedSong+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -96,6 +102,11 @@
 		09B7C00E1E381ABB006FFE86 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		09B973361E7E728000E27E3D /* LastFmConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastFmConstants.swift; sourceTree = "<group>"; };
 		09C149351E330D8300742BE1 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		09C203861EED338B009AA27C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		09C203881EED398A009AA27C /* Playlist Cheetah.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Playlist Cheetah.entitlements"; sourceTree = "<group>"; };
+		09C9BC161EEE735E00CE303B /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		09C9BC181EEE736500CE303B /* ParamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParamTableViewCell.swift; sourceTree = "<group>"; };
+		09CDE5241EEE7E7500BF683F /* DynamicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicViewController.swift; sourceTree = "<group>"; };
 		09D5A6481E911E750058661A /* SimilarSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarSong.swift; sourceTree = "<group>"; };
 		09D5C0271EC9771000A38280 /* MusicPlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerVC.swift; sourceTree = "<group>"; };
 		09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UITabBarController.swift"; sourceTree = "<group>"; };
@@ -166,6 +177,8 @@
 			children = (
 				0977A5741E2B776F00C554A8 /* AppDelegate.swift */,
 				0977A5801E2B777000C554A8 /* Info.plist */,
+				09C203861EED338B009AA27C /* GoogleService-Info.plist */,
+				09C203881EED398A009AA27C /* Playlist Cheetah.entitlements */,
 				0977A5781E2B776F00C554A8 /* Main.storyboard */,
 				09FB4A051EB438FF007A16A5 /* Assets.xcassets */,
 				094710611E485E1300DFBE4A /* Reachability.swift */,
@@ -258,6 +271,10 @@
 		0977A5881E2B8E4900C554A8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				09CDE5241EEE7E7500BF683F /* DynamicViewController.swift */,
+				09819F1D1EEEB23400C19657 /* TestDynamicLinksViewController.swift */,
+				09C9BC161EEE735E00CE303B /* HeaderCell.swift */,
+				09C9BC181EEE736500CE303B /* ParamTableViewCell.swift */,
 				090D6B7C1ED6538F002831CE /* ViewController.swift */,
 				0977A5861E2B8CB000C554A8 /* CreatePlaylistVC.swift */,
 				0977A5891E2B8E7400C554A8 /* PlaylistTableVC.swift */,
@@ -351,6 +368,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -379,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09DC6BAD1EC897C1009872A2 /* InteractivePlayerView.xib in Resources */,
+				09C203871EED338B009AA27C /* GoogleService-Info.plist in Resources */,
 				097D30A21EE516C000AC880A /* FetchLibrary.xib in Resources */,
 				090D6B781ED65005002831CE /* OverlayView.xib in Resources */,
 				090D6B751ED64D22002831CE /* CardContainer.xib in Resources */,
@@ -464,6 +485,7 @@
 				094A17681E3F3D920040255E /* AMSearchVC.swift in Sources */,
 				09FC72B81E3C061900C08A06 /* CoreDataTableVC.swift in Sources */,
 				090D6B7D1ED6538F002831CE /* ViewController.swift in Sources */,
+				09C9BC191EEE736500CE303B /* ParamTableViewCell.swift in Sources */,
 				094994CF1E7E3A2E00024C5A /* LastFmConvenience.swift in Sources */,
 				09B973371E7E728000E27E3D /* LastFmConstants.swift in Sources */,
 				09FB4A041EB3FFA5007A16A5 /* MusicPlayerViewController.swift in Sources */,
@@ -474,14 +496,17 @@
 				09B7C0051E380D29006FFE86 /* Model.xcdatamodeld in Sources */,
 				09B7C00A1E381A18006FFE86 /* SavedSong+CoreDataClass.swift in Sources */,
 				0977A5751E2B776F00C554A8 /* AppDelegate.swift in Sources */,
+				09819F1E1EEEB23400C19657 /* TestDynamicLinksViewController.swift in Sources */,
 				0915EA721EBF4ACE00EDE3B5 /* Extension+UIImageView.swift in Sources */,
 				094710621E485E1300DFBE4A /* Reachability.swift in Sources */,
+				09C9BC171EEE735E00CE303B /* HeaderCell.swift in Sources */,
 				09DC6BAC1EC897C1009872A2 /* InteractivePlayerView.swift in Sources */,
 				090D6B731ED64D1B002831CE /* CardContainer.swift in Sources */,
 				090D6B7A1ED65080002831CE /* ExampleOverlayView.swift in Sources */,
 				0981049C1E3DBB5D00070293 /* SongTableCell.swift in Sources */,
 				096E81781EDF3012000C7271 /* Extension+UIimage.swift in Sources */,
 				095356BA1E2CAEB700F70B83 /* DraggableImage.swift in Sources */,
+				09CDE5251EEE7E7500BF683F /* DynamicViewController.swift in Sources */,
 				0977A58A1E2B8E7400C554A8 /* PlaylistTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,7 +642,8 @@
 			baseConfigurationReference = 158534F951B67F437813E1CD /* Pods-Fast Playist Maker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Deshae Morgan (6U6L84D2JU)";
+				CODE_SIGN_ENTITLEMENTS = "Fast Playist Maker/Playlist Cheetah.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ashton Morgan (Z89QL7GP4Y)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Z89QL7GP4Y;
 				INFOPLIST_FILE = "Fast Playist Maker/Info.plist";
@@ -637,6 +663,7 @@
 			baseConfigurationReference = CA510E3CACEEF66B16EB0C0E /* Pods-Fast Playist Maker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Fast Playist Maker/Playlist Cheetah.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ashton Morgan (Z89QL7GP4Y)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Z89QL7GP4Y;

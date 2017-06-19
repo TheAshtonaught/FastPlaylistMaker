@@ -11,6 +11,7 @@ import Koloda
 import MediaPlayer
 import StoreKit
 import CoreData
+import Firebase
 
 
 
@@ -32,6 +33,8 @@ class ViewController: UIViewController {
     let lastFmClient = LastFmConvenience.sharedClient()
     var stack: CoreDataStack!
     var fetchLibraryView: LoadingLibraryUI!
+    
+    
 
     var songArray: [Song]? {
         didSet {
@@ -58,6 +61,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         setFetchLibView()
         
         kolodaView.dataSource = self
@@ -68,6 +73,8 @@ class ViewController: UIViewController {
 
         appDel = UIApplication.shared.delegate as! AppDelegate
         stack = appDel.stack
+        
+        
         
     }
     
@@ -178,6 +185,8 @@ class ViewController: UIViewController {
     @IBAction func moreInfo(_ sender: Any) {
         
     }
+    
+    
 
     func getLibrary() {
         
@@ -402,6 +411,10 @@ extension ViewController: KolodaViewDelegate {
 // MARK: KolodaViewDataSource
 
 extension ViewController: KolodaViewDataSource {
+    func kolodaSpeedThatCardShouldDrag(_ koloda: KolodaView) -> DragSpeed {
+        return .default
+    }
+
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
         

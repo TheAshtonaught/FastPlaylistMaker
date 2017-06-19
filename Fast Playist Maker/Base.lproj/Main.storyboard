@@ -273,6 +273,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="PiM-bw-2fZ" kind="relationship" relationship="viewControllers" id="KIC-yR-1yJ"/>
+                        <segue destination="hsU-XH-R7k" kind="relationship" relationship="viewControllers" id="KCK-dw-Ttr"/>
                         <segue destination="spk-66-VI1" kind="relationship" relationship="viewControllers" id="et0-QU-QZZ"/>
                         <segue destination="JXS-F9-bM9" kind="relationship" relationship="viewControllers" id="ctV-qq-iyO"/>
                     </connections>
@@ -280,6 +281,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T5q-LR-2AM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="296.80000000000001" y="220.83958020989508"/>
+        </scene>
+        <!--Test Dynamic Links View Controller-->
+        <scene sceneID="Sov-4Y-TNa">
+            <objects>
+                <viewController id="hsU-XH-R7k" customClass="TestDynamicLinksViewController" customModule="Playlist_Cheetah" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4kR-sk-F2W"/>
+                        <viewControllerLayoutGuide type="bottom" id="emR-0g-eN4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YFi-Kb-kpl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anv-kf-LJu">
+                                <rect key="frame" x="115" y="348" width="144" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="button:" destination="hsU-XH-R7k" eventType="touchUpInside" id="LEM-ee-6HK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="ilX-PC-NtV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Db-pB-QTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-186.40000000000001" y="918.89055472263874"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="72F-eH-usg">

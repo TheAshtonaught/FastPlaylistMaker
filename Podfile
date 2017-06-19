@@ -7,4 +7,7 @@ target 'Fast Playist Maker' do
 
   # Pods for Fast Playist Maker
 	pod “Koloda”
+	pod 'Firebase/Core'
+	pod 'Firebase/DynamicLinks'
+	pod 'Firebase/Storage’
 end

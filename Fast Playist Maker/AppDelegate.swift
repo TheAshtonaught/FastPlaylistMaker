@@ -8,17 +8,86 @@
 
 import UIKit
 import CoreData
+import Firebase
+import FirebaseDynamicLinks
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let stack = CoreDataStack(modelName: "Model")!
-
+    let customURLScheme = "com.algebet.playlistcheetah1Xz"
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        FirebaseOptions.defaultOptions()?.deepLinkURLScheme = self.customURLScheme
+
+        FirebaseApp.configure()
         stack.autoSave(90)
+        
         return true
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        return application(app, open: url, sourceApplication: nil, annotation: [:])
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        let dynamicLink = DynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url)
+        if let dynamicLink = dynamicLink {
+            
+            handleIncomingDynamicLink(dynamicLink: dynamicLink)
+            return true
+        }
+        
+        return false
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        
+        guard let dynamicLinks = DynamicLinks.dynamicLinks() else {
+            print("failed guard let dynamicLinks")
+            return false
+        }
+        let handled = dynamicLinks.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+            // [START_EXCLUDE]
+            
+            self.handleIncomingDynamicLink(dynamicLink: dynamiclink!)
+            
+            
+            // [END_EXCLUDE]
+        }
+        
+        // [START_EXCLUDE silent]
+        if !handled {
+            // Show the deep link URL from userActivity.
+            let message = "continueUserActivity webPageURL:\n\(userActivity.webpageURL?.absoluteString ?? "")"
+            showDeepLinkAlertView(withMessage: message)
+        }
+        // [END_EXCLUDE]
+        
+        return handled
+    }
+
+    func handleIncomingDynamicLink(dynamicLink: DynamicLink) {
+        
+        showDeepLinkAlertView(withMessage: String(describing: dynamicLink.url))
+        
+        print("your incoming link parameter is \(String(describing: dynamicLink.url))")
+        
+    }
+    
+    
+    func showDeepLinkAlertView(withMessage message: String) {
+        let okAction = UIAlertAction.init(title: "OK", style: .default) { (action) -> Void in
+            print("OK")
+        }
+        
+        let alertController = UIAlertController.init(title: "Deep-link Data", message: message, preferredStyle: .alert)
+        alertController.addAction(okAction)
+        self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+    }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
        

@@ -9,29 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Fast Playist Maker/ViewController.swift"
-            timestampString = "518384650.959213"
+            filePath = "Fast Playist Maker/AppDelegate.swift"
+            timestampString = "519482080.233822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "431"
-            endingLineNumber = "431"
-            landmarkName = "koloda(_:viewForCardAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Fast Playist Maker/ViewController.swift"
-            timestampString = "518383548.403354"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "386"
-            endingLineNumber = "386"
-            landmarkName = "koloda(_:didSwipeCardAt:in:)"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "handleIncomingDynamicLink(dynamicLink:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

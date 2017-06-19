@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "95040866B75B0D6C0C66FDA1FC24693B"
+               BlueprintIdentifier = "45ED0439A61736CA260C882CEA05CAE4"
                BuildableName = "Pods_Fast_Playist_Maker.framework"
                BlueprintName = "Pods-Fast Playist Maker"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "95040866B75B0D6C0C66FDA1FC24693B"
+            BlueprintIdentifier = "45ED0439A61736CA260C882CEA05CAE4"
             BuildableName = "Pods_Fast_Playist_Maker.framework"
             BlueprintName = "Pods-Fast Playist Maker"
             ReferencedContainer = "container:Pods.xcodeproj">
