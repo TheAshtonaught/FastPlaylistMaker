@@ -4,8 +4,9 @@
 //
 //  Created by Ashton Morgan on 1/15/17.
 //  Copyright © 2017 Ashton Morgan. All rights reserved.
-//
-//Deprecated Not used anymore
+//  **********************************************
+//  Deprecated Not used anymore
+//  **********************************************
 
 import UIKit
 import MediaPlayer

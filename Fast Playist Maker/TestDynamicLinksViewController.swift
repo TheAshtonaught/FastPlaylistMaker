@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDynamicLinks
+import FirebaseDatabase
 import Foundation
 //
 // MARK: - Section Data Structure
@@ -83,6 +84,7 @@ class TestDynamicLinksViewController: UIViewController {
     @IBAction func button(_ sender: Any) {
         
         
+        
         buildFDLLink()
     }
     
@@ -91,13 +93,13 @@ class TestDynamicLinksViewController: UIViewController {
     func buildFDLLink() {
         // [START buildFDLLink]
         
-        let linkString = "https://www.google.com"
+        let linkString = "https://www.google.com/lastpath"
         
         guard let link = URL(string: linkString) else {
             print("error")
             return }
         
-        let components = DynamicLinkComponents(link: link, domain: DynamicViewController.DYNAMIC_LINK_DOMAIN)
+        let components = DynamicLinkComponents(link: link, domain: TestDynamicLinksViewController.DYNAMIC_LINK_DOMAIN)
         
         let bid: String?
         bid = "com.algebet.playlistcheetah1Xz"
@@ -105,12 +107,6 @@ class TestDynamicLinksViewController: UIViewController {
         
         if let bundleID = bid {
             let iOSParams = DynamicLinkIOSParameters(bundleID: bundleID)
-            
-//            let fallback: String?
-//            fallback =  "https://www.google.com"
-//            if let fallbackURL = fallback {
-//                iOSParams.fallbackURL = URL(string: fallbackURL)
-//            }
             
             
             iOSParams.appStoreID = "1227601453"
@@ -138,6 +134,7 @@ class TestDynamicLinksViewController: UIViewController {
                 print(error.localizedDescription + "no long link")
                 return
             }
+            
             self.shortLink = shortURL
             
             UIApplication.shared.open(self.shortLink!)

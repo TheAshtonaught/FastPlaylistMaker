@@ -246,12 +246,19 @@
                                 <action selector="play:" destination="NSJ-nC-l9F" eventType="touchUpInside" id="TIq-wm-ndb"/>
                             </connections>
                         </button>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5uQ-Vb-WeG">
-                            <connections>
-                                <action selector="addSongsBtnPressed:" destination="NSJ-nC-l9F" id="uIg-Tz-auJ"/>
-                                <segue destination="ZOS-hK-If0" kind="show" identifier="AddSongsToPlaylistVC" id="Oco-3Q-PYr"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="5uQ-Vb-WeG">
+                                <connections>
+                                    <action selector="addSongsBtnPressed:" destination="NSJ-nC-l9F" id="uIg-Tz-auJ"/>
+                                    <segue destination="ZOS-hK-If0" kind="show" identifier="AddSongsToPlaylistVC" id="Oco-3Q-PYr"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="y7c-je-Iaj">
+                                <connections>
+                                    <action selector="share:" destination="NSJ-nC-l9F" id="84o-7R-JmY"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>

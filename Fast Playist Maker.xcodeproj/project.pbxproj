@@ -45,9 +45,6 @@
 		09B973371E7E728000E27E3D /* LastFmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B973361E7E728000E27E3D /* LastFmConstants.swift */; };
 		09C149361E330D8300742BE1 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C149351E330D8300742BE1 /* Song.swift */; };
 		09C203871EED338B009AA27C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09C203861EED338B009AA27C /* GoogleService-Info.plist */; };
-		09C9BC171EEE735E00CE303B /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C9BC161EEE735E00CE303B /* HeaderCell.swift */; };
-		09C9BC191EEE736500CE303B /* ParamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C9BC181EEE736500CE303B /* ParamTableViewCell.swift */; };
-		09CDE5251EEE7E7500BF683F /* DynamicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CDE5241EEE7E7500BF683F /* DynamicViewController.swift */; };
 		09D5A6491E911E750058661A /* SimilarSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5A6481E911E750058661A /* SimilarSong.swift */; };
 		09D5C0281EC9771000A38280 /* MusicPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5C0271EC9771000A38280 /* MusicPlayerVC.swift */; };
 		09D5C02A1ECABFA300A38280 /* Extension+UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */; };
@@ -104,9 +101,6 @@
 		09C149351E330D8300742BE1 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		09C203861EED338B009AA27C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		09C203881EED398A009AA27C /* Playlist Cheetah.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Playlist Cheetah.entitlements"; sourceTree = "<group>"; };
-		09C9BC161EEE735E00CE303B /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
-		09C9BC181EEE736500CE303B /* ParamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParamTableViewCell.swift; sourceTree = "<group>"; };
-		09CDE5241EEE7E7500BF683F /* DynamicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicViewController.swift; sourceTree = "<group>"; };
 		09D5A6481E911E750058661A /* SimilarSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarSong.swift; sourceTree = "<group>"; };
 		09D5C0271EC9771000A38280 /* MusicPlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerVC.swift; sourceTree = "<group>"; };
 		09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UITabBarController.swift"; sourceTree = "<group>"; };
@@ -271,10 +265,7 @@
 		0977A5881E2B8E4900C554A8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				09CDE5241EEE7E7500BF683F /* DynamicViewController.swift */,
 				09819F1D1EEEB23400C19657 /* TestDynamicLinksViewController.swift */,
-				09C9BC161EEE735E00CE303B /* HeaderCell.swift */,
-				09C9BC181EEE736500CE303B /* ParamTableViewCell.swift */,
 				090D6B7C1ED6538F002831CE /* ViewController.swift */,
 				0977A5861E2B8CB000C554A8 /* CreatePlaylistVC.swift */,
 				0977A5891E2B8E7400C554A8 /* PlaylistTableVC.swift */,
@@ -485,7 +476,6 @@
 				094A17681E3F3D920040255E /* AMSearchVC.swift in Sources */,
 				09FC72B81E3C061900C08A06 /* CoreDataTableVC.swift in Sources */,
 				090D6B7D1ED6538F002831CE /* ViewController.swift in Sources */,
-				09C9BC191EEE736500CE303B /* ParamTableViewCell.swift in Sources */,
 				094994CF1E7E3A2E00024C5A /* LastFmConvenience.swift in Sources */,
 				09B973371E7E728000E27E3D /* LastFmConstants.swift in Sources */,
 				09FB4A041EB3FFA5007A16A5 /* MusicPlayerViewController.swift in Sources */,
@@ -499,14 +489,12 @@
 				09819F1E1EEEB23400C19657 /* TestDynamicLinksViewController.swift in Sources */,
 				0915EA721EBF4ACE00EDE3B5 /* Extension+UIImageView.swift in Sources */,
 				094710621E485E1300DFBE4A /* Reachability.swift in Sources */,
-				09C9BC171EEE735E00CE303B /* HeaderCell.swift in Sources */,
 				09DC6BAC1EC897C1009872A2 /* InteractivePlayerView.swift in Sources */,
 				090D6B731ED64D1B002831CE /* CardContainer.swift in Sources */,
 				090D6B7A1ED65080002831CE /* ExampleOverlayView.swift in Sources */,
 				0981049C1E3DBB5D00070293 /* SongTableCell.swift in Sources */,
 				096E81781EDF3012000C7271 /* Extension+UIimage.swift in Sources */,
 				095356BA1E2CAEB700F70B83 /* DraggableImage.swift in Sources */,
-				09CDE5251EEE7E7500BF683F /* DynamicViewController.swift in Sources */,
 				0977A58A1E2B8E7400C554A8 /* PlaylistTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

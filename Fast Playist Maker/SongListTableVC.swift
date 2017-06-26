@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import MediaPlayer
+import Firebase
 
 class SongListTableVC: CoreDataTableVC {
 // MARK: Properties
@@ -19,13 +20,23 @@ class SongListTableVC: CoreDataTableVC {
     var stack: CoreDataStack!
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     var arr = [MPMediaItem]()
+    var DBReference: DatabaseReference!
+    static let DYNAMIC_LINK_DOMAIN = "dz7xg.app.goo.gl"
+    var longLink: URL?
+    var shortLink: URL?
+    let bid: String? = "com.algebet.playlistcheetah1Xz"
+    let appStoreID = "1227601453"
     
     
 // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         title = playlistTitle
+        
+        DBReference = Database.database().reference()
         
         let appDel = UIApplication.shared.delegate as! AppDelegate
         stack = appDel.stack
@@ -70,7 +81,7 @@ class SongListTableVC: CoreDataTableVC {
     }
     
     func presentMusicPlayer() {
-        
+
         tabBarController?.animateToTab(toIndex: 2)
     }
 
@@ -79,12 +90,26 @@ class SongListTableVC: CoreDataTableVC {
         playlist.playSongsFromPlaylist(controller: controller)
         
         presentMusicPlayer()
-        
     }
     
     @IBAction func addSongsBtnPressed(_ sender: Any) {
         //TODO: Add code
     }
+    
+    @IBAction func share(_ sender: Any) {
+        
+
+        buildFDLLink { (dynamicLink) in
+            if let link = dynamicLink {
+                print("New dynamic link: \(link.absoluteString)")
+            }
+        }
+    }
+    
+    
+    
+    
+    
     
     // MARK: - Table view data source
 
@@ -97,7 +122,7 @@ class SongListTableVC: CoreDataTableVC {
         cell.songTitleLbl.text = song.title
         cell.albumTitleLbl.text = song.albumTitle
         
-       let uniqueString = "\(String(describing: song.title))\(String(describing: song.albumTitle))"
+        let uniqueString = "\(String(describing: song.title))\(String(describing: song.albumTitle))"
         DispatchQueue.main.async {
            cell.albumImageView.loadImageUsingCacheWithUniqueString(uniqueString, imageData: song.albumImg!) 
         }
@@ -148,3 +173,85 @@ class SongListTableVC: CoreDataTableVC {
     
 
 }
+
+extension SongListTableVC {
+    
+    func buildFDLLink(completion: @escaping (_ link: URL?) -> Void) {
+        
+        guard let playlistID = uploadPlaylistToFirebase() else {
+            //TODO: handle upload to firebase error
+            return
+        }
+        
+        let linkString = "https://www.playlistcheetah.com/\(playlistID)"
+        
+        guard let link = URL(string: linkString) else {
+            print("ERROR CREATING URL FROM LINKSTRING")
+            return
+        }
+        
+        let components = DynamicLinkComponents(link: link, domain: SongListTableVC.DYNAMIC_LINK_DOMAIN)
+        
+        if let bundleID = bid {
+            let iOSParams = DynamicLinkIOSParameters(bundleID: bundleID)
+            
+            iOSParams.appStoreID = appStoreID
+            components.iOSParameters = iOSParams
+            
+            longLink = components.url
+            
+            print(longLink?.absoluteString ?? "no long link")
+            
+            let options = DynamicLinkComponentsOptions()
+            options.pathLength = .short
+            components.options = options
+            
+            components.shorten { (shortURL, warnings, error) in
+                // Handle shortURL.
+                if let error = error {
+                    print(error.localizedDescription + "no long link")
+                    return
+                }
+                
+                self.shortLink = shortURL
+                print(self.shortLink?.absoluteString ?? "")
+                completion(self.shortLink)
+                
+            }
+
+        }
+        
+    }
+    
+    func uploadPlaylistToFirebase() -> String? {
+        let playlistID = DBReference.childByAutoId().key
+        
+        guard let songs = fetchedResultsController?.fetchedObjects as? [SavedSong] else {
+            return nil
+        }
+        
+        let playlistTitle = self.playlist.name ?? "Not availaible"
+        DBReference.child("\(playlistID)").child("PLAYLIST_TITLE").setValue(playlistTitle)
+        
+        for i in 0..<songs.count {
+            
+            let songTitle = songs[i].title ?? "No Title"
+            let albumArtistString = songs[i].albumTitle?.replacingOccurrences(of: " - ", with: " ") ?? "No Title"
+            
+            let songDict = ["title": "\(songTitle)",
+                "albumArtist": "\(albumArtistString)"
+            ]
+            
+            let songKeyString = "song " + String(format:  "%02d", i)
+            
+            DBReference.child("\(playlistID)").child(songKeyString).setValue(songDict)
+            
+        }
+        
+        return playlistID
+    }
+    
+    
+}
+
+

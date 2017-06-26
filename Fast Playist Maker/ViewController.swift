@@ -13,8 +13,6 @@ import StoreKit
 import CoreData
 import Firebase
 
-
-
 class ViewController: UIViewController {
     
     //MARK: Properties
@@ -33,9 +31,6 @@ class ViewController: UIViewController {
     let lastFmClient = LastFmConvenience.sharedClient()
     var stack: CoreDataStack!
     var fetchLibraryView: LoadingLibraryUI!
-    
-    
-
     var songArray: [Song]? {
         didSet {
             DispatchQueue.main.async {
@@ -55,13 +50,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var createPlaylistBtn: BorderedButton!
     @IBOutlet weak var discoverSwitch: UISwitch!
     
-    
     // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         setFetchLibView()
         
@@ -73,8 +65,6 @@ class ViewController: UIViewController {
 
         appDel = UIApplication.shared.delegate as! AppDelegate
         stack = appDel.stack
-        
-        
         
     }
     
@@ -96,7 +86,6 @@ class ViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         lastFmClient.stopTask()
     }
-    
     
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -134,6 +123,7 @@ class ViewController: UIViewController {
         }
         
     }
+    
     @IBAction func discoverSwitchValueChanged(_ sender: Any) {
         
         similarSongsArray = [SimilarSong]()
@@ -229,7 +219,7 @@ class ViewController: UIViewController {
     }
     
     func resetLib() {
-        songArray = userLibrary
+        songArray = userLibrary?.shuffled()
         addedSongs.removeAll(keepingCapacity: true)
 
         similarSongsArray = [SimilarSong]()
@@ -256,6 +246,10 @@ class ViewController: UIViewController {
         for song in addedSongs {
             myGroup.enter()
             lastFmClient.getSimilarSongs(song: song, completionHandler: { (song, error) in
+                
+                if let err = error {
+                    print(err)
+                }
                 
                 if let songArray = song {
                     self.similarSongsArray.append(contentsOf: songArray)
@@ -433,7 +427,7 @@ extension ViewController: KolodaViewDataSource {
         
         let cardContainer = Bundle.main.loadNibNamed("CardContainer", owner: self, options: nil)?.first as! CardContainer
         
-        print(index)
+        //print(index)
         
         if discoverSwitch.isOn && similarSongsArray.count > 0 {
             if index < similarSongsArray.count {

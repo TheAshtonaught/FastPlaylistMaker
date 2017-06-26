@@ -73,7 +73,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         showDeepLinkAlertView(withMessage: String(describing: dynamicLink.url))
         
-        print("your incoming link parameter is \(String(describing: dynamicLink.url))")
+        guard let lastPath = dynamicLink.url?.lastPathComponent else {
+            print("error getting path components")
+            return
+        }
+        
+        //print(dynamicLink.url?.query ?? "")
+        
+        print(lastPath)
+        
+        //print("your incoming link parameter is \(String(describing: dynamicLink.url))")
         
     }
     

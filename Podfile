@@ -10,4 +10,5 @@ target 'Fast Playist Maker' do
 	pod 'Firebase/Core'
 	pod 'Firebase/DynamicLinks'
 	pod 'Firebase/Storage’
+	pod 'Firebase/Database'
 end
