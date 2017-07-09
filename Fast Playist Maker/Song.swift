@@ -17,6 +17,9 @@ struct Song {
     var album: String
     var persitentID: UInt64
     var artist: String
+    var imageUrl: String
+    var previewUrl: String?
+    var trackId: Int?
     
     init(artwork: UIImage, title: String, album: String, id: UInt64, artist: String) {
         self.artwork = artwork
@@ -24,6 +27,20 @@ struct Song {
         self.album = album
         self.persitentID = id
         self.artist = artist
+        self.imageUrl = ""
+    }
+    
+    init(imageUrl: String, trackId: Int, previewUrl: String, artwork: UIImage, title: String, album: String, id: UInt64, artist: String) {
+        self.artwork = artwork
+        self.title = title
+        self.album = album
+        self.persitentID = id
+        self.artist = artist
+        self.imageUrl = imageUrl
+        self.trackId = trackId
+        self.previewUrl = previewUrl
+        
+        
     }
     
     init(similarSong: SimilarSong) {
@@ -31,6 +48,7 @@ struct Song {
         self.title = similarSong.title
         self.persitentID = similarSong.persitentID
         self.album = ""
+        self.imageUrl = ""
         
         if let imageData = NSData(contentsOf: similarSong.imageUrl) as Data? {
             
@@ -46,7 +64,7 @@ struct Song {
         self.persitentID = similarSong.persitentID
         self.album = similarSong.artist
         self.artwork = albumImage
-        
+        self.imageUrl = ""
     }
     
     
@@ -55,6 +73,8 @@ struct Song {
         album = songItem.albumTitle ?? ""
         persitentID = songItem.persistentID
         artist = songItem.artist ?? ""
+        imageUrl = ""
+        
         if let art = songItem.artwork?.image(at: CGSize(width: 245.0, height: 268.0)) {
            artwork = art
         } else {

@@ -16,7 +16,7 @@ public class SavedSong: NSManagedObject {
         if let entity = NSEntityDescription.entity(forEntityName: "SavedSong", in: context) {
             self.init(entity: entity, insertInto: context)
             self.albumImg = song.artwork.lowQualityJPEGNSData
-            self.albumTitle = getAlbumArtistString(song: song)
+            self.albumTitle = song.artist
             self.id = Int64(song.persitentID)
             self.title = song.title
             

@@ -26,6 +26,8 @@ extension AppleMusicConvenience {
         static let artwork = "artworkUrl60"
         static let albumName = "collectionName"
         static let artist = "artistName"
+        static let trackId = "trackId"
+        static let previewUrl = "previewUrl"
     }
     
     struct ids {

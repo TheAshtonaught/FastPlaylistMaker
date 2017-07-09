@@ -18,3 +18,16 @@ extension UIImage
     var lowestQualityJPEGNSData: NSData  { return UIImageJPEGRepresentation(self, 0.0)! as NSData }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+

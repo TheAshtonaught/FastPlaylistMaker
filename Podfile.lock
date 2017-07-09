@@ -1,4 +1,7 @@
 PODS:
+  - Firebase/Auth (4.0.2):
+    - Firebase/Core
+    - FirebaseAuth (= 4.0.0)
   - Firebase/Core (4.0.2):
     - FirebaseAnalytics (= 4.0.1)
     - FirebaseCore (= 4.0.2)
@@ -15,6 +18,10 @@ PODS:
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseAuth (4.0.0):
+    - FirebaseAnalytics (~> 4.0)
+    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseCore (4.0.2):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseDatabase (4.0.0):
@@ -27,15 +34,23 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleToolboxForMac/DebugUtils (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
+    - GoogleToolboxForMac/DebugUtils (= 2.1.1)
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
+  - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
   - Koloda (4.1):
     - pop (~> 1.0)
   - pop (1.0.9)
 
 DEPENDENCIES:
+  - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/DynamicLinks
@@ -45,6 +60,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Firebase: c7ad0731eab26d18a3fc547dd048b0f7cd9c63ae
   FirebaseAnalytics: 4d7040fefc3cd8b291cde35f12cf063d7963f15d
+  FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
   FirebaseCore: 1a8bf6c795ad07d2918278657954ffd2552e9c17
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
   FirebaseDynamicLinks: ad3bef2e8addfa1490af9db02201429c5c9447dd
@@ -55,6 +71,6 @@ SPEC CHECKSUMS:
   Koloda: 6c4fa3ce9a68776a8ef973311e53fdda432799a8
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
-PODFILE CHECKSUM: e61bd4aec6b40619f8e86cabdf6384e6ecb50b6c
+PODFILE CHECKSUM: 3e77eb222e0bc6b1256ff7dbc2b4723b2999341d
 
 COCOAPODS: 1.2.0

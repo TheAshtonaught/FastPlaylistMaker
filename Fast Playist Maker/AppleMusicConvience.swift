@@ -71,6 +71,49 @@ class AppleMusicConvenience {
         self.apiConvenience.dropAllTask(apiConstants: ApiConstants(scheme: Components.Scheme, host: Components.Host, path: Components.Path, domain: "AppleMusicClient"))
     }
     
+    func addSong(searchTerm: String, completion: @escaping (_ song: Song?) -> Void) {
+                
+        getSongs(searchTerm: searchTerm) { (songDict, error) in
+            
+            guard error == nil else { return }
+            
+            if let dict = songDict {
+                var title: String!
+                var albumTitle: String!
+                //var artwork: UIImage
+                var id: String!
+                var artist: String!
+                var trackId: Int!
+                var previewUrl: String!
+                
+                //if dict.count > 1 {
+                
+                if let songRow = dict.first {
+                    
+                    if let urlString = songRow[AppleMusicConvenience.jsonResponseKeys.artwork] as? String {
+                        
+                        title = songRow[AppleMusicConvenience.jsonResponseKeys.trackName] as? String
+                        albumTitle = songRow[AppleMusicConvenience.jsonResponseKeys.albumName] as? String
+                        trackId = songRow[AppleMusicConvenience.jsonResponseKeys.trackId] as? Int
+                        previewUrl = songRow[AppleMusicConvenience.jsonResponseKeys.previewUrl] as? String
+                        
+                        
+                        id = String(songRow["trackId"] as! Int)
+                        artist = songRow[AppleMusicConvenience.jsonResponseKeys.artist] as? String
+                        
+                        let song = Song(imageUrl: urlString, trackId: trackId, previewUrl: previewUrl, artwork: #imageLiteral(resourceName: "noAlbumArt"), title: title, album: albumTitle, id: UInt64(id)!, artist: artist)
+                        
+                        
+                        completion(song)
+                        
+                    }
+                    
+                }
+            }
+            
+        }
+        
+    }
     
     func addSimilarSongToLibrary(similarSong: Song, completion: @escaping (_ song: Song?) -> Void) {
         
@@ -87,9 +130,11 @@ class AppleMusicConvenience {
                 var id: String!
                 var artist: String!
                 
-                if dict.count > 1 {
+                
+                
+                //if dict.count > 1 {
                     
-                let songRow = dict[0]
+                if let songRow = dict.first {
                 
                     if let urlString = songRow[AppleMusicConvenience.jsonResponseKeys.artwork] as? String,
                     let imgUrl = URL(string: urlString),
@@ -99,6 +144,9 @@ class AppleMusicConvenience {
                     artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
                     id = String(songRow["trackId"] as! Int)
                     artist = songRow[AppleMusicConvenience.jsonResponseKeys.artist] as? String
+                        
+                    //let songII = Song(imageUrl: urlString, artwork: #imageLiteral(resourceName: "noAlbumArt"), title: title, album: albumTitle, id: UInt64(id)!, artist: artist)
+                        
                     let song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(id)!, artist: artist)
                     
                     completion(song)
@@ -111,6 +159,9 @@ class AppleMusicConvenience {
         }
             
     }
+    
+    
+    
         
 }
     

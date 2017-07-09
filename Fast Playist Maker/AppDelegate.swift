@@ -49,10 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("failed guard let dynamicLinks")
             return false
         }
-        let handled = dynamicLinks.handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+        let handled = dynamicLinks.handleUniversalLink(userActivity.webpageURL!) { (dlink, error) in
             // [START_EXCLUDE]
             
-            self.handleIncomingDynamicLink(dynamicLink: dynamiclink!)
+            
+            guard let dynamiclink = dlink else {
+                return
+            }
+            self.handleIncomingDynamicLink(dynamicLink: dynamiclink)
             
             
             // [END_EXCLUDE]
@@ -71,18 +75,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func handleIncomingDynamicLink(dynamicLink: DynamicLink) {
         
-        showDeepLinkAlertView(withMessage: String(describing: dynamicLink.url))
-        
         guard let lastPath = dynamicLink.url?.lastPathComponent else {
             print("error getting path components")
             return
         }
         
-        //print(dynamicLink.url?.query ?? "")
+        //print(lastPath)
         
-        print(lastPath)
+        guard let dynamicVC = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "DynamicPlaylistController") as? DynamicPlaylistVC else {
+            return
+        }
         
-        //print("your incoming link parameter is \(String(describing: dynamicLink.url))")
+        dynamicVC.playlistID = lastPath
+        
+        self.window?.rootViewController = dynamicVC
+        
         
     }
     

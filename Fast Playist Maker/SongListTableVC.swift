@@ -26,13 +26,12 @@ class SongListTableVC: CoreDataTableVC {
     var shortLink: URL?
     let bid: String? = "com.algebet.playlistcheetah1Xz"
     let appStoreID = "1227601453"
+    var shouldShowShareMessage: Bool?
     
     
 // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         title = playlistTitle
         
@@ -49,6 +48,13 @@ class SongListTableVC: CoreDataTableVC {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.mainContext, sectionNameKeyPath: nil, cacheName: nil)
         
         querysongs()
+        
+        let showShareMessage = shouldShowShareMessage ?? false
+        
+        if showShareMessage {
+            shareplaylist()
+            shouldShowShareMessage = nil
+        }
     }
     
     func querysongs() {
@@ -63,11 +69,9 @@ class SongListTableVC: CoreDataTableVC {
             query.addFilterPredicate(songPredicate)
             
             if let result = query.items?.first {
-               
                 arr.append(result)
             }
             
-
         }
     }
     
@@ -98,18 +102,54 @@ class SongListTableVC: CoreDataTableVC {
     
     @IBAction func share(_ sender: Any) {
         
-
-        buildFDLLink { (dynamicLink) in
-            if let link = dynamicLink {
-                print("New dynamic link: \(link.absoluteString)")
-            }
-        }
+        shareplaylist()
     }
     
+    func shareplaylist() {
+        
+        Auth.auth().signInAnonymously { (user, error) in
+            if user != nil {
+                
+                self.buildFDLLink { (dynamicLink) in
+                    if let link = dynamicLink {
+                        self.showShareAlert(link: link)
+                    }
+                }
+            }
+        }
+        
+        
+    }
     
+    func showShareAlert(link: URL) {
+        
+        DispatchQueue.main.async {
+            func cancel(alertView: UIAlertAction!){
+                
+            }
+            
+            let alert = UIAlertController(title: nil, message: "Would you like to share this playlist?", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Later", style: .cancel, handler: cancel))
+            alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { (UIAlertAction) in
+                
+                self.shareLink(link: link)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        
+        
+    }
     
-    
-    
+    func shareLink(link: URL) {
+        
+        let message = "Hey, listen to the playlist I made " + link.absoluteString
+        let shareSheet = UIActivityViewController(activityItems: [ message ], applicationActivities: nil)
+        shareSheet.popoverPresentationController?.sourceView = self.view
+        self.present(shareSheet, animated: true, completion: nil)
+    }
     
     // MARK: - Table view data source
 
@@ -178,6 +218,9 @@ extension SongListTableVC {
     
     func buildFDLLink(completion: @escaping (_ link: URL?) -> Void) {
         
+        
+        
+        
         guard let playlistID = uploadPlaylistToFirebase() else {
             //TODO: handle upload to firebase error
             return
@@ -224,6 +267,9 @@ extension SongListTableVC {
     }
     
     func uploadPlaylistToFirebase() -> String? {
+        
+        
+        
         let playlistID = DBReference.childByAutoId().key
         
         guard let songs = fetchedResultsController?.fetchedObjects as? [SavedSong] else {
@@ -244,7 +290,7 @@ extension SongListTableVC {
             
             let songKeyString = "song " + String(format:  "%02d", i)
             
-            DBReference.child("\(playlistID)").child(songKeyString).setValue(songDict)
+            DBReference.child("\(playlistID)").child("songs").child(songKeyString).setValue(songDict)
             
         }
         
