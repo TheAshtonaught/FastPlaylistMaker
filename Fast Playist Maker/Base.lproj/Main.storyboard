@@ -15,7 +15,7 @@
         <!--Create PlaylistVC-->
         <scene sceneID="kek-I4-4Zi">
             <objects>
-                <viewController id="d2t-32-T39" customClass="CreatePlaylistVC" customModule="Playlist_Cheetah" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="oldCreate" id="d2t-32-T39" customClass="CreatePlaylistVC" customModule="Playlist_Cheetah" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uJQ-Vr-mYl"/>
                         <viewControllerLayoutGuide type="bottom" id="drX-fs-VWW"/>
@@ -250,7 +250,6 @@
                             <barButtonItem systemItem="add" id="5uQ-Vb-WeG">
                                 <connections>
                                     <action selector="addSongsBtnPressed:" destination="NSJ-nC-l9F" id="uIg-Tz-auJ"/>
-                                    <segue destination="ZOS-hK-If0" kind="show" identifier="AddSongsToPlaylistVC" id="Oco-3Q-PYr"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="action" id="y7c-je-Iaj">
@@ -265,7 +264,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BTL-Dh-83O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4140" y="-291.00449775112446"/>
+            <point key="canvasLocation" x="4001" y="-251"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5RR-ij-zhq">
@@ -453,26 +452,30 @@
                         <viewControllerLayoutGuide type="bottom" id="vDO-n8-CF5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wSh-gs-i8C">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thanks for checking out Playlist Cheetah!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="rlC-QQ-Az7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for checking out Playlist Cheetah!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="rlC-QQ-Az7">
                                 <rect key="frame" x="0.0" y="64" width="375" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="hw3-Lc-Ghf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="hw3-Lc-Ghf">
                                 <rect key="frame" x="16" y="170" width="343" height="155"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="155" id="pDT-gk-jUT"/>
+                                </constraints>
                                 <string key="text">We are constantly looking to make the app better so if you have any questions or suggetions to help us improve shoot us an email</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LnE-hj-fru" customClass="BorderedButton" customModule="Playlist_Cheetah" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LnE-hj-fru" customClass="BorderedButton" customModule="Playlist_Cheetah" customModuleProvider="target">
                                 <rect key="frame" x="69" y="374" width="236" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="236" id="IFD-fj-5GS"/>
+                                    <constraint firstAttribute="height" constant="55" id="Vop-wN-lt0"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Send us an email!">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -483,6 +486,18 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.9505888819694519" green="0.71533447504043579" blue="0.98652046918869019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hw3-Lc-Ghf" firstAttribute="top" secondItem="rlC-QQ-Az7" secondAttribute="bottom" constant="40" id="4OG-p5-uMO"/>
+                            <constraint firstItem="hw3-Lc-Ghf" firstAttribute="leading" secondItem="wSh-gs-i8C" secondAttribute="leadingMargin" id="B0Z-zL-8Eb"/>
+                            <constraint firstItem="vDO-n8-CF5" firstAttribute="top" secondItem="LnE-hj-fru" secondAttribute="bottom" constant="238" id="OCk-tU-4Zr"/>
+                            <constraint firstItem="hw3-Lc-Ghf" firstAttribute="trailing" secondItem="wSh-gs-i8C" secondAttribute="trailingMargin" id="Pp5-O8-1T2"/>
+                            <constraint firstItem="rlC-QQ-Az7" firstAttribute="top" secondItem="lP7-g0-hnx" secondAttribute="bottom" id="X4Y-cr-bKz"/>
+                            <constraint firstAttribute="trailing" secondItem="rlC-QQ-Az7" secondAttribute="trailing" id="ZLa-Qc-cMv"/>
+                            <constraint firstItem="LnE-hj-fru" firstAttribute="top" secondItem="hw3-Lc-Ghf" secondAttribute="bottom" constant="49" id="psh-o9-h6o"/>
+                            <constraint firstItem="LnE-hj-fru" firstAttribute="centerX" secondItem="wSh-gs-i8C" secondAttribute="centerX" id="qrJ-S1-cbx"/>
+                            <constraint firstItem="hw3-Lc-Ghf" firstAttribute="top" secondItem="rlC-QQ-Az7" secondAttribute="bottom" constant="40" id="s9j-Di-GiX"/>
+                            <constraint firstItem="rlC-QQ-Az7" firstAttribute="leading" secondItem="wSh-gs-i8C" secondAttribute="leading" id="z6x-v9-fHZ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Osh-E7-EYN"/>
                 </viewController>
@@ -725,7 +740,7 @@
         <!--Add Songs To PlaylistVC-->
         <scene sceneID="12W-oU-dvM">
             <objects>
-                <viewController id="ZOS-hK-If0" customClass="AddSongsToPlaylistVC" customModule="Playlist_Cheetah" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="oldwaytoAdd" id="ZOS-hK-If0" customClass="AddSongsToPlaylistVC" customModule="Playlist_Cheetah" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TcI-Rq-MFg"/>
                         <viewControllerLayoutGuide type="bottom" id="eQr-yk-SED"/>
@@ -991,9 +1006,6 @@
                                         <state key="normal">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="pauseButtonTapped:" destination="JXS-F9-bM9" eventType="touchUpInside" id="JgO-Id-N62"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.40000000000000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1032,7 +1044,6 @@
                         <outlet property="containerView" destination="UaN-uw-dUM" id="aWj-PY-BxL"/>
                         <outlet property="ipv" destination="pMv-5N-7Pu" id="FpA-yC-uYk"/>
                         <outlet property="nextTrackBtn" destination="AWF-eD-ycW" id="zhq-XL-DV0"/>
-                        <outlet property="pauseButton" destination="PJ1-zp-ppE" id="baA-Ti-eAn"/>
                         <outlet property="playButton" destination="J0M-Gd-D86" id="FLP-0P-lBg"/>
                         <outlet property="playPauseButtonView" destination="lxr-D2-VsJ" id="gK1-7b-LFK"/>
                         <outlet property="previousTrackBtn" destination="AHX-uz-DZj" id="W34-Lj-tpE"/>
@@ -1448,6 +1459,6 @@
         <image name="shuffle_unselected" width="79" height="79"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SMY-uR-00N"/>
+        <segue reference="FGq-IK-Eb6"/>
     </inferredMetricsTieBreakers>
 </document>

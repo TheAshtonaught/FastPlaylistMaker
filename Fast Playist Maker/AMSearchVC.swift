@@ -155,7 +155,7 @@ extension AMSearchVC: UITableViewDelegate, UITableViewDataSource {
             let imgData = NSData(contentsOf: imgUrl) {
             title = songRow[AppleMusicConvenience.jsonResponseKeys.trackName] as? String
             albumTitle = songRow[AppleMusicConvenience.jsonResponseKeys.albumName] as? String
-            artwork = UIImage(data: imgData as Data) ?? UIImage(named: "noAlbumArt.png")!
+            artwork = UIImage(data: imgData as Data) ?? #imageLiteral(resourceName: "noAlbumArt")
             id = String(songRow["trackId"] as! Int)
             artist = songRow[AppleMusicConvenience.jsonResponseKeys.artist] as? String
             song = Song(artwork: artwork, title: title, album: albumTitle, id: UInt64(9999), artist: artist)

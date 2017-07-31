@@ -20,6 +20,8 @@ class SongListTableVC: CoreDataTableVC {
     var stack: CoreDataStack!
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     var arr = [MPMediaItem]()
+    var songsToAppend = [Song]()
+    let global = Global.sharedClient()
     var DBReference: DatabaseReference!
     static let DYNAMIC_LINK_DOMAIN = "dz7xg.app.goo.gl"
     var longLink: URL?
@@ -97,7 +99,10 @@ class SongListTableVC: CoreDataTableVC {
     }
     
     @IBAction func addSongsBtnPressed(_ sender: Any) {
-        //TODO: Add code
+        
+        global.currentPlaylist = playlist
+        
+        tabBarController?.animateToTab(toIndex: 0)
     }
     
     @IBAction func share(_ sender: Any) {
@@ -268,24 +273,26 @@ extension SongListTableVC {
     
     func uploadPlaylistToFirebase() -> String? {
         
-        
-        
         let playlistID = DBReference.childByAutoId().key
         
-        guard let songs = fetchedResultsController?.fetchedObjects as? [SavedSong] else {
-            return nil
-        }
-        
         let playlistTitle = self.playlist.name ?? "Not availaible"
+        
         DBReference.child("\(playlistID)").child("PLAYLIST_TITLE").setValue(playlistTitle)
         
-        for i in 0..<songs.count {
-            
-            let songTitle = songs[i].title ?? "No Title"
-            let albumArtistString = songs[i].albumTitle?.replacingOccurrences(of: " - ", with: " ") ?? "No Title"
+        for i in 0..<arr.count {
+            let song = arr[i]
+            let songTitle = song.title ?? "No Title"
+            let albumArtistString = song.artist ?? "No Title"
+            let playbackId: String?
+            if #available(iOS 10.3, *) {
+                playbackId = song.playbackStoreID
+            }else {
+                playbackId = ""
+            }
             
             let songDict = ["title": "\(songTitle)",
-                "albumArtist": "\(albumArtistString)"
+                "albumArtist": "\(albumArtistString)",
+                "playbackId": "\(playbackId ?? "")"
             ]
             
             let songKeyString = "song " + String(format:  "%02d", i)

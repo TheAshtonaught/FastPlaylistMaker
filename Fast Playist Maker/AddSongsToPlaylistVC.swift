@@ -4,11 +4,14 @@
 //
 //  Created by Ashton Morgan on 3/12/17.
 //  Copyright © 2017 Ashton Morgan. All rights reserved.
-//
+// ********************************************
+// Deprecated *********************************
+// ********************************************
 
 import UIKit
 import MediaPlayer
 import CoreData
+
 
 class AddSongsToPlaylistVC: UIViewController {
     

@@ -23,6 +23,10 @@
 		094A17641E3F1C380040255E /* ApiConvience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A17631E3F1C380040255E /* ApiConvience.swift */; };
 		094A17661E3F1C6A0040255E /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A17651E3F1C6A0040255E /* ApiConstants.swift */; };
 		094A17681E3F3D920040255E /* AMSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A17671E3F3D920040255E /* AMSearchVC.swift */; };
+		094F99A01F1FC43800321CC6 /* Extension+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F999F1F1FC43800321CC6 /* Extension+URL.swift */; };
+		094F99A21F1FCDF500321CC6 /* SpotifyConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F99A11F1FCDF500321CC6 /* SpotifyConvenience.swift */; };
+		094F99A41F1FCE0800321CC6 /* spotifyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F99A31F1FCE0800321CC6 /* spotifyConstants.swift */; };
+		094F99A61F22513200321CC6 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094F99A51F22513200321CC6 /* Extension+String.swift */; };
 		095356BA1E2CAEB700F70B83 /* DraggableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095356B91E2CAEB700F70B83 /* DraggableImage.swift */; };
 		096E81781EDF3012000C7271 /* Extension+UIimage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E81771EDF3012000C7271 /* Extension+UIimage.swift */; };
 		0977A5751E2B776F00C554A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A5741E2B776F00C554A8 /* AppDelegate.swift */; };
@@ -76,6 +80,10 @@
 		094A17631E3F1C380040255E /* ApiConvience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConvience.swift; sourceTree = "<group>"; };
 		094A17651E3F1C6A0040255E /* ApiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		094A17671E3F3D920040255E /* AMSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMSearchVC.swift; sourceTree = "<group>"; };
+		094F999F1F1FC43800321CC6 /* Extension+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+URL.swift"; sourceTree = "<group>"; };
+		094F99A11F1FCDF500321CC6 /* SpotifyConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyConvenience.swift; sourceTree = "<group>"; };
+		094F99A31F1FCE0800321CC6 /* spotifyConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spotifyConstants.swift; sourceTree = "<group>"; };
+		094F99A51F22513200321CC6 /* Extension+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		095356B91E2CAEB700F70B83 /* DraggableImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableImage.swift; sourceTree = "<group>"; };
 		096E81771EDF3012000C7271 /* Extension+UIimage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIimage.swift"; sourceTree = "<group>"; };
 		0977A5711E2B776F00C554A8 /* Playlist Cheetah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Playlist Cheetah.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +170,8 @@
 				09D5C0291ECABFA300A38280 /* Extension+UITabBarController.swift */,
 				090D6B7E1ED7DA88002831CE /* Extension+MutableConatainers.swift */,
 				096E81771EDF3012000C7271 /* Extension+UIimage.swift */,
+				094F999F1F1FC43800321CC6 /* Extension+URL.swift */,
+				094F99A51F22513200321CC6 /* Extension+String.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -202,6 +212,8 @@
 				094A17651E3F1C6A0040255E /* ApiConstants.swift */,
 				094994CE1E7E3A2E00024C5A /* LastFmConvenience.swift */,
 				09B973361E7E728000E27E3D /* LastFmConstants.swift */,
+				094F99A11F1FCDF500321CC6 /* SpotifyConvenience.swift */,
+				094F99A31F1FCE0800321CC6 /* spotifyConstants.swift */,
 			);
 			name = Clients;
 			sourceTree = "<group>";
@@ -468,8 +480,11 @@
 				09B7C00D1E381A18006FFE86 /* Playlist+CoreDataProperties.swift in Sources */,
 				09C149361E330D8300742BE1 /* Song.swift in Sources */,
 				090D6B7F1ED7DA88002831CE /* Extension+MutableConatainers.swift in Sources */,
+				094F99A61F22513200321CC6 /* Extension+String.swift in Sources */,
 				0977A5871E2B8CB000C554A8 /* CreatePlaylistVC.swift in Sources */,
 				09F27F2E1E302D9D00F763AD /* BorderedButton.swift in Sources */,
+				094F99A01F1FC43800321CC6 /* Extension+URL.swift in Sources */,
+				094F99A41F1FCE0800321CC6 /* spotifyConstants.swift in Sources */,
 				098037071E758561007C6C91 /* AddSongsToPlaylistVC.swift in Sources */,
 				09D5C02A1ECABFA300A38280 /* Extension+UITabBarController.swift in Sources */,
 				09E3DEAF1E42B7130019C163 /* Global.swift in Sources */,
@@ -494,6 +509,7 @@
 				09413A7A1E9F418700F3783E /* SupportVC.swift in Sources */,
 				09B7C0051E380D29006FFE86 /* Model.xcdatamodeld in Sources */,
 				09B7C00A1E381A18006FFE86 /* SavedSong+CoreDataClass.swift in Sources */,
+				094F99A21F1FCDF500321CC6 /* SpotifyConvenience.swift in Sources */,
 				0977A5751E2B776F00C554A8 /* AppDelegate.swift in Sources */,
 				0915EA721EBF4ACE00EDE3B5 /* Extension+UIImageView.swift in Sources */,
 				094710621E485E1300DFBE4A /* Reachability.swift in Sources */,

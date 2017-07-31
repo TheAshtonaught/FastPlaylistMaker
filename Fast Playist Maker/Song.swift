@@ -20,6 +20,7 @@ struct Song {
     var imageUrl: String
     var previewUrl: String?
     var trackId: Int?
+    var playbackStoreId: String?
     
     init(artwork: UIImage, title: String, album: String, id: UInt64, artist: String) {
         self.artwork = artwork
@@ -58,6 +59,29 @@ struct Song {
         }
     }
     
+    init(savedSong: SavedSong) {
+        self.artist = savedSong.albumTitle ?? ""
+        self.title = savedSong.title ?? "NO TITLE"
+        self.persitentID = UInt64(savedSong.id)
+        self.album = savedSong.albumTitle ?? ""
+        self.imageUrl = ""
+
+        if let data = savedSong.albumImg as Data?, let albumimage = UIImage(data: data) {
+            self.artwork = albumimage
+        } else {
+            self.artwork = #imageLiteral(resourceName: "noAlbumArt")
+        }
+    }
+    
+    static func songArray(fromSavedSongArray savedSongs: [SavedSong]) -> [Song] {
+        var songArray = [Song]()
+        for song in savedSongs {
+            let item = Song(savedSong: song)
+            songArray.append(item)
+        }
+        return songArray
+    }
+    
     init(similarSong: SimilarSong, albumImage: UIImage) {
         self.artist = similarSong.artist
         self.title = similarSong.title
@@ -69,6 +93,10 @@ struct Song {
     
     
     init(songItem: MPMediaItem) {
+        
+        if #available(iOS 10.3, *) {
+            playbackStoreId = songItem.playbackStoreID
+        }
         title = songItem.title ?? ""
         album = songItem.albumTitle ?? ""
         persitentID = songItem.persistentID

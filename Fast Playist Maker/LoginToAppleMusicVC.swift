@@ -5,6 +5,11 @@
 //  Created by Ashton Morgan on 4/11/17.
 //  Copyright © 2017 Ashton Morgan. All rights reserved.
 //
+//  ************************************************
+//  Deprecated *************************************
+//  ************************************************
+
+
 
 import UIKit
 

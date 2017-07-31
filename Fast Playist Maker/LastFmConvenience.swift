@@ -26,7 +26,7 @@ class LastFmConvenience {
     
     fileprivate func lastFmApiRequest(url: NSURL, method: String, completionHandler: @escaping (_ json: [String:AnyObject]?, _ error: NSError?) -> Void) {
         
-        apiConvenience.apiRequest(url: url, method: method) { (data, error) in
+        apiConvenience.apiRequest(url: url, method: method, nil) { (data, error) in
             
             if let data = data {
         //TODO: Make json serialization safe

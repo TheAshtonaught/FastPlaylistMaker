@@ -17,7 +17,6 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var ipv: InteractivePlayerView!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var pauseButton: UIButton!
     @IBOutlet weak var playPauseButtonView: UIView!
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var albumTitleLabel: UILabel!
@@ -54,25 +53,22 @@ class MusicPlayerVC: UIViewController, InteractivePlayerViewDelegate {
             controller.pause()
         } else { controller.play() }
         
-        setSongInfo()
+        //setSongInfo()
     }
     
-    @IBAction func pauseButtonTapped(_ sender: UIButton) {
-        //TODO: remove outlet
-    }
     
     @IBAction func nextTapped(sender: AnyObject) {
         controller.skipToNextItem()
         ipv.restartWithProgress(duration: 50)
         
-        setSongInfo()
+        //setSongInfo()
     }
     
     @IBAction func previousTapped(sender: AnyObject) {
         controller.skipToPreviousItem()
         ipv.restartWithProgress(duration: 50)
         
-        setSongInfo()
+        //setSongInfo()
     }
     
     func setSongInfo() {

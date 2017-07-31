@@ -12,12 +12,13 @@ extension AppleMusicConvenience {
     struct Components {
         static let Scheme = "https"
         static let Host = "itunes.apple.com"
-        static let Path = "/search"
+        static let Path = ""
     }
     
     struct parameterKeys {
         static let term = "term"
         static let entity = "entity"
+        static let id = "id"
     }
     
     struct jsonResponseKeys {

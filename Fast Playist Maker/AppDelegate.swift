@@ -29,6 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+
+        if let code = url.queryItemValueFor(key: "code") {
+            let codeDict: [String: Any] = ["code": code]
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "spotifyAuth"), object: nil, userInfo: codeDict)
+        }
+        
+        
+
+        
         return application(app, open: url, sourceApplication: nil, annotation: [:])
     }
     
@@ -58,7 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             self.handleIncomingDynamicLink(dynamicLink: dynamiclink)
             
-            
             // [END_EXCLUDE]
         }
         
@@ -80,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        //print(lastPath)
+        print("The last past is \(lastPath)")
         
         guard let dynamicVC = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "DynamicPlaylistController") as? DynamicPlaylistVC else {
             return
@@ -89,7 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dynamicVC.playlistID = lastPath
         
         self.window?.rootViewController = dynamicVC
-        
         
     }
     

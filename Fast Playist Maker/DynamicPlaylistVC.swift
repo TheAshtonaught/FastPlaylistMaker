@@ -20,11 +20,13 @@ class DynamicPlaylistVC: UIViewController {
     var ref: DatabaseReference!
     var playlistTitle: String?
     let appleMusicClient = AppleMusicConvenience.sharedClient()
+    let spotifyClient = SpotifyClient.sharedClient()
     let controller = SKCloudServiceController()
     let mpController = MPMusicPlayerController.systemMusicPlayer()
     var hasAppleMusicAccess: Bool?
     var storeIds = [String]()
     var player = AVPlayer()
+    var queries = [String]()
     
     @IBOutlet weak var playlistTableView: UITableView!
     @IBOutlet weak var PlaylistTitlelabel: UILabel!
@@ -37,6 +39,8 @@ class DynamicPlaylistVC: UIViewController {
 
         configureUI()
         checkAppleMusicAccess()
+        
+        receiveSpotifyAuthNotifications()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +49,8 @@ class DynamicPlaylistVC: UIViewController {
         //TODO: move to view did load
         if let id = playlistID {
             parsePlaylist(id: id)
+        } else {
+            showHomeTabBar(shouldAnimateToMusicPlayer: false)
         }
     }
     
@@ -63,7 +69,6 @@ class DynamicPlaylistVC: UIViewController {
     }
     
     func parsePlaylist(id: String) {
-        
         ref.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let value = snapshot.value as? NSDictionary else {
@@ -73,10 +78,8 @@ class DynamicPlaylistVC: UIViewController {
             
             self.setPlaylistTitle(playlistDict: value)
             self.parsePlaylistSongs(playlistDict: value)
-            //print(value)
             
             self.setplayButton(isHidden: false)
-            
         })
         
     }
@@ -84,35 +87,63 @@ class DynamicPlaylistVC: UIViewController {
     func parsePlaylistSongs(playlistDict: NSDictionary) {
         guard let songDict = playlistDict["songs"] as? NSDictionary else {
             print("error getting playlist songs")
+            DispatchQueue.main.async {
+                self.showHomeTabBar(shouldAnimateToMusicPlayer: false)
+            }
             return
         }
         
         for (_, value) in songDict {
             if let valueDict = value as? NSDictionary, let title = valueDict["title"] as? String, let artist = valueDict["albumArtist"] as? String {
-                
                 let searchString = "\(title) \(artist)"
-                appleMusicClient.addSong(searchTerm: searchString, completion: { (song) in
+                //print(searchString)
+                queries.append(searchString)
+                
+                if let playbackId = valueDict["playbackId"] as? String, playbackId != "0" {
                     
-                    guard let song = song else {
-                        return
-                    }
+                    getSong(fromPlaybackID: playbackId)
                     
-                    self.songs.append(song)
-                    DispatchQueue.main.async {
-                        self.playlistTableView.reloadData()
-                        self.showTableView()
-                    }
-                    
-                })
+                } else {
+                    getSong(fromSearchTerm: searchString)
+                }
                 
             }
-            
         }
         DispatchQueue.main.async {
            self.removeFetchLibView()
         }
         
-        
+    }
+    
+    func getSong(fromPlaybackID playbackId: String) {
+        appleMusicClient.addSong(fromTrackId: playbackId) { (song) in
+            guard let song = song else {
+                return
+            }
+
+            self.songs.append(song)
+            
+            DispatchQueue.main.async {
+                self.playlistTableView.reloadData()
+                self.showTableView()
+            }
+        }
+    }
+    
+    func getSong(fromSearchTerm searchTerm: String) {
+        appleMusicClient.addSong(searchTerm: searchTerm, completion: { (song) in
+            
+            guard let song = song else {
+                return
+            }
+
+            self.songs.append(song)
+            DispatchQueue.main.async {
+                self.playlistTableView.reloadData()
+                self.showTableView()
+            }
+            
+        })
     }
     
     func setPlaylistTitle(playlistDict: NSDictionary) {
@@ -124,7 +155,7 @@ class DynamicPlaylistVC: UIViewController {
         }
         
         DispatchQueue.main.async {
-            self.PlaylistTitlelabel.text = playlistTitle
+            self.PlaylistTitlelabel.text = playlistTitle.uppercased()
         }
     }
     
@@ -136,6 +167,7 @@ class DynamicPlaylistVC: UIViewController {
         
         if hasAppleMusicAccess {
             
+            mpController.setQueueWithStoreIDs([""])
             for song in songs {
                 guard let id = song.trackId?.description else{
                     return
@@ -150,17 +182,15 @@ class DynamicPlaylistVC: UIViewController {
                 
                 mpController.shuffleMode = .off
             }
+            //print(storeIds)
             mpController.setQueueWithStoreIDs(storeIds)
             mpController.play()
             showHomeTabBar(shouldAnimateToMusicPlayer: true)
             
         } else {
-            if player.currentItem != nil {
-                player = AVPlayer()
-                playButton.setTitle("PLAY", for: .normal)
-            } else {
-               playPreviewTracks(song: songToPrepend)
-            }
+            
+           displaySpotifyAlert(songToPrepend: songToPrepend)
+            
             
         }
     }
@@ -214,15 +244,36 @@ class DynamicPlaylistVC: UIViewController {
         let alert = UIAlertController(title: "Playing Preview", message: "You are listening to a preview of this track you must have access to Apple Music or Spotify", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Got it", style: .cancel, handler: nil))
-//        alert.addAction(UIAlertAction(title: "I'M SURE", style: .default, handler: { (UIAlertAction) in
-//            //self.resetLib()
-//        }))
         
         alert.view.backgroundColor = .white
         alert.view.layer.cornerRadius = 15
         
         present(alert, animated: true, completion: nil)
     
+    }
+    
+    func displaySpotifyAlert(songToPrepend: Song?) {
+        let alert = UIAlertController(title: "Play On Spotify", message: "Would you like to listen to this playlist on Spotify?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (_) in
+            self.spotifyClient.loginToSpotify()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "NO", style: .cancel, handler: { (_) in
+            
+            if self.player.currentItem != nil {
+                self.player = AVPlayer()
+                self.playButton.setTitle("PLAY", for: .normal)
+            } else {
+                self.playPreviewTracks(song: songToPrepend)
+            }
+        }))
+        
+        
+        alert.view.backgroundColor = .white
+        alert.view.layer.cornerRadius = 15
+        
+        present(alert, animated: true, completion: nil)
     }
     
     func configureUI() {
@@ -255,7 +306,7 @@ extension DynamicPlaylistVC: UITableViewDelegate, UITableViewDataSource {
         let song = songs[indexPath.row]
         
         cell.songTitleLbl.text = song.title
-        cell.albumTitleLbl.text = song.album
+        cell.albumTitleLbl.text = song.artist
         
         DispatchQueue.main.async {
             cell.albumImageView.loadImageUsingUrlString(urlString: song.imageUrl)
@@ -314,24 +365,75 @@ extension DynamicPlaylistVC {
 extension DynamicPlaylistVC {
     
     func checkAppleMusicAccess() {
-        
-        //var access: Bool?
         self.controller.requestCapabilities { (capabilities, error) in
             if error != nil {
                 self.hasAppleMusicAccess = false
             } else {
-                self.hasAppleMusicAccess = true
-                //print("true")
+                
+                if capabilities.contains(SKCloudServiceCapability.musicCatalogPlayback) {
+                    self.hasAppleMusicAccess = true
+                }
+                
             }
             
         }
+    }
+}
+
+//MARK: Spotify Auth
+extension DynamicPlaylistVC {
+    
+    func receiveSpotifyAuthNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.spotifyTokenRequest(_:)), name: NSNotification.Name(rawValue: "spotifyAuth"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getSpotifySongs(_:)), name: NSNotification.Name(rawValue: "receivedSpotifyToken"), object: nil)
+    }
+    
+    func spotifyTokenRequest(_ notif: NSNotification) {
+        
+        guard let code = notif.userInfo?["code"] as? String else {
+            return
+        }
+        
+        spotifyClient.spotifyTokenRequest(code: code)
+    }
+    
+    func getSpotifySongs(_ notif: NSNotification) {
+        let dispatchGroup = DispatchGroup()
+        var spotifyTrackIds = [String]()
+        
+        guard let token = notif.userInfo?["token"] as? String else {
+            return
+        }
+        
+        for query in queries {
+            dispatchGroup.enter()
+//            let searchString = "\(song.title) \(song.artist)"
+            
+            spotifyClient.getSpotifyTrackId(token: token, query: query, completionHandler: { (id) in
+                if let id = id {
+                    spotifyTrackIds.append(id)
+                }
+                dispatchGroup.leave()
+            })
+            
+        }
+        
+        dispatchGroup.notify(queue: DispatchQueue.main, execute: {
+        
+            self.spotifyClient.launchSpotifyPlaylist(token: token, spotifyTrakIds: spotifyTrackIds, name: self.PlaylistTitlelabel.text ?? "no title")
+//            print(spotifyTrackIds)
+        })
+
     }
     
     
     
-
+    
 }
+
+
+
 
 
 

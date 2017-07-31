@@ -32,20 +32,22 @@ class PlaylistTableVC: CoreDataTableVC {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //TODO: Make type safe
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlaylistCell", for: indexPath) as! SongTableCell
         let playlist = fetchedResultsController?.object(at: indexPath) as! Playlist
         let numberOfSongs = (playlist.savedSong?.allObjects.count)!
+
         
-//        let rand = Int(arc4random_uniform(UInt32((numberOfSongs))))
+        guard let randomSong = playlist.savedSong?.allObjects.first as? SavedSong else {
+            return UITableViewCell()
+        }
         
-        let randomSong = playlist.savedSong?.allObjects[0] as! SavedSong
         
-        //cell.albumImageView.image = UIImage(data: randomSong.albumImg! as Data)
         cell.songTitleLbl.text = playlist.name
         cell.albumTitleLbl.text = "\(numberOfSongs) Songs"
         let uniqueString = "\(String(describing: randomSong.title))\(String(describing: randomSong.albumTitle))"
         cell.albumImageView.loadImageUsingCacheWithUniqueString(uniqueString, imageData: randomSong.albumImg!)
-        
         
         return cell
     }

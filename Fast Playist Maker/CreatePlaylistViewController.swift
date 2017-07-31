@@ -38,9 +38,7 @@ class CreatePlaylsitViewController: UIViewController {
                 self.kolodaView.isHidden = false
                 self.removeFetchLibView()
                 self.checkIfFirstLaunch()
-                
             }
-            
         }
     }
     
@@ -74,10 +72,6 @@ class CreatePlaylsitViewController: UIViewController {
         loadPurgatorySongs()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        shouldShowExplainer()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         
         setNavBar(isHidden: false)
@@ -87,7 +81,6 @@ class CreatePlaylsitViewController: UIViewController {
         lastFmClient.stopTask()
     }
     
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -95,31 +88,11 @@ class CreatePlaylsitViewController: UIViewController {
     //MARK: Actions
     
     @IBAction func createPlaylist(_ sender: Any) {
-        func configTextField(textField: UITextField) {
-            textField.placeholder = "workout"
-            playlistTitle = textField
-        }
-        
-        func cancel(alertView: UIAlertAction!){
-            
-        }
-        
-        let alert = UIAlertController(title: nil, message: "You've just created something EPIC give it a Name", preferredStyle: .alert)
-        
-        alert.addTextField(configurationHandler: configTextField)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: cancel))
-        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { (UIAlertAction) in
-            if let text = self.playlistTitle.text, !text.isEmpty {
-                self.addSongsToPlaylist()
-            } else {
-                self.displayAlert("No Title", errorMsg: "Pleast name your playlist")
-            }
-        }))
-        
-        if addedSongs.count > 0 {
-            present(alert, animated: true, completion: nil)
+        if let currentPlaylist = global.currentPlaylist {
+            addSongsToCurrentPlaylist(playlist: currentPlaylist)
+            global.currentPlaylist = nil
         } else {
-            displayAlert("NO SONGS ADDED", errorMsg: "Add songs to a playlist by swiping right on the song you want to add")
+            createPlaylistButtonPressed()
         }
         
     }
@@ -132,16 +105,13 @@ class CreatePlaylsitViewController: UIViewController {
             if addedSongs.count > 0 {
                 
                 getSimilarSongs()
-                
             } else {
                 displayAlert("No songs added", errorMsg: "Discover suggest new songs based on songs you've added to your current playlist")
                 discoverSwitch.isOn = false
             }
         } else if !discoverSwitch.isOn {
             kolodaView.resetCurrentCardIndex()
- 
         }
-        
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -149,7 +119,6 @@ class CreatePlaylsitViewController: UIViewController {
         if addedSongs.count > 0 {
             cancelPlaylistWarning()
         }
-        
     }
     
     @IBAction func search(_ sender: Any) {
@@ -157,9 +126,7 @@ class CreatePlaylsitViewController: UIViewController {
         let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "AMSearchVC") as! AMSearchVC
         searchVC.hidesBottomBarWhenPushed = true
         
-        
         navigationController?.pushViewController(searchVC, animated: true)
-        
     }
     
     @IBAction func musicLibraryBtnPressed(_ sender: Any) {
@@ -170,7 +137,6 @@ class CreatePlaylsitViewController: UIViewController {
         
         present(picker, animated: true, completion: nil)
     }
-    
     
     @IBAction func moreInfo(_ sender: Any) {
         
@@ -195,10 +161,7 @@ class CreatePlaylsitViewController: UIViewController {
                         
                         self.displayAlert("No songs to show", errorMsg: "Do you have songs in your music Library? If so, please make sure that Playlist Cheetah has access to your music library in your settings.")
                     }
-                    
-                    
                 }
-                
             } else {
                 
                 DispatchQueue.main.async {
@@ -206,10 +169,8 @@ class CreatePlaylsitViewController: UIViewController {
                     
                     self.displayAlert("Can't Get Songs From Your Library", errorMsg: "Playlist Cheetah does not have access to your music library. Please check your settings and allow Playlist Cheetah to have access to your library if you want to use songs from your library to make playlist")
                 }
-               
             }
         }
-        
     }
     
     func added(song: Song) {
@@ -309,7 +270,7 @@ class CreatePlaylsitViewController: UIViewController {
     
     func addSongsToPlaylist() {
         
-        let playlist = Playlist(title: playlistTitle.text!, context: stack.mainContext)
+        let playlist = Playlist(title: playlistTitle.text ?? "Untitled", context: stack.mainContext)
         
         for song in addedSongs {
             if song.persitentID == AppleMusicConvenience.ids.similarSongId {
@@ -317,6 +278,30 @@ class CreatePlaylsitViewController: UIViewController {
                 
             } else {
                 let savedSong = SavedSong(song: song, context: stack.mainContext)
+                
+                savedSong.playlist = playlist
+            }
+            
+        }
+        stack.save()
+        resetLib()
+        DispatchQueue.main.async {
+            self.presentSongTable(playlist: playlist)
+        }
+        
+    }
+    
+    func addSongsToCurrentPlaylist(playlist: Playlist) {
+        
+        let playlist = playlist
+        
+        for song in addedSongs {
+            if song.persitentID == AppleMusicConvenience.ids.similarSongId {
+                addSimilarSongTolibrary(song: song, playlist: playlist)
+                
+            } else {
+                let savedSong = SavedSong(song: song, context: stack.mainContext)
+                
                 savedSong.playlist = playlist
             }
             
@@ -338,6 +323,35 @@ class CreatePlaylsitViewController: UIViewController {
                 }
             }
         })
+    }
+    
+    func createPlaylistButtonPressed() {
+        func configTextField(textField: UITextField) {
+            textField.placeholder = "workout"
+            playlistTitle = textField
+        }
+        
+        func cancel(alertView: UIAlertAction!){
+            
+        }
+        
+        let alert = UIAlertController(title: nil, message: "You've just created something EPIC give it a Name", preferredStyle: .alert)
+        
+        alert.addTextField(configurationHandler: configTextField)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: cancel))
+        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { (UIAlertAction) in
+            if let text = self.playlistTitle.text, !text.isEmpty {
+                self.addSongsToPlaylist()
+            } else {
+                self.displayAlert("No Title", errorMsg: "Pleast name your playlist")
+            }
+        }))
+        
+        if addedSongs.count > 0 {
+            present(alert, animated: true, completion: nil)
+        } else {
+            displayAlert("NO SONGS ADDED", errorMsg: "Add songs to a playlist by swiping right on the song you want to add")
+        }
     }
     
     func presentSongTable(playlist: Playlist) {
@@ -514,8 +528,6 @@ extension CreatePlaylsitViewController: MPMediaPickerControllerDelegate {
         }
     }
     
-    
-    
 }
 
 extension CreatePlaylsitViewController {
@@ -525,18 +537,10 @@ extension CreatePlaylsitViewController {
         if let firstLaunch = UserDefaults.standard.value(forKey: "FirstLaunch") {
             if firstLaunch as! Bool {}
         } else {
-            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginToAppleMusicVC") {
-                present(vc, animated: true, completion: nil)
-            }
-        }
-        
-    }
-    
-    func shouldShowExplainer() {
-        if global.showExplainer != nil {
             showExplainerThenDismiss()
             UserDefaults.standard.set(false, forKey: "FirstLaunch")
         }
+        
     }
     
     func showExplainerThenDismiss() {
@@ -550,9 +554,7 @@ extension CreatePlaylsitViewController {
         
         DispatchQueue.main.asyncAfter(deadline: time) {
             
-            
             self.view.addSubview(swipeImgView)
-            
         }
         
         delayInNanoSeconds = UInt64(4.5) * NSEC_PER_SEC
