@@ -27,6 +27,7 @@ class DynamicPlaylistVC: UIViewController {
     var storeIds = [String]()
     var player = AVPlayer()
     var queries = [String]()
+    var interstitial: GADInterstitial!
     
     @IBOutlet weak var playlistTableView: UITableView!
     @IBOutlet weak var PlaylistTitlelabel: UILabel!
@@ -39,8 +40,10 @@ class DynamicPlaylistVC: UIViewController {
 
         configureUI()
         checkAppleMusicAccess()
-        
+
         receiveSpotifyAuthNotifications()
+        interstitial = createAndLoadInterstitial()
+        interstitial.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,8 +62,8 @@ class DynamicPlaylistVC: UIViewController {
     }
 
     @IBAction func play(_ sender: Any) {
-        
-        playlistPlayback(songToPrepend: nil)
+        displayAD(interstitial: interstitial)
+
     }
     
     @IBAction func exit(_ sender: Any) {
@@ -96,13 +99,12 @@ class DynamicPlaylistVC: UIViewController {
         for (_, value) in songDict {
             if let valueDict = value as? NSDictionary, let title = valueDict["title"] as? String, let artist = valueDict["albumArtist"] as? String {
                 let searchString = "\(title) \(artist)"
-                //print(searchString)
+
                 queries.append(searchString)
                 
                 if let playbackId = valueDict["playbackId"] as? String, playbackId != "0" {
                     
                     getSong(fromPlaybackID: playbackId)
-                    
                 } else {
                     getSong(fromSearchTerm: searchString)
                 }
@@ -177,21 +179,21 @@ class DynamicPlaylistVC: UIViewController {
             }
             
             if let selectedSong = songToPrepend, let selectedId = selectedSong.trackId?.description {
-                
+
                 storeIds.insert(selectedId, at: 0)
                 
                 mpController.shuffleMode = .off
             }
             //print(storeIds)
+            
             mpController.setQueueWithStoreIDs(storeIds)
+            
             mpController.play()
             showHomeTabBar(shouldAnimateToMusicPlayer: true)
             
         } else {
             
            displaySpotifyAlert(songToPrepend: songToPrepend)
-            
-            
         }
     }
     
@@ -295,6 +297,8 @@ class DynamicPlaylistVC: UIViewController {
 
 }
 
+//MARK: TableViewDelegate
+
 extension DynamicPlaylistVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -365,6 +369,16 @@ extension DynamicPlaylistVC {
 extension DynamicPlaylistVC {
     
     func checkAppleMusicAccess() {
+        SKCloudServiceController.requestAuthorization { (status) in
+            if status == SKCloudServiceAuthorizationStatus.authorized {
+                self.checkAppleMusicCapabilities()
+            }
+        }
+        
+        
+    }
+    
+    func checkAppleMusicCapabilities() {
         self.controller.requestCapabilities { (capabilities, error) in
             if error != nil {
                 self.hasAppleMusicAccess = false
@@ -378,7 +392,11 @@ extension DynamicPlaylistVC {
             
         }
     }
+    
 }
+
+
+
 
 //MARK: Spotify Auth
 extension DynamicPlaylistVC {
@@ -408,8 +426,7 @@ extension DynamicPlaylistVC {
         
         for query in queries {
             dispatchGroup.enter()
-//            let searchString = "\(song.title) \(song.artist)"
-            
+
             spotifyClient.getSpotifyTrackId(token: token, query: query, completionHandler: { (id) in
                 if let id = id {
                     spotifyTrackIds.append(id)
@@ -424,14 +441,44 @@ extension DynamicPlaylistVC {
             self.spotifyClient.launchSpotifyPlaylist(token: token, spotifyTrakIds: spotifyTrackIds, name: self.PlaylistTitlelabel.text ?? "no title")
 //            print(spotifyTrackIds)
         })
-
     }
-    
-    
     
     
 }
 
+//MARK: AdMob
+extension DynamicPlaylistVC: GADInterstitialDelegate {
+    
+    
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+
+        interstitial = createAndLoadInterstitial()
+        playlistPlayback(songToPrepend: nil)
+
+        
+    }
+    
+    
+}
+
+extension UIViewController {
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let adUnitId = "ca-app-pub-3821799418903504/6627238679"
+//        let testAd = "ca-app-pub-3940256099942544/4411468910"
+        
+        let interstitial = GADInterstitial(adUnitID: adUnitId)
+        interstitial.load(GADRequest())
+        return interstitial
+    }
+    
+    func displayAD(interstitial: GADInterstitial) {
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        }
+    }
+}
 
 
 

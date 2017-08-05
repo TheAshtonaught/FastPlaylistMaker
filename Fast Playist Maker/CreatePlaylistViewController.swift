@@ -31,6 +31,7 @@ class CreatePlaylsitViewController: UIViewController {
     let lastFmClient = LastFmConvenience.sharedClient()
     var stack: CoreDataStack!
     var fetchLibraryView: LoadingLibraryUI!
+    var interstitial: GADInterstitial!
     var songArray: [Song]? {
         didSet {
             DispatchQueue.main.async {
@@ -63,7 +64,8 @@ class CreatePlaylsitViewController: UIViewController {
 
         appDel = UIApplication.shared.delegate as! AppDelegate
         stack = appDel.stack
-        
+        interstitial = createAndLoadInterstitial()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -292,8 +294,7 @@ class CreatePlaylsitViewController: UIViewController {
     }
     
     func addSongsToCurrentPlaylist(playlist: Playlist) {
-        
-        let playlist = playlist
+//        let playlist = playlist
         
         for song in addedSongs {
             if song.persitentID == AppleMusicConvenience.ids.similarSongId {
@@ -363,6 +364,7 @@ class CreatePlaylsitViewController: UIViewController {
         songListTableVC.shouldShowShareMessage = true
 
         self.navigationController?.pushViewController(songListTableVC, animated: true)
+        //displayAD()
     }
     
     func setFetchLibView() {
@@ -565,6 +567,18 @@ extension CreatePlaylsitViewController {
             swipeImgView.removeFromSuperview()
         }
     }
+    
+}
+
+//MARK: AdMob
+extension CreatePlaylsitViewController: GADInterstitialDelegate {
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        
+        interstitial = createAndLoadInterstitial()
+        
+    }
+    
     
 }
 

@@ -14,6 +14,7 @@
 		090D6B7D1ED6538F002831CE /* CreatePlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090D6B7C1ED6538F002831CE /* CreatePlaylistViewController.swift */; };
 		090D6B7F1ED7DA88002831CE /* Extension+MutableConatainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090D6B7E1ED7DA88002831CE /* Extension+MutableConatainers.swift */; };
 		0915EA721EBF4ACE00EDE3B5 /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0915EA711EBF4ACE00EDE3B5 /* Extension+UIImageView.swift */; };
+		0938808F1F2FD1CD008102DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0938808E1F2FD1CD008102DD /* GoogleService-Info.plist */; };
 		09413A781E9DD11C00F3783E /* LoginToAppleMusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */; };
 		09413A7A1E9F418700F3783E /* SupportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09413A791E9F418700F3783E /* SupportVC.swift */; };
 		094710621E485E1300DFBE4A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094710611E485E1300DFBE4A /* Reachability.swift */; };
@@ -47,7 +48,6 @@
 		09B7C00F1E381ABB006FFE86 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B7C00E1E381ABB006FFE86 /* CoreDataStack.swift */; };
 		09B973371E7E728000E27E3D /* LastFmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B973361E7E728000E27E3D /* LastFmConstants.swift */; };
 		09C149361E330D8300742BE1 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C149351E330D8300742BE1 /* Song.swift */; };
-		09C203871EED338B009AA27C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09C203861EED338B009AA27C /* GoogleService-Info.plist */; };
 		09D368431F069E940047F157 /* DynamicPlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D368421F069E930047F157 /* DynamicPlaylistVC.swift */; };
 		09D5A6491E911E750058661A /* SimilarSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5A6481E911E750058661A /* SimilarSong.swift */; };
 		09D5C0281EC9771000A38280 /* MusicPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D5C0271EC9771000A38280 /* MusicPlayerVC.swift */; };
@@ -71,6 +71,7 @@
 		090D6B7C1ED6538F002831CE /* CreatePlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlaylistViewController.swift; sourceTree = "<group>"; };
 		090D6B7E1ED7DA88002831CE /* Extension+MutableConatainers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+MutableConatainers.swift"; sourceTree = "<group>"; };
 		0915EA711EBF4ACE00EDE3B5 /* Extension+UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
+		0938808E1F2FD1CD008102DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		09413A771E9DD11C00F3783E /* LoginToAppleMusicVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginToAppleMusicVC.swift; sourceTree = "<group>"; };
 		09413A791E9F418700F3783E /* SupportVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportVC.swift; sourceTree = "<group>"; };
 		094710611E485E1300DFBE4A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		09B7C00E1E381ABB006FFE86 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		09B973361E7E728000E27E3D /* LastFmConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastFmConstants.swift; sourceTree = "<group>"; };
 		09C149351E330D8300742BE1 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
-		09C203861EED338B009AA27C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		09C203881EED398A009AA27C /* Playlist Cheetah.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Playlist Cheetah.entitlements"; sourceTree = "<group>"; };
 		09D368421F069E930047F157 /* DynamicPlaylistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicPlaylistVC.swift; sourceTree = "<group>"; };
 		09D5A6481E911E750058661A /* SimilarSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarSong.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 			children = (
 				0977A5741E2B776F00C554A8 /* AppDelegate.swift */,
 				0977A5801E2B777000C554A8 /* Info.plist */,
-				09C203861EED338B009AA27C /* GoogleService-Info.plist */,
+				0938808E1F2FD1CD008102DD /* GoogleService-Info.plist */,
 				09C203881EED398A009AA27C /* Playlist Cheetah.entitlements */,
 				0977A5781E2B776F00C554A8 /* Main.storyboard */,
 				09FB4A051EB438FF007A16A5 /* Assets.xcassets */,
@@ -410,7 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09DC6BAD1EC897C1009872A2 /* InteractivePlayerView.xib in Resources */,
-				09C203871EED338B009AA27C /* GoogleService-Info.plist in Resources */,
+				0938808F1F2FD1CD008102DD /* GoogleService-Info.plist in Resources */,
 				097D30A21EE516C000AC880A /* FetchLibrary.xib in Resources */,
 				090D6B781ED65005002831CE /* OverlayView.xib in Resources */,
 				090D6B751ED64D22002831CE /* CardContainer.xib in Resources */,

@@ -29,7 +29,7 @@ class SongListTableVC: CoreDataTableVC {
     let bid: String? = "com.algebet.playlistcheetah1Xz"
     let appStoreID = "1227601453"
     var shouldShowShareMessage: Bool?
-    
+    var interstitial: GADInterstitial!
     
 // MARK: Life Cycle
     override func viewDidLoad() {
@@ -42,6 +42,8 @@ class SongListTableVC: CoreDataTableVC {
         let appDel = UIApplication.shared.delegate as! AppDelegate
         stack = appDel.stack
 
+        interstitial = createAndLoadInterstitial()
+        interstitial.delegate = self
         let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedSong")
         let pred = NSPredicate(format: "playlist = %@", playlist)
         fr.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
@@ -64,6 +66,7 @@ class SongListTableVC: CoreDataTableVC {
         guard let songs = fetchedResultsController?.fetchedObjects as? [SavedSong] else {
             return
         }
+        
         
         for song in songs {
             let query = MPMediaQuery.songs()
@@ -92,10 +95,9 @@ class SongListTableVC: CoreDataTableVC {
     }
 
     @IBAction func play(_ sender: Any) {
+        displayAD(interstitial: interstitial)
         
-        playlist.playSongsFromPlaylist(controller: controller)
         
-        presentMusicPlayer()
     }
     
     @IBAction func addSongsBtnPressed(_ sender: Any) {
@@ -160,9 +162,13 @@ class SongListTableVC: CoreDataTableVC {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let song = fetchedResultsController?.object(at: indexPath) as! SavedSong
+        guard let song = fetchedResultsController?.object(at: indexPath) as? SavedSong else {
+            return UITableViewCell()
+        }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SongTableCell", for: indexPath) as! SongTableCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SongTableCell", for: indexPath) as? SongTableCell else {
+            return UITableViewCell()
+        }
 
         cell.songTitleLbl.text = song.title
         cell.albumTitleLbl.text = song.albumTitle
@@ -176,7 +182,9 @@ class SongListTableVC: CoreDataTableVC {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedSong = fetchedResultsController?.object(at: indexPath) as! SavedSong
+        guard let selectedSong = fetchedResultsController?.object(at: indexPath) as? SavedSong else {
+            return
+        }
         var picked: MPMediaItem?
         
         for song in arr {
@@ -194,8 +202,7 @@ class SongListTableVC: CoreDataTableVC {
         }
         controller.repeatMode = .all
         controller.play()
-        presentMusicPlayer()
-        
+        presentMusicPlayer()        
     }
  
     
@@ -223,9 +230,6 @@ extension SongListTableVC {
     
     func buildFDLLink(completion: @escaping (_ link: URL?) -> Void) {
         
-        
-        
-        
         guard let playlistID = uploadPlaylistToFirebase() else {
             //TODO: handle upload to firebase error
             return
@@ -248,7 +252,7 @@ extension SongListTableVC {
             
             longLink = components.url
             
-            print(longLink?.absoluteString ?? "no long link")
+            //print(longLink?.absoluteString ?? "no long link")
             
             let options = DynamicLinkComponentsOptions()
             options.pathLength = .short
@@ -305,6 +309,50 @@ extension SongListTableVC {
     }
     
     
+    func tempFunc(playlistID: String) {
+        
+        guard let songs = fetchedResultsController?.fetchedObjects as? [SavedSong] else {
+            return
+        }
+        
+        for i in 0..<songs.count {
+            let song = songs[i]
+            let songTitle = song.title ?? "No Title"
+            let albumArtistString = song.albumTitle ?? "No Title"
+            
+            let songDict = ["title": "\(songTitle)",
+                "albumArtist": "\(albumArtistString)",
+                "playbackId": "\("0")"
+            ]
+            
+            let songKeyString = "song " + String(format:  "%02d", i)
+            
+            DBReference.child("\(playlistID)").child("songs").child(songKeyString).setValue(songDict)
+            
+        }
+    }
+    
+    
 }
+
+extension SongListTableVC: GADInterstitialDelegate {
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        
+        playlist.playSongsFromPlaylist(controller: controller)
+        
+        presentMusicPlayer()
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 

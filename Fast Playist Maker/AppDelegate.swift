@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseOptions.defaultOptions()?.deepLinkURLScheme = self.customURLScheme
 
         FirebaseApp.configure()
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-3821799418903504~1593747306")
+
         stack.autoSave(90)
         
         return true

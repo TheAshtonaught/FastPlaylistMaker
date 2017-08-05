@@ -12,4 +12,5 @@ target 'Fast Playist Maker' do
 	pod 'Firebase/Storage’
 	pod 'Firebase/Database'
 	pod 'Firebase/Auth’
+	pod ‘Firebase/AdMob’
 end
